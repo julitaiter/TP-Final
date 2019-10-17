@@ -23,7 +23,6 @@ namespace TPFinal_TOAST.Models
 
         public static List<Receta> TraerRecetas(string ElIngrediente)
         {
-            //DOU
             List<Receta> LasRecetas = new List<Receta>();
             List<Ingrediente> Ingredientes = new List<Ingrediente>();
             SqlConnection Conn = Conectar();
