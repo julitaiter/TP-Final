@@ -25,7 +25,6 @@ namespace TPFinal_TOAST.Models
 
         public Usuario()
         {
-
         }
 
         public Usuario(int IDUsuario, string Nombre_Usuario, string Nombre, string Apellido, string Mail, string Contraseña, bool Admin)
