@@ -23,10 +23,7 @@ namespace TPFinal_TOAST.Models
         public bool Admin { get => _Admin; set => _Admin = value; }
         public string Contraseña { get => _Contraseña; set => _Contraseña = value; }
 
-        public Usuario()
-        {
-
-        }
+        public Usuario() { }
 
         public Usuario(int IDUsuario, string Nombre_Usuario, string Nombre, string Apellido, string Mail, string Contraseña, bool Admin)
         {
