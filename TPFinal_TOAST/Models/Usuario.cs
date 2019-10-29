@@ -2,38 +2,37 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace TPFinal_TOAST.Models
 {
     public class Usuario
     {
-        private int _IDUsuario;
-        private string _Nombre_Usuario;
-        private string _Nombre;
-        private string _Apellido;
-        private string _Mail;
-        private string _Contraseña;
-        private bool _Admin;
-
-        public int IDUsuario { get => _IDUsuario; set => _IDUsuario = value; }
-        public string Nombre_Usuario { get => _Nombre_Usuario; set => _Nombre_Usuario = value; }
-        public string Nombre { get => _Nombre; set => _Nombre = value; }
-        public string Apellido { get => _Apellido; set => _Apellido = value; }
-        public string Mail { get => _Mail; set => _Mail = value; }
-        public bool Admin { get => _Admin; set => _Admin = value; }
-        public string Contraseña { get => _Contraseña; set => _Contraseña = value; }
+        public int IDUsuario;
+        [Required(ErrorMessage = "Ingrese un nombre de usuario")]
+        public string Nombre_Usuario { get; set; }
+        [Required(ErrorMessage = "Ingrese un nombre")]
+        public string Nombre { get; set; }
+        [Required(ErrorMessage = "Ingrese un apellido")]
+        public string Apellido { get; set; }
+        [Required(ErrorMessage = "Ingrese un mail")]
+        public string Mail { get; set; }
+        [Required(ErrorMessage = "Ingrese una contraseña")]
+        [StringLength(16, MinimumLength = 4, ErrorMessage = "Más de 4 caracteres y menos de 16 ")]
+        public string Contraseña { get; set; }
+        public bool Admin;
 
         public Usuario() { }
 
-        public Usuario(int IDUsuario, string Nombre_Usuario, string Nombre, string Apellido, string Mail, string Contraseña, bool Admin)
+        public Usuario(int iDUsuario, string nombre_Usuario, string nombre, string apellido, string mail, string contraseña, bool admin)
         {
-            _IDUsuario = IDUsuario;
-            _Nombre_Usuario = Nombre_Usuario;
-            _Nombre = Nombre;
-            _Apellido = Apellido;
-            _Mail = Mail;
-            _Contraseña = Contraseña;
-            _Admin = Admin;
+            IDUsuario = iDUsuario;
+            Nombre_Usuario = nombre_Usuario;
+            Nombre = nombre;
+            Apellido = apellido;
+            Mail = mail;
+            Contraseña = contraseña;
+            Admin = admin;
         }
     }
 }

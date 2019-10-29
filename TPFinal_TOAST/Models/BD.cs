@@ -229,5 +229,95 @@ namespace TPFinal_TOAST.Models
             Desconectar(Conn);
             return ListaDeRecetas;
         }
+
+        public static void InsertarUsuario (string Nombre_Usuario, string Nombre, string Apellido, string Mail, string Contraseña, bool Admin)
+        {
+            SqlConnection Conn = Conectar();
+            SqlCommand Consulta = Conn.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandText = "InsertarUsuario";
+            Consulta.Parameters.Add(new SqlParameter("@Nombre_Usuario", Nombre_Usuario));
+            Consulta.Parameters.Add(new SqlParameter("@Nombre", Nombre));
+            Consulta.Parameters.Add(new SqlParameter("@Apellido", Apellido));
+            Consulta.Parameters.Add(new SqlParameter("@Mail", Mail));
+            Consulta.Parameters.Add(new SqlParameter("@Contraseña", Contraseña));
+            Consulta.Parameters.Add(new SqlParameter("@Admin", Admin));
+            Consulta.ExecuteNonQuery();
+            Desconectar(Conn);
+        }
+
+        public static void EliminarUsuario(int IDUsuario)
+        {
+            SqlConnection Conn = Conectar();
+            SqlCommand Consulta = Conn.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandText = "EliminarUsuario";
+            Consulta.Parameters.Add(new SqlParameter("@IDUsuario", IDUsuario));
+            Consulta.ExecuteNonQuery();
+            Desconectar(Conn);
+        }
+
+        public static void ModificarUsuario(string Nombre_Usuario, string Nombre, string Apellido, string Mail, string Contraseña)
+        {
+            SqlConnection Conn = Conectar();
+            SqlCommand Consulta = Conn.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandText = "ModificarUsuario";
+            Consulta.Parameters.Add(new SqlParameter("@Nombre_Usuario", Nombre_Usuario));
+            Consulta.Parameters.Add(new SqlParameter("@Nombre", Nombre));
+            Consulta.Parameters.Add(new SqlParameter("@Apellido", Apellido));
+            Consulta.Parameters.Add(new SqlParameter("@Mail", Mail));
+            Consulta.Parameters.Add(new SqlParameter("@Contraseña", Contraseña));
+            Consulta.ExecuteNonQuery();
+            Desconectar(Conn);
+        }
+
+        public static bool ValidarUsuario(string Mail, string Contraseña)
+        {
+            bool Validacion = false;
+            SqlConnection Conn = Conectar();
+
+            SqlCommand Consulta = Conn.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.Parameters.Add(new SqlParameter("@Mail", Mail));
+            Consulta.Parameters.Add(new SqlParameter("@Contraseña", Contraseña));
+
+            SqlDataReader Lector = Consulta.ExecuteReader();
+
+            if (Lector.Read())
+            {
+                Validacion = true;
+            }
+
+            Desconectar(Conn);
+            return Validacion;
+        }
+
+        public static List<Usuario> ListarUsuarios()
+        {
+            SqlConnection Conn = Conectar();
+            Usuario UnUsuario = new Usuario();
+            List<Usuario> ListaUsuarios = new List<Usuario>();
+
+            SqlCommand Consulta = Conn.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandText = "ListarRecetas";
+            SqlDataReader Lector = Consulta.ExecuteReader();
+
+            while (Lector.Read())
+            {
+                int IDUsuario = Convert.ToInt32(Lector["IDUsuario"]);
+                string Nombre_Usuario = Lector["Nombre_Usuario"].ToString();
+                string Nombre = Lector["Nombre"].ToString();
+                string Apellido = Lector["Apellido"].ToString();
+                string Mail = Lector["Mail"].ToString();
+                string Contraseña = Lector["Contraseña"].ToString();
+                bool Admin = Convert.ToBoolean(Lector["Admin"]);
+                UnUsuario = new Usuario(IDUsuario, Nombre_Usuario, Nombre, Apellido, Mail, Contraseña, Admin);
+                ListaUsuarios.Add(UnUsuario);
+            }
+            Desconectar(Conn);
+            return ListaUsuarios;
+        }
     }
 }

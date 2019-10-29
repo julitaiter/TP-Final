@@ -1,0 +1,16 @@
+﻿@using TPFinal_TOAST.Models
+@model Usuario
+@{
+    ViewBag.Title = "Loguear";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm("Loguear", "Usuarios", FormMethod.Post))
+{
+
+    <p>Email:</p> @Html.TextBoxFor(model => model.Mail, new { type = "email"}) @Html.ValidationMessageFor(model => model.Mail)<br />
+    <p>Contraseña:</p> @Html.PasswordFor(model => model.Contraseña) @Html.ValidationMessageFor(model => model.Contraseña) <br />
+
+    <input type="submit" value="Enviar" />
+}
