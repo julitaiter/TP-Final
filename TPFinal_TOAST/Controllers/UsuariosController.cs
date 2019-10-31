@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TPFinal_TOAST.Models;
+using System.IO;
 
 namespace TPFinal_TOAST.Controllers
 {
@@ -28,20 +29,51 @@ namespace TPFinal_TOAST.Controllers
         [HttpPost]
         public ActionResult Loguear(Usuario User)
         {
-            if (!ModelState.IsValid)
+            bool validacion = BD.ValidarUsuario(User);
+            if (validacion)
             {
-                return View("Loguear", User);
+                return View("Index", User);
             }
             else
             {
-                bool validacion = BD.ValidarUsuario(User.Mail, User.Contraseña);
-                if (validacion)
-                {
-                    return View("Index");
-                }
+                return View("Loguear", User);
             }
+        }
+        public ActionResult RM(string modo,int id)
+        {
+            Usuario user = BD.TraerUsuario(id);
+            ViewBag.modo = modo;
+            return View(user);
+        }
+        [HttpPost]
+        public ActionResult RM2(Usuario user, string modo)
+        {
+            if(!ModelState.IsValid)
+            {
+                ViewBag.modo = modo;
+                return View("RM", user);
+            }
+            else
+            {
+                if (user.Foto != null)
 
-            return View();
+                {
+
+                    string NuevaUbicacion = Server.MapPath("~/Content/") + user.Foto.FileName;
+                    user.Foto.SaveAs(NuevaUbicacion);
+                    user.Foto = user.Foto.FileName;
+                }
+                user.Admin = false;
+                if (modo=="Insertar")
+                {
+                    BD.InsertarUsuario(user);
+                }
+                else
+                {
+                    BD.ModificarUsuario(user);
+                }
+                return View("Index",user);
+            }
         }
     }
 }

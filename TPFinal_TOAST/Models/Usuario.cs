@@ -8,7 +8,7 @@ namespace TPFinal_TOAST.Models
 {
     public class Usuario
     {
-        public int IDUsuario;
+        public int IDUsuario { get; set; }
         [Required(ErrorMessage = "Ingrese un nombre de usuario")]
         public string Nombre_Usuario { get; set; }
         [Required(ErrorMessage = "Ingrese un nombre")]
@@ -20,11 +20,16 @@ namespace TPFinal_TOAST.Models
         [Required(ErrorMessage = "Ingrese una contraseña")]
         [StringLength(16, MinimumLength = 4, ErrorMessage = "Más de 4 caracteres y menos de 16 ")]
         public string Contraseña { get; set; }
-        public bool Admin;
+
+        [Compare(nameof(Contraseña), ErrorMessage ="Las contraseñas no coinciden")]
+        public string RepetirContraseña { get; set; }
+        public bool Admin { get; set; }
+        [Required(ErrorMessage = "Ingrese una foto")]
+        public byte[] Foto { get; set; }
 
         public Usuario() { }
 
-        public Usuario(int iDUsuario, string nombre_Usuario, string nombre, string apellido, string mail, string contraseña, bool admin)
+        public Usuario(int iDUsuario, string nombre_Usuario, string nombre, string apellido, string mail, string contraseña, bool admin, byte[] foto)
         {
             IDUsuario = iDUsuario;
             Nombre_Usuario = nombre_Usuario;
@@ -33,6 +38,7 @@ namespace TPFinal_TOAST.Models
             Mail = mail;
             Contraseña = contraseña;
             Admin = admin;
+            Foto = foto;
         }
     }
 }

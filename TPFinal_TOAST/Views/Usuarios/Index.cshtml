@@ -1,0 +1,5 @@
+﻿@using TPFinal_TOAST.Models
+@model Usuario
+<h1>Mi perfil</h1>
+<h2>@Model.Nombre_Usuario</h2>
+@Html.ActionLink("Modificar usuario", "RM", "Usuarios", new { modo = "Editar",id= Model.IDUsuario },null)

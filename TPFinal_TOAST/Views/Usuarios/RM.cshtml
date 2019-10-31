@@ -1,0 +1,23 @@
+﻿@using TPFinal_TOAST.Models
+@model Usuario
+@if (ViewBag.modo == "Insertar")
+{
+    <h1>Registro</h1>
+}
+else
+{
+    <h1>Edición</h1>
+}
+@using (Html.BeginForm("RM2", "Usuarios", new { modo = ViewBag.modo }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <p>Nombre:</p> @Html.TextBoxFor(model => model.Nombre) @Html.ValidationMessageFor(model => model.Nombre)<br />
+    <p>Apellido:</p> @Html.TextBoxFor(model => model.Apellido) @Html.ValidationMessageFor(model => model.Apellido)<br />
+    <p>Nombre de Usuario:</p> @Html.TextBoxFor(model => model.Nombre_Usuario) @Html.ValidationMessageFor(model => model.Nombre_Usuario)<br />
+    <p>Email:</p> @Html.TextBoxFor(model => model.Mail, new { type = "email" }) @Html.ValidationMessageFor(model => model.Mail)<br />
+    <p>Contraseña:</p> @Html.PasswordFor(model => model.Contraseña) @Html.ValidationMessageFor(model => model.Contraseña)<br />
+    <p>Repetir Contraseña:</p> @Html.PasswordFor(model => model.RepetirContraseña) @Html.ValidationMessageFor(model => model.RepetirContraseña)<br />
+    <p>Foto:</p> @Html.TextBoxFor(model => model.Foto, new { type = "file" }) @Html.ValidationMessageFor(model => model.Foto)<br />
+    <input type="submit" value="Enviar" />
+} 
+MemoryStream stream = new MemoryStream(LaReceta.Foto);
+picReceta.Image = Image.FromStream(stream);*/
