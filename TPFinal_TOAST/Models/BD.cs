@@ -319,5 +319,67 @@ namespace TPFinal_TOAST.Models
             Desconectar(Conn);
             return ListaUsuarios;
         }
+
+        public static int Numrecetas()
+        {
+            int i;
+            SqlConnection Conn = Conectar();
+
+            SqlCommand Consulta = Conn.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandText = "SELECT COUNT(*) AS cant FROM Recetas";
+            SqlDataReader Lector = Consulta.ExecuteReader();
+            i = Lector("cant");
+            return i;
+        }
+
+        public static List<int> random(int num)
+        {
+            Random random = new Random();
+            List<int> i = new List<int>();
+            int x = 0;
+            while(x<3)
+            {
+                random.Next(1, num);
+                if(i.Contains(random) = false)
+                {
+                    i.Add(random);
+                    x++;
+                }
+                
+            }
+            return i;
+        }
+
+        public static List<Receta> TraerRecetasRandom(int num)
+        {
+            SqlConnection Conn = Conectar();
+            Receta UnaReceta = new Receta();
+            List<Receta> ListaRecetas = new List<Receta>();
+            List<Ingrediente> Ingredientes = new List<Ingrediente>();
+
+            SqlCommand Consulta = Conn.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandText = "SELECT * FROM Recetas WHERE IDReceta = " + num + "";
+            SqlDataReader Lector = Consulta.ExecuteReader();
+
+            while (Lector.Read())
+            {
+                int IDReceta = Convert.ToInt32(Lector["IDReceta"]);
+                string NombreReceta = Lector["NombreReceta"].ToString();
+                int Categoria = Convert.ToInt32(Lector["Categoria"]);
+                string Preparacion = Lector["Preparacion"].ToString();
+                int TiempoPreparacion = Convert.ToInt32(Lector["TiempoPreparacion"]);
+                float CantidadPlatos = Convert.ToInt32(Lector["CantidadPlatos"]);
+                float Dificultad = Convert.ToInt32(Lector["Dificultad"]);
+                byte[] Foto = (byte[])(Lector["Foto"]);
+                UnaReceta = new Receta(IDReceta, NombreReceta, Categoria, Preparacion, TiempoPreparacion, CantidadPlatos, Dificultad, Foto, Ingredientes);
+                UnaReceta.Ingredientes = UnaReceta.ListarIngredientes();
+                ListaRecetas.Add(UnaReceta);
+            }
+            Desconectar(Conn);
+            return ListaRecetas;
+        }
+
     }
 }
