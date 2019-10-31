@@ -59,9 +59,9 @@ namespace TPFinal_TOAST.Controllers
 
                 {
 
-                    string NuevaUbicacion = Server.MapPath("~/Content/") + user.Foto.FileName;
+                    /*string NuevaUbicacion = Server.MapPath("~/Content/") + user.Foto.FileName;
                     user.Foto.SaveAs(NuevaUbicacion);
-                    user.Foto = user.Foto.FileName;
+                    user.Foto = user.Foto.FileName;*/
                 }
                 user.Admin = false;
                 if (modo=="Insertar")

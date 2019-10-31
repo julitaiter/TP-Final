@@ -307,6 +307,7 @@ namespace TPFinal_TOAST.Models
             Desconectar(Conn);
             return ListaUsuarios;
         }
+<<<<<<< HEAD
         public static Usuario TraerUsuario(int IDUsuario)
         {
             SqlConnection Conn = Conectar();
@@ -316,10 +317,61 @@ namespace TPFinal_TOAST.Models
             Consulta.CommandType = System.Data.CommandType.StoredProcedure;
             Consulta.CommandText = "TraerUsuario";
             Consulta.Parameters.Add(new SqlParameter("@IDUsuario", IDUsuario));
+=======
+
+        public static int Numrecetas()
+        {
+            int i;
+            SqlConnection Conn = Conectar();
+
+            SqlCommand Consulta = Conn.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.Text;
+            Consulta.CommandText = "SELECT COUNT(*) AS cant FROM Recetas";
+            SqlDataReader Lector = Consulta.ExecuteReader();
+            Lector.Read();
+            i = Convert.ToInt32(Lector["cant"]);
+            return i;
+        }
+
+        public static List<int> random(int num)
+        {
+            Random ran = new Random();
+            List<int> i = new List<int>();
+            int x = 0;
+            while(x<34)
+            {
+                int aux = ran.Next(1, num);
+                
+                if(i.Contains(aux))
+                {
+                    
+                }
+                else
+                {
+                    i.Add(aux);
+                    x++;
+                }
+                
+            }
+            return i;
+        }
+
+        public static List<Receta> TraerRecetasRandom(List<int> num)
+        {
+            SqlConnection Conn = Conectar();
+            Receta UnaReceta = new Receta();
+            List<Receta> ListaRecetas = new List<Receta>();
+            List<Ingrediente> Ingredientes = new List<Ingrediente>();
+
+            SqlCommand Consulta = Conn.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandText = "SELECT * FROM Recetas WHERE IDReceta = " + num + "";
+>>>>>>> 6a6f0d736a4e0f55ee1adccb8deb5c326a5b5315
             SqlDataReader Lector = Consulta.ExecuteReader();
 
             while (Lector.Read())
             {
+<<<<<<< HEAD
                 int iDUsuario = Convert.ToInt32(Lector["IDUsuario"]);
                 string nombre_Usuario = Lector["Nombre_Usuario"].ToString();
                 string nombre = Lector["Nombre"].ToString();
@@ -332,6 +384,22 @@ namespace TPFinal_TOAST.Models
             }
             Desconectar(Conn);
             return UnUsuario;
+=======
+                int IDReceta = Convert.ToInt32(Lector["IDReceta"]);
+                string NombreReceta = Lector["NombreReceta"].ToString();
+                int Categoria = Convert.ToInt32(Lector["Categoria"]);
+                string Preparacion = Lector["Preparacion"].ToString();
+                int TiempoPreparacion = Convert.ToInt32(Lector["TiempoPreparacion"]);
+                float CantidadPlatos = Convert.ToInt32(Lector["CantidadPlatos"]);
+                float Dificultad = Convert.ToInt32(Lector["Dificultad"]);
+                byte[] Foto = (byte[])(Lector["Foto"]);
+                UnaReceta = new Receta(IDReceta, NombreReceta, Categoria, Preparacion, TiempoPreparacion, CantidadPlatos, Dificultad, Foto, Ingredientes);
+                UnaReceta.Ingredientes = UnaReceta.ListarIngredientes();
+                ListaRecetas.Add(UnaReceta);
+            }
+            Desconectar(Conn);
+            return ListaRecetas;
+>>>>>>> 6a6f0d736a4e0f55ee1adccb8deb5c326a5b5315
         }
     }
 }
