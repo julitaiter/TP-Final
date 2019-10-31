@@ -326,24 +326,30 @@ namespace TPFinal_TOAST.Models
             SqlConnection Conn = Conectar();
 
             SqlCommand Consulta = Conn.CreateCommand();
-            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandType = System.Data.CommandType.Text;
             Consulta.CommandText = "SELECT COUNT(*) AS cant FROM Recetas";
             SqlDataReader Lector = Consulta.ExecuteReader();
-            i = Lector("cant");
+            Lector.Read();
+            i = Convert.ToInt32(Lector["cant"]);
             return i;
         }
 
         public static List<int> random(int num)
         {
-            Random random = new Random();
+            Random ran = new Random();
             List<int> i = new List<int>();
             int x = 0;
-            while(x<3)
+            while(x<34)
             {
-                random.Next(1, num);
-                if(i.Contains(random) = false)
+                int aux = ran.Next(1, num);
+                
+                if(i.Contains(aux))
                 {
-                    i.Add(random);
+                    
+                }
+                else
+                {
+                    i.Add(aux);
                     x++;
                 }
                 
@@ -351,7 +357,7 @@ namespace TPFinal_TOAST.Models
             return i;
         }
 
-        public static List<Receta> TraerRecetasRandom(int num)
+        public static List<Receta> TraerRecetasRandom(List<int> num)
         {
             SqlConnection Conn = Conectar();
             Receta UnaReceta = new Receta();
@@ -380,6 +386,5 @@ namespace TPFinal_TOAST.Models
             Desconectar(Conn);
             return ListaRecetas;
         }
-
     }
 }
