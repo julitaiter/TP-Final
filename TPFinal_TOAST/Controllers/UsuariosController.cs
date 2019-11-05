@@ -15,17 +15,14 @@ namespace TPFinal_TOAST.Controllers
         {
             return View();
         }
-
         public ActionResult ListarUsuarios()
         {
             return View();
         }
-
         public ActionResult Login()
         {
             return View("Loguear");
         }
-
         [HttpPost]
         public ActionResult Loguear(Usuario User)
         {
@@ -39,7 +36,7 @@ namespace TPFinal_TOAST.Controllers
                 return View("Loguear", User);
             }
         }
-        public ActionResult RM(string modo,int id)
+        public ActionResult RM(string modo, int id)
         {
             Usuario user = BD.TraerUsuario(id);
             ViewBag.modo = modo;
@@ -56,12 +53,10 @@ namespace TPFinal_TOAST.Controllers
             else
             {
                 if (user.Foto != null)
-
                 {
-
-                    /*string NuevaUbicacion = Server.MapPath("~/Content/") + user.Foto.FileName;
+                    string NuevaUbicacion = Server.MapPath("~/Content/") + user.Foto.FileName;
                     user.Foto.SaveAs(NuevaUbicacion);
-                    user.Foto = user.Foto.FileName;*/
+                    user.Foto = user.Foto.FileName;
                 }
                 user.Admin = false;
                 if (modo=="Insertar")
