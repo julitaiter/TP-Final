@@ -290,7 +290,6 @@ namespace TPFinal_TOAST.Models
             Consulta.CommandType = System.Data.CommandType.StoredProcedure;
             Consulta.CommandText = "ListarRecetas";
             SqlDataReader Lector = Consulta.ExecuteReader();
-
             while (Lector.Read())
             {
                 int IDUsuario = Convert.ToInt32(Lector["IDUsuario"]);
@@ -307,18 +306,30 @@ namespace TPFinal_TOAST.Models
             Desconectar(Conn);
             return ListaUsuarios;
         }
-<<<<<<< HEAD
         public static Usuario TraerUsuario(int IDUsuario)
         {
             SqlConnection Conn = Conectar();
             Usuario UnUsuario = new Usuario();
-
             SqlCommand Consulta = Conn.CreateCommand();
             Consulta.CommandType = System.Data.CommandType.StoredProcedure;
             Consulta.CommandText = "TraerUsuario";
             Consulta.Parameters.Add(new SqlParameter("@IDUsuario", IDUsuario));
-=======
-
+            SqlDataReader Lector = Consulta.ExecuteReader();
+            if (Lector.Read())
+            {
+                int id = Convert.ToInt32(Lector["IDUsuario"]);
+                string Nombre_Usuario = Lector["Nombre_Usuario"].ToString();
+                string Nombre = Lector["Nombre"].ToString();
+                string Apellido = Lector["Apellido"].ToString();
+                string Mail = Lector["Mail"].ToString();
+                string Contraseña = Lector["Contraseña"].ToString();
+                bool Admin = Convert.ToBoolean(Lector["Admin"]);
+                byte[] Foto = (byte[])(Lector["Foto"]);
+                UnUsuario = new Usuario(id, Nombre_Usuario, Nombre, Apellido, Mail, Contraseña, Admin, Foto);
+            }
+            Desconectar(Conn);
+            return UnUsuario;
+        }
         public static int Numrecetas()
         {
             int i;
@@ -332,7 +343,6 @@ namespace TPFinal_TOAST.Models
             i = Convert.ToInt32(Lector["cant"]);
             return i;
         }
-
         public static List<int> random(int num)
         {
             Random ran = new Random();
@@ -355,36 +365,18 @@ namespace TPFinal_TOAST.Models
             }
             return i;
         }
-
         public static List<Receta> TraerRecetasRandom(List<int> num)
         {
             SqlConnection Conn = Conectar();
-            Receta UnaReceta = new Receta();
             List<Receta> ListaRecetas = new List<Receta>();
             List<Ingrediente> Ingredientes = new List<Ingrediente>();
 
             SqlCommand Consulta = Conn.CreateCommand();
-            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandType = System.Data.CommandType.Text;
             Consulta.CommandText = "SELECT * FROM Recetas WHERE IDReceta = " + num + "";
->>>>>>> 6a6f0d736a4e0f55ee1adccb8deb5c326a5b5315
             SqlDataReader Lector = Consulta.ExecuteReader();
-
             while (Lector.Read())
             {
-<<<<<<< HEAD
-                int iDUsuario = Convert.ToInt32(Lector["IDUsuario"]);
-                string nombre_Usuario = Lector["Nombre_Usuario"].ToString();
-                string nombre = Lector["Nombre"].ToString();
-                string apellido = Lector["Apellido"].ToString();
-                string mail = Lector["Mail"].ToString();
-                string contraseña = Lector["Contraseña"].ToString();
-                bool admin = Convert.ToBoolean(Lector["Admin"]);
-                byte[] Foto = (byte[])(Lector["Foto"]);
-                UnUsuario = new Usuario(iDUsuario, nombre_Usuario, nombre, apellido, mail, contraseña, admin, Foto);
-            }
-            Desconectar(Conn);
-            return UnUsuario;
-=======
                 int IDReceta = Convert.ToInt32(Lector["IDReceta"]);
                 string NombreReceta = Lector["NombreReceta"].ToString();
                 int Categoria = Convert.ToInt32(Lector["Categoria"]);
@@ -393,13 +385,12 @@ namespace TPFinal_TOAST.Models
                 float CantidadPlatos = Convert.ToInt32(Lector["CantidadPlatos"]);
                 float Dificultad = Convert.ToInt32(Lector["Dificultad"]);
                 byte[] Foto = (byte[])(Lector["Foto"]);
-                UnaReceta = new Receta(IDReceta, NombreReceta, Categoria, Preparacion, TiempoPreparacion, CantidadPlatos, Dificultad, Foto, Ingredientes);
+                Receta UnaReceta = new Receta(IDReceta, NombreReceta, Categoria, Preparacion, TiempoPreparacion, CantidadPlatos, Dificultad, Foto, Ingredientes);
                 UnaReceta.Ingredientes = UnaReceta.ListarIngredientes();
                 ListaRecetas.Add(UnaReceta);
             }
             Desconectar(Conn);
             return ListaRecetas;
->>>>>>> 6a6f0d736a4e0f55ee1adccb8deb5c326a5b5315
+            }
         }
-    }
 }
