@@ -353,8 +353,7 @@ namespace TPFinal_TOAST.Models
             int x = 0;
             while(ListaNumeros.Count != CantRandoms)
             {
-                int aux = ran.Next(1, CantRecetasTotal);
-                
+                int aux = ran.Next(1, CantRecetasTotal);             
                 if(ListaNumeros.Contains(aux))
                 {                  
                 }
