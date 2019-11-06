@@ -2,11 +2,11 @@
 @model Usuario
 @if (ViewBag.modo == "Insertar")
 {
-    <h1>Registro</h1>
+    <h1>Registrar usuario</h1>
 }
 else
 {
-    <h1>Edición</h1>
+    <h1>Editar usuario</h1>
 }
 @using (Html.BeginForm("RM2", "Usuarios", new { modo = ViewBag.modo }, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -19,5 +19,3 @@ else
     <p>Foto:</p> @Html.TextBoxFor(model => model.Foto, new { type = "file" }) @Html.ValidationMessageFor(model => model.Foto)<br />
     <input type="submit" value="Enviar" />
 } 
-MemoryStream stream = new MemoryStream(LaReceta.Foto);
-picReceta.Image = Image.FromStream(stream);*/
