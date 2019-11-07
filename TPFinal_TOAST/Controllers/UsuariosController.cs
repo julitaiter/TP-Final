@@ -24,7 +24,7 @@ namespace TPFinal_TOAST.Controllers
             return View("Loguear");
         }
         [HttpPost]
-        public ActionResult Loguear(Usuario User)
+        public ActionResult Loguear(Usuario User) 
         {
             bool validacion = BD.ValidarUsuario(User);
             if (validacion)
