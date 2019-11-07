@@ -237,7 +237,7 @@ namespace TPFinal_TOAST.Models
             Consulta.Parameters.Add(new SqlParameter("@Mail", user.Mail));
             Consulta.Parameters.Add(new SqlParameter("@Contraseña", user.Contraseña));
             Consulta.Parameters.Add(new SqlParameter("@Admin", user.Admin));
-            Consulta.Parameters.Add(new SqlParameter("@Foto", user.NombreFoto));
+            Consulta.Parameters.Add(new SqlParameter("@Nombre_Foto", user.NombreFoto));
             Consulta.ExecuteNonQuery();
             Desconectar(Conn);
         }
@@ -262,7 +262,7 @@ namespace TPFinal_TOAST.Models
             Consulta.Parameters.Add(new SqlParameter("@Apellido", user.Apellido));
             Consulta.Parameters.Add(new SqlParameter("@Mail", user.Mail));
             Consulta.Parameters.Add(new SqlParameter("@Contraseña", user.Contraseña));
-            Consulta.Parameters.Add(new SqlParameter("@Foto", user.NombreFoto));
+            Consulta.Parameters.Add(new SqlParameter("@Nombre_Foto", user.NombreFoto));
             Consulta.ExecuteNonQuery();
             Desconectar(Conn);
         }
@@ -279,6 +279,7 @@ namespace TPFinal_TOAST.Models
             SqlDataReader Lector = Consulta.ExecuteReader();
             if (Lector.Read())
             {
+                user.IDUsuario = Convert.ToInt32(Lector["IDUsuario"]);
                 Validacion = true;
             }
             Desconectar(Conn);
@@ -330,7 +331,7 @@ namespace TPFinal_TOAST.Models
                 string Mail = Lector["Mail"].ToString();
                 string Contraseña = Lector["Contraseña"].ToString();
                 bool Admin = Convert.ToBoolean(Lector["Admin"]);
-                string NombreFoto = Lector["Foto"].ToString();
+                string NombreFoto = Lector["Nombre_Foto"].ToString();
                 HttpPostedFileBase Foto = null;
                 UnUsuario = new Usuario(IDUsuario, Nombre_Usuario, Nombre, Apellido, Mail, Contraseña, Admin, Foto, NombreFoto);
             }

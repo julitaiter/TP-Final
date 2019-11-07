@@ -29,6 +29,7 @@ namespace TPFinal_TOAST.Controllers
             bool validacion = BD.ValidarUsuario(User);
             if (validacion)
             {
+                User = BD.TraerUsuario(User.IDUsuario);
                 return View("Index", User);
             }
             else
@@ -52,12 +53,9 @@ namespace TPFinal_TOAST.Controllers
             }
             else
             {
-                if (user.NombreFoto != null)
-                {
-                    string NuevaUbicacion = Server.MapPath("~/Content/") + user.Foto.FileName;
-                    user.Foto.SaveAs(NuevaUbicacion);
-                    user.NombreFoto = user.Foto.FileName;
-                }
+                string NuevaUbicacion = Server.MapPath("~/Content/Fotos/") + user.Foto.FileName;
+                user.Foto.SaveAs(NuevaUbicacion);
+                user.NombreFoto = user.Foto.FileName;
                 user.Admin = false;
                 if (modo=="Insertar")
                 {
