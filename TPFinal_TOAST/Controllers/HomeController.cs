@@ -17,7 +17,7 @@ namespace TPFinal_TOAST.Controllers
           List<Receta> ListaRecetas = new List<Receta>();
           NumRecetas = BD.CantidadRecetas();
           NumerosRandom = BD.GenerarRandoms(3, NumRecetas);
-          foreach (int Numero in NumerosRandom)
+          foreach (int Numero in NumerosRandom) 
             {
                 UnaReceta = BD.TraerRecetaRandom(Numero);
                 ListaRecetas.Add(UnaReceta);
