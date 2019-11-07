@@ -52,11 +52,11 @@ namespace TPFinal_TOAST.Controllers
             }
             else
             {
-                if (user.Foto != null)
+                if (user.NombreFoto != null)
                 {
                     string NuevaUbicacion = Server.MapPath("~/Content/") + user.Foto.FileName;
                     user.Foto.SaveAs(NuevaUbicacion);
-                    user.Foto = user.Foto.FileName;
+                    user.NombreFoto = user.Foto.FileName;
                 }
                 user.Admin = false;
                 if (modo=="Insertar")

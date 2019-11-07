@@ -11,12 +11,18 @@ namespace TPFinal_TOAST.Controllers
     {
         public ActionResult Index()
         {
-          int numre;
-          List<int> ids = new List<int>();
+          int NumRecetas;
+          List<int> NumerosRandom = new List<int>();
+          Receta UnaReceta = new Receta();
           List<Receta> ListaRecetas = new List<Receta>();
-          numre = BD.Numrecetas();
-          ids = BD.random(numre);
-          ListaRecetas = BD.TraerRecetasRandom(ids);
+          NumRecetas = BD.CantidadRecetas();
+          NumerosRandom = BD.GenerarRandoms(3, NumRecetas);
+          foreach (int Numero in NumerosRandom)
+            {
+                UnaReceta = BD.TraerRecetaRandom(Numero);
+                ListaRecetas.Add(UnaReceta);
+            }
+          
           ViewBag.recetas = ListaRecetas; 
           return View();
         }

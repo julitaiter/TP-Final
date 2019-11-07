@@ -15,7 +15,8 @@ namespace TPFinal_TOAST.Models
         private int _TiempoPreparacion;
         private float _CantidadPlatos;
         private float _Dificultad;
-        private byte[] _Foto;
+        private HttpPostedFileBase _Foto;
+        private string _NombreFoto;
         private List<Ingrediente> _Ingredientes;
 
         public int IDReceta { get => _IDReceta; set => _IDReceta = value; }
@@ -25,14 +26,15 @@ namespace TPFinal_TOAST.Models
         public int TiempoPreparacion { get => _TiempoPreparacion; set => _TiempoPreparacion = value; }
         public float CantidadPlatos { get => _CantidadPlatos; set => _CantidadPlatos = value; }
         public float Dificultad { get => _Dificultad; set => _Dificultad = value; }
-        public byte[] Foto { get => _Foto; set => _Foto = value; }
         public List<Ingrediente> Ingredientes { get => _Ingredientes; set => _Ingredientes = value; }
+        public HttpPostedFileBase Foto { get => _Foto; set => _Foto = value; }
+        public string NombreFoto { get => _NombreFoto; set => _NombreFoto = value; }
 
         public Receta()
         {
         }
 
-        public Receta(int IDReceta, string NombreReceta, int Categoria, string Preparacion, int TiempoPreparacion, float CantidadPlatos, float Dificultad, byte[] Foto, List<Ingrediente> Ingredientes)
+        public Receta(int IDReceta, string NombreReceta, int Categoria, string Preparacion, int TiempoPreparacion, float CantidadPlatos, float Dificultad, HttpPostedFileBase foto, string nom_foto, List<Ingrediente> Ingredientes)
         {
             _IDReceta = IDReceta;
             _NombreReceta = NombreReceta;
@@ -41,7 +43,8 @@ namespace TPFinal_TOAST.Models
             _TiempoPreparacion = TiempoPreparacion;
             _CantidadPlatos = CantidadPlatos;
             _Dificultad = Dificultad;
-            _Foto = Foto;
+            _NombreFoto = nom_foto;
+            _Foto = foto;
             _Ingredientes = Ingredientes;
         }
 

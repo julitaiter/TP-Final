@@ -41,8 +41,9 @@ namespace TPFinal_TOAST.Models
                 int TiempoPreparacion = Convert.ToInt32(Lector["TiempoPreparacion"]);
                 float CantidadPlatos = Convert.ToInt32(Lector["CantidadPlatos"]);
                 float Dificultad = Convert.ToInt32(Lector["Dificultad"]);
-                byte[] Foto = (byte[])(Lector["Foto"]);
-                Receta UnaReceta = new Receta(IDReceta, NombreReceta, Categoria, Preparacion, TiempoPreparacion, CantidadPlatos, Dificultad, Foto, Ingredientes);
+                string NombreFoto = Lector["Foto"].ToString();
+                HttpPostedFileBase Foto = null;
+                Receta UnaReceta = new Receta(IDReceta, NombreReceta, Categoria, Preparacion, TiempoPreparacion, CantidadPlatos, Dificultad, Foto, NombreFoto, Ingredientes);
                 UnaReceta.Ingredientes = UnaReceta.ListarIngredientes();
                 LasRecetas.Add(UnaReceta);
             }
@@ -71,15 +72,16 @@ namespace TPFinal_TOAST.Models
                 int TiempoPreparacion = Convert.ToInt32(Lector["TiempoPreparacion"]);
                 float CantidadPlatos = Convert.ToInt32(Lector["CantidadPlatos"]);
                 float Dificultad = Convert.ToInt32(Lector["Dificultad"]);
-                byte[] Foto = (byte[])(Lector["Foto"]);
-                UnaReceta = new Receta(IDReceta, NombreReceta, Categoria, Preparacion, TiempoPreparacion, CantidadPlatos, Dificultad, Foto, Ingredientes);
+                string NombreFoto = Lector["Foto"].ToString();
+                HttpPostedFileBase Foto = null;
+                UnaReceta = new Receta(IDReceta, NombreReceta, Categoria, Preparacion, TiempoPreparacion, CantidadPlatos, Dificultad, Foto, NombreFoto, Ingredientes);
                 UnaReceta.Ingredientes = UnaReceta.ListarIngredientes();
             }
 
             Desconectar(Conn);
             return UnaReceta;
         }
-        public static void IngresarReceta(string NombreReceta, int Categoria, string Preparacion, int TiempoPreparacion, float CantPlatos, float Dificultad, byte[] Foto)
+        public static void IngresarReceta(string NombreReceta, int Categoria, string Preparacion, int TiempoPreparacion, float CantPlatos, float Dificultad, string Foto)
         {
             SqlConnection Conn = Conectar();
             SqlCommand Consulta = Conn.CreateCommand();
@@ -166,8 +168,9 @@ namespace TPFinal_TOAST.Models
                 int TiempoPreparacion = Convert.ToInt32(Lector["TiempoPreparacion"]);
                 float CantidadPlatos = Convert.ToInt32(Lector["CantidadPlatos"]);
                 float Dificultad = Convert.ToInt32(Lector["Dificultad"]);
-                byte[] Foto = (byte[])(Lector["Foto"]);
-                UnaReceta = new Receta(IDReceta, NombreReceta, Categoria, Preparacion, TiempoPreparacion, CantidadPlatos, Dificultad, Foto, Ingredientes);
+                string NombreFoto = Lector["Foto"].ToString();
+                HttpPostedFileBase Foto = null;
+                UnaReceta = new Receta(IDReceta, NombreReceta, Categoria, Preparacion, TiempoPreparacion, CantidadPlatos, Dificultad, Foto, NombreFoto, Ingredientes);
                 UnaReceta.Ingredientes = UnaReceta.ListarIngredientes();
                 ListaDeRecetas.Add(UnaReceta);
             }
@@ -212,8 +215,9 @@ namespace TPFinal_TOAST.Models
                 int TiempoPreparacion1 = Convert.ToInt32(Lector["TiempoPreparacion"]);
                 float CantidadPlatos1 = Convert.ToInt32(Lector["CantidadPlatos"]);
                 float Dificultad1 = Convert.ToInt32(Lector["Dificultad"]);
-                byte[] Foto = (byte[])(Lector["Foto"]);
-                UnaReceta = new Receta(IDReceta, NombreReceta1, Categoria1, Preparacion, TiempoPreparacion1, CantidadPlatos1, Dificultad1, Foto, Ingredientes);
+                string NombreFoto = Lector["Foto"].ToString();
+                HttpPostedFileBase Foto = null;
+                UnaReceta = new Receta(IDReceta, NombreReceta1, Categoria1, Preparacion, TiempoPreparacion1, CantidadPlatos1, Dificultad1, Foto, NombreFoto, Ingredientes);
                 UnaReceta.Ingredientes = UnaReceta.ListarIngredientes();
                 ListaDeRecetas.Add(UnaReceta);
             }
@@ -233,7 +237,7 @@ namespace TPFinal_TOAST.Models
             Consulta.Parameters.Add(new SqlParameter("@Mail", user.Mail));
             Consulta.Parameters.Add(new SqlParameter("@Contraseña", user.Contraseña));
             Consulta.Parameters.Add(new SqlParameter("@Admin", user.Admin));
-            Consulta.Parameters.Add(new SqlParameter("@Foto", user.Foto));
+            Consulta.Parameters.Add(new SqlParameter("@Foto", user.NombreFoto));
             Consulta.ExecuteNonQuery();
             Desconectar(Conn);
         }
@@ -258,7 +262,7 @@ namespace TPFinal_TOAST.Models
             Consulta.Parameters.Add(new SqlParameter("@Apellido", user.Apellido));
             Consulta.Parameters.Add(new SqlParameter("@Mail", user.Mail));
             Consulta.Parameters.Add(new SqlParameter("@Contraseña", user.Contraseña));
-            Consulta.Parameters.Add(new SqlParameter("@Foto", user.Foto));
+            Consulta.Parameters.Add(new SqlParameter("@Foto", user.NombreFoto));
             Consulta.ExecuteNonQuery();
             Desconectar(Conn);
         }
@@ -290,7 +294,6 @@ namespace TPFinal_TOAST.Models
             Consulta.CommandType = System.Data.CommandType.StoredProcedure;
             Consulta.CommandText = "ListarRecetas";
             SqlDataReader Lector = Consulta.ExecuteReader();
-
             while (Lector.Read())
             {
                 int IDUsuario = Convert.ToInt32(Lector["IDUsuario"]);
@@ -300,8 +303,9 @@ namespace TPFinal_TOAST.Models
                 string Mail = Lector["Mail"].ToString();
                 string Contraseña = Lector["Contraseña"].ToString();
                 bool Admin = Convert.ToBoolean(Lector["Admin"]);
-                byte[] Foto = (byte[])(Lector["Foto"]);
-                UnUsuario = new Usuario(IDUsuario, Nombre_Usuario, Nombre, Apellido, Mail, Contraseña, Admin, Foto);
+                string NombreFoto = Lector["Foto"].ToString();
+                HttpPostedFileBase Foto = null;
+                UnUsuario = new Usuario(IDUsuario, Nombre_Usuario, Nombre, Apellido, Mail, Contraseña, Admin, Foto, NombreFoto);
                 ListaUsuarios.Add(UnUsuario);
             }
             Desconectar(Conn);
@@ -311,24 +315,24 @@ namespace TPFinal_TOAST.Models
         {
             SqlConnection Conn = Conectar();
             Usuario UnUsuario = new Usuario();
-
             SqlCommand Consulta = Conn.CreateCommand();
             Consulta.CommandType = System.Data.CommandType.StoredProcedure;
             Consulta.CommandText = "TraerUsuario";
             Consulta.Parameters.Add(new SqlParameter("@IDUsuario", IDUsuario));
             SqlDataReader Lector = Consulta.ExecuteReader();
 
-            while (Lector.Read())
+            if (Lector.Read())
             {
-                int iDUsuario = Convert.ToInt32(Lector["IDUsuario"]);
-                string nombre_Usuario = Lector["Nombre_Usuario"].ToString();
-                string nombre = Lector["Nombre"].ToString();
-                string apellido = Lector["Apellido"].ToString();
-                string mail = Lector["Mail"].ToString();
-                string contraseña = Lector["Contraseña"].ToString();
-                bool admin = Convert.ToBoolean(Lector["Admin"]);
-                byte[] Foto = (byte[])(Lector["Foto"]);
-                UnUsuario = new Usuario(iDUsuario, nombre_Usuario, nombre, apellido, mail, contraseña, admin, Foto);
+                int id = Convert.ToInt32(Lector["IDUsuario"]);
+                string Nombre_Usuario = Lector["Nombre_Usuario"].ToString();
+                string Nombre = Lector["Nombre"].ToString();
+                string Apellido = Lector["Apellido"].ToString();
+                string Mail = Lector["Mail"].ToString();
+                string Contraseña = Lector["Contraseña"].ToString();
+                bool Admin = Convert.ToBoolean(Lector["Admin"]);
+                string NombreFoto = Lector["Foto"].ToString();
+                HttpPostedFileBase Foto = null;
+                UnUsuario = new Usuario(IDUsuario, Nombre_Usuario, Nombre, Apellido, Mail, Contraseña, Admin, Foto, NombreFoto);
             }
             Desconectar(Conn);
             return UnUsuario;
@@ -336,32 +340,34 @@ namespace TPFinal_TOAST.Models
         public static int CantidadRecetas()
         {
             SqlConnection Conn = Conectar();
-
+            int i = -1;
             SqlCommand Consulta = Conn.CreateCommand();
             Consulta.CommandType = System.Data.CommandType.StoredProcedure;
             Consulta.CommandText = "CantidadRecetas";
             SqlDataReader Lector = Consulta.ExecuteReader();
-
-            int i = Convert.ToInt32(Lector["cant"]);
+            if(Lector.Read())
+            {
+               i = Convert.ToInt32(Lector["cant"]);
+            }
 
             return i;
         }
-        public static List<int> random(int CantRandoms /* Cantidad de Randoms que se quiere generar */, int CantRecetasTotal)
+        public static List<int> GenerarRandoms(int CantRandoms /* Cantidad de Randoms que se quiere generar */, int CantRecetasTotal)
         {
             Random ran = new Random();
             List<int> ListaNumeros = new List<int>();
             int x = 0;
-            while(ListaNumeros.Count != CantRandoms)
+            while (ListaNumeros.Count != CantRandoms)
             {
-                int aux = ran.Next(1, CantRecetasTotal);             
-                if(ListaNumeros.Contains(aux))
-                {                  
+                int aux = ran.Next(1, CantRecetasTotal);
+                if (ListaNumeros.Contains(aux))
+                {
                 }
                 else
                 {
                     ListaNumeros.Add(aux);
                     x++;
-                }               
+                }
             }
             return ListaNumeros;
         }
@@ -376,7 +382,6 @@ namespace TPFinal_TOAST.Models
             Consulta.CommandText = "TraerRecetaRandom";
             Consulta.Parameters.Add(new SqlParameter("@NumeroRandom", num));
             SqlDataReader Lector = Consulta.ExecuteReader();
-
             while (Lector.Read())
             {
                 int IDReceta = Convert.ToInt32(Lector["IDReceta"]);
@@ -386,12 +391,14 @@ namespace TPFinal_TOAST.Models
                 int TiempoPreparacion = Convert.ToInt32(Lector["TiempoPreparacion"]);
                 float CantidadPlatos = Convert.ToInt32(Lector["CantidadPlatos"]);
                 float Dificultad = Convert.ToInt32(Lector["Dificultad"]);
-                byte[] Foto = (byte[])(Lector["Foto"]);
-                UnaReceta = new Receta(IDReceta, NombreReceta, Categoria, Preparacion, TiempoPreparacion, CantidadPlatos, Dificultad, Foto, Ingredientes);
+                string NombreFoto = Lector["Foto"].ToString();
+                HttpPostedFileBase Foto = null;
+                UnaReceta = new Receta(IDReceta, NombreReceta, Categoria, Preparacion, TiempoPreparacion, CantidadPlatos, Dificultad, Foto, NombreFoto, Ingredientes);
                 UnaReceta.Ingredientes = UnaReceta.ListarIngredientes();
             }
             Desconectar(Conn);
-            return UnaReceta;            
+            return UnaReceta;
         }
+
     }
 }

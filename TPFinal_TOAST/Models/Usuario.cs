@@ -25,11 +25,14 @@ namespace TPFinal_TOAST.Models
         public string RepetirContraseña { get; set; }
         public bool Admin { get; set; }
         [Required(ErrorMessage = "Ingrese una foto")]
-        public byte[] Foto { get; set; }
+        public HttpPostedFileBase Foto { get; set; }
+
+        public string NombreFoto { get; set; }
+        
 
         public Usuario() { }
 
-        public Usuario(int iDUsuario, string nombre_Usuario, string nombre, string apellido, string mail, string contraseña, bool admin, byte[] foto)
+        public Usuario(int iDUsuario, string nombre_Usuario, string nombre, string apellido, string mail, string contraseña, bool admin, HttpPostedFileBase foto, string nom_foto)
         {
             IDUsuario = iDUsuario;
             Nombre_Usuario = nombre_Usuario;
@@ -38,6 +41,7 @@ namespace TPFinal_TOAST.Models
             Mail = mail;
             Contraseña = contraseña;
             Admin = admin;
+            NombreFoto = nom_foto;
             Foto = foto;
         }
     }
