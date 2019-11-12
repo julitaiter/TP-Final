@@ -11,7 +11,6 @@ namespace TPFinal_TOAST.Models
         private static SqlConnection Conectar()
         {
             string strConn = "Server=.;Database=BD - TOAST;Trusted_Connection=True;";
-            strConn += "Integrated Security = False; User = alumno; Password = alumno;";
             SqlConnection Conexion = new SqlConnection(strConn);
             Conexion.Open();
 
@@ -383,11 +382,11 @@ namespace TPFinal_TOAST.Models
             SqlCommand Consulta = Conn.CreateCommand();
             Consulta.CommandType = System.Data.CommandType.StoredProcedure;
             Consulta.CommandText = "TraerRecetaRandom";
-            Consulta.Parameters.Add(new SqlParameter("@NumeroRandom0", num[0]));
-            Consulta.Parameters.Add(new SqlParameter("@NumeroRandom1", num[1]));
-            Consulta.Parameters.Add(new SqlParameter("@NumeroRandom2", num[2]));
-            SqlDataReader Lector = Consulta.ExecuteReader();
-            while (Lector.Read())
+            foreach (int n in num)
+            {
+                Consulta.Parameters.Add(new SqlParameter("@NumeroRandom", n));
+                SqlDataReader Lector = Consulta.ExecuteReader();
+                while (Lector.Read())
                 {
                     int IDReceta = Convert.ToInt32(Lector["IDReceta"]);
                     string NombreReceta = Lector["NombreReceta"].ToString();
@@ -402,6 +401,7 @@ namespace TPFinal_TOAST.Models
                     UnaReceta.Ingredientes = UnaReceta.ListarIngredientes();
                     Listarecetas.Add(UnaReceta);
                 }
+            }
             Desconectar(Conn);
             return Listarecetas;
         }
