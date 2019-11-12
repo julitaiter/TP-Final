@@ -405,6 +405,22 @@ namespace TPFinal_TOAST.Models
             Desconectar(Conn);
             return recetas;
         }
+        public static void ModificarReceta (string NombreReceta, int Categoria, string Preparacion, int TiempoPreparacion, float CantPlatos, float Dificultad, string Foto)
+        {
+            SqlConnection Conn = Conectar();
+            SqlCommand Consulta = Conn.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandText = "ModificarRecetas";
+            Consulta.Parameters.Add(new SqlParameter("@NombreReceta", NombreReceta));
+            Consulta.Parameters.Add(new SqlParameter("@Categoria", Categoria));
+            Consulta.Parameters.Add(new SqlParameter("@Preparacion", Preparacion));
+            Consulta.Parameters.Add(new SqlParameter("@TiempoPreparacion", TiempoPreparacion));
+            Consulta.Parameters.Add(new SqlParameter("@CantidadPlatos", CantPlatos));
+            Consulta.Parameters.Add(new SqlParameter("@Dificultad", Dificultad));
+            Consulta.Parameters.Add(new SqlParameter("@Foto", Foto));
+            Consulta.ExecuteNonQuery();
+            Desconectar(Conn);
+        }
 
     }
 }
