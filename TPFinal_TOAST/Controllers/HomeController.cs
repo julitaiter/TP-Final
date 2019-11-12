@@ -17,14 +17,15 @@ namespace TPFinal_TOAST.Controllers
           List<Receta> ListaRecetas = new List<Receta>();
           NumRecetas = BD.CantidadRecetas();
           NumerosRandom = BD.GenerarRandoms(3, NumRecetas);
-          foreach (int Numero in NumerosRandom) 
-            {
-                UnaReceta = BD.TraerRecetaRandom(Numero);
-                ListaRecetas.Add(UnaReceta);
-            }
-          
+          ListaRecetas = BD.TraerRecetasRandom(NumerosRandom);
           ViewBag.recetas = ListaRecetas; 
           return View();
+        }
+
+        public ActionResult ViewReceta(int id)
+        {
+            Receta rec = BD.TraerReceta(id);
+            return View(rec);
         }
     }
 }

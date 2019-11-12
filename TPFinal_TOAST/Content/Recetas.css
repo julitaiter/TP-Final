@@ -1,0 +1,659 @@
+﻿<style id="applicationStylesheet" type="text/css" >
+.mediaViewInfo {
+    --web-view-name: Receta;
+    --web-view-id: Receta;
+    --web-enable-deep-linking: true;
+}
+
+:root {
+    --web-view-ids: Receta;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+}
+
+#Receta {
+    position: absolute;
+    box-sizing: border-box;
+    background: #E5E5E5;
+    width: 2880px;
+    height: 4342px;
+    background-color: rgba(255,255,255,1);
+    overflow: hidden;
+    --web-view-name: Receta;
+    --web-view-id: Receta;
+    --web-enable-deep-linking: true;
+}
+
+#Componente_11___55 {
+    position: absolute;
+    width: 2880px;
+    height: 549px;
+    left: 0px;
+    top: 3790px;
+    overflow: visible;
+}
+
+.Trazado_13 {
+    overflow: visible;
+    position: absolute;
+    width: 2880px;
+    height: 549px;
+    left: 0px;
+    top: 0px;
+    transform: matrix(1,0,0,1,0,0);
+}
+
+#__2019_Toast__Inc_ {
+    position: absolute;
+    left: 1299px;
+    top: 230px;
+    overflow: visible;
+    width: 283px;
+    white-space: nowrap;
+    line-height: 60px;
+    margin-top: -13px;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 34px;
+    color: rgba(255,255,255,1);
+    letter-spacing: 0.25px;
+}
+
+#Acerca {
+    position: absolute;
+    left: 1253px;
+    top: 372px;
+    overflow: visible;
+    width: 105px;
+    white-space: nowrap;
+    line-height: 60px;
+    margin-top: -13px;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 34px;
+    color: rgba(255,255,255,1);
+    letter-spacing: 0.25px;
+}
+
+#Grupo_3 {
+    position: absolute;
+    width: 265.241px;
+    height: 66px;
+    left: 1307px;
+    top: 135px;
+    overflow: visible;
+}
+
+.Trazado_4 {
+    overflow: visible;
+    position: absolute;
+    width: 34.54px;
+    height: 66px;
+    left: 0px;
+    top: 0px;
+    transform: matrix(1,0,0,1,0,0);
+}
+
+.Trazado_5 {
+    overflow: visible;
+    position: absolute;
+    width: 52.276px;
+    height: 51.157px;
+    left: 39.208px;
+    top: 14.843px;
+    transform: matrix(1,0,0,1,0,0);
+}
+
+.Trazado_6 {
+    overflow: visible;
+    position: absolute;
+    width: 43.969px;
+    height: 51.157px;
+    left: 99.606px;
+    top: 14.843px;
+    transform: matrix(1,0,0,1,0,0);
+}
+
+.Trazado_7 {
+    overflow: visible;
+    position: absolute;
+    width: 39.861px;
+    height: 51.157px;
+    left: 153.656px;
+    top: 14.843px;
+    transform: matrix(1,0,0,1,0,0);
+}
+
+.Trazado_8 {
+    overflow: visible;
+    position: absolute;
+    width: 34.54px;
+    height: 66px;
+    left: 201.546px;
+    top: 0px;
+    transform: matrix(1,0,0,1,0,0);
+}
+
+.Trazado_9 {
+    overflow: visible;
+    position: absolute;
+    width: 21.747px;
+    height: 13.336px;
+    left: 243.223px;
+    top: 52.664px;
+    transform: matrix(1,0,0,1,0,0);
+}
+
+.Trazado_10 {
+    overflow: visible;
+    position: absolute;
+    width: 22.019px;
+    height: 10.146px;
+    left: 243.223px;
+    top: 44.201px;
+    transform: matrix(1,0,0,1,0,0);
+}
+
+#Enviar_una_idea {
+    position: absolute;
+    left: 1387px;
+    top: 372px;
+    overflow: visible;
+    width: 241px;
+    white-space: nowrap;
+    line-height: 60px;
+    margin-top: -13px;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 34px;
+    color: rgba(255,255,255,1);
+    letter-spacing: 0.25px;
+}
+
+#_ {
+    position: absolute;
+    left: 1368px;
+    top: 372px;
+    overflow: visible;
+    width: 9px;
+    white-space: nowrap;
+    line-height: 60px;
+    margin-top: -13px;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 34px;
+    color: rgba(153,153,153,1);
+    letter-spacing: 0.25px;
+}
+
+#Componente_15___2 {
+    position: absolute;
+    width: 2880px;
+    height: 757.12px;
+    left: 0px;
+    top: 212px;
+    overflow: visible;
+}
+
+#Buscar_recetas__nunca_ha_sido_ {
+    position: absolute;
+    left: 550px;
+    top: 362px;
+    overflow: visible;
+    width: 942px;
+    white-space: nowrap;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 90px;
+    color: rgba(255,255,255,1);
+}
+
+#Tan_s_lo_ingresar_un_ingredien {
+    position: absolute;
+    left: 550px;
+    top: 642px;
+    overflow: visible;
+    width: 1504px;
+    white-space: nowrap;
+    line-height: 60px;
+    margin-top: -13px;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 34px;
+    color: rgba(255,255,255,1);
+    letter-spacing: 0.25px;
+}
+
+.Hero_Image {
+    overflow: visible;
+    position: absolute;
+    width: 2880px;
+    height: 757.12px;
+    left: 0px;
+    top: 0px;
+    transform: matrix(1,0,0,1,0,0);
+}
+
+.Hero_Image_A4_Path_94 {
+    overflow: visible;
+    position: absolute;
+    width: 2880px;
+    height: 757.12px;
+    left: 0px;
+    top: 0px;
+    transform: matrix(1,0,0,1,0,0);
+}
+
+#Tarta_de_manzana_ {
+    position: absolute;
+    left: 100px;
+    top: 100px;
+    overflow: visible;
+    width: 1538px;
+    white-space: nowrap;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 180px;
+    color: rgba(255,255,255,1);
+}
+
+#minutos {
+    position: absolute;
+    left: 1203px;
+    top: 582px;
+    overflow: visible;
+    width: 167px;
+    white-space: nowrap;
+    text-align: center;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 45px;
+    color: rgba(241,241,241,1);
+}
+
+#ID50 {
+    position: absolute;
+    left: 1197px;
+    top: 406px;
+    overflow: visible;
+    width: 173px;
+    white-space: nowrap;
+    text-align: center;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 155px;
+    color: rgba(241,241,241,1);
+}
+
+#f_cil {
+    opacity: 0.75;
+    position: absolute;
+    left: 103px;
+    top: 339px;
+    overflow: visible;
+    width: 140px;
+    white-space: nowrap;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 75px;
+    color: rgba(241,241,241,1);
+}
+
+#raciones {
+    position: absolute;
+    left: 1500px;
+    top: 582px;
+    overflow: visible;
+    width: 171px;
+    white-space: nowrap;
+    text-align: center;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 45px;
+    color: rgba(241,241,241,0.902);
+}
+
+#ID8 {
+    position: absolute;
+    left: 1539px;
+    top: 406px;
+    overflow: visible;
+    width: 87px;
+    white-space: nowrap;
+    text-align: center;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 155px;
+    color: rgba(241,241,241,1);
+}
+
+.Icon_material_access_time {
+    overflow: visible;
+    position: absolute;
+    width: 39.484px;
+    height: 39.484px;
+    left: 1263.5px;
+    top: 654.06px;
+    transform: matrix(1,0,0,1,0,0);
+}
+
+.Icon_material_people_outline {
+    overflow: visible;
+    position: absolute;
+    width: 62.046px;
+    height: 39.484px;
+    left: 1551.3px;
+    top: 654.06px;
+    transform: matrix(1,0,0,1,0,0);
+}
+
+.Icon_feather_heart {
+    overflow: visible;
+    position: absolute;
+    width: 112.506px;
+    height: 99.406px;
+    left: 2699.07px;
+    top: 584px;
+    transform: matrix(1,0,0,1,0,0);
+}
+
+#Componente_16___2 {
+    position: absolute;
+    width: 2367px;
+    height: 2553px;
+    left: 250px;
+    top: 1089px;
+    overflow: visible;
+}
+
+#Ingredientes_ {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    overflow: visible;
+    width: 556px;
+    white-space: nowrap;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 90px;
+    color: rgba(31,31,31,1);
+}
+
+#Instrucciones_ {
+    position: absolute;
+    left: 0px;
+    top: 1430px;
+    overflow: visible;
+    width: 583px;
+    white-space: nowrap;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 90px;
+    color: rgba(31,31,31,1);
+}
+
+#Para_la_masa__400_gr__Harina_l {
+    position: absolute;
+    left: 0px;
+    top: 142px;
+    overflow: visible;
+    width: 654px;
+    white-space: nowrap;
+    line-height: 90px;
+    margin-top: -22.5px;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 45px;
+    color: rgba(31,31,31,1);
+}
+
+#ID1____2__3___4__5_ {
+    position: absolute;
+    left: 0px;
+    top: 1548px;
+    overflow: visible;
+    width: 58px;
+    white-space: nowrap;
+    line-height: 90px;
+    margin-top: -11.25px;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 67.5px;
+    color: rgba(247,139,11,1);
+}
+
+#Con_las_yemas_de_los_dedos_for {
+    position: absolute;
+    left: 92px;
+    top: 1572px;
+    overflow: visible;
+    width: 2276px;
+    white-space: nowrap;
+    line-height: 90px;
+    margin-top: -11.25px;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 67.5px;
+    color: rgba(247,139,11,1);
+}
+
+#VER_M_S_POSTRES {
+    position: absolute;
+    left: 0px;
+    top: 2500px;
+    overflow: visible;
+    width: 335px;
+    white-space: nowrap;
+    line-height: 90px;
+    margin-top: -25px;
+    text-align: right;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 40px;
+    color: rgba(153,153,153,1);
+}
+
+#Componente_12___12 {
+    position: absolute;
+    width: 2880px;
+    height: 211.486px;
+    left: 0px;
+    top: 0px;
+    overflow: visible;
+}
+
+.Rect_ngulo_4 {
+    filter: drop-shadow(0px 8px 20px rgba(0, 0, 0, 0.161));
+    position: absolute;
+    overflow: visible;
+    width: 2940px;
+    height: 271.486px;
+    left: 0px;
+    top: 0px;
+}
+
+#Header {
+    position: absolute;
+    width: 514px;
+    height: 64px;
+    left: 2223px;
+    top: 83.356px;
+    overflow: visible;
+}
+
+#Categor_as {
+    position: absolute;
+    left: 0px;
+    top: 8px;
+    overflow: visible;
+    width: 178px;
+    white-space: nowrap;
+    line-height: 60px;
+    margin-top: -12px;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    color: rgba(102,102,102,1);
+    letter-spacing: 0.25px;
+}
+
+#Submit_Button {
+    position: absolute;
+    width: 293px;
+    height: 64px;
+    left: 221px;
+    top: 0px;
+    overflow: visible;
+}
+
+.Button {
+    position: absolute;
+    overflow: visible;
+    width: 293px;
+    height: 64px;
+    left: 0px;
+    top: 0px;
+}
+
+#Subir_una_receta {
+    position: absolute;
+    left: 15px;
+    top: 9px;
+    overflow: visible;
+    width: 265px;
+    white-space: nowrap;
+    text-align: center;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 35px;
+    color: rgba(102,102,102,1);
+    letter-spacing: 0.25px;
+}
+
+#Grupo_4 {
+    position: absolute;
+    width: 265.241px;
+    height: 66px;
+    left: 112px;
+    top: 82.447px;
+    overflow: visible;
+}
+
+.Trazado_4_A4_Path_98 {
+    overflow: visible;
+    position: absolute;
+    width: 34.541px;
+    height: 66px;
+    left: 0px;
+    top: 0px;
+    transform: matrix(1,0,0,1,0,0);
+}
+
+.Trazado_5_A4_Path_99 {
+    overflow: visible;
+    position: absolute;
+    width: 52.277px;
+    height: 51.157px;
+    left: 39.208px;
+    top: 14.843px;
+    transform: matrix(1,0,0,1,0,0);
+}
+
+.Trazado_6_A4_Path_100 {
+    overflow: visible;
+    position: absolute;
+    width: 43.969px;
+    height: 51.157px;
+    left: 99.606px;
+    top: 14.843px;
+    transform: matrix(1,0,0,1,0,0);
+}
+
+.Trazado_7_A4_Path_101 {
+    overflow: visible;
+    position: absolute;
+    width: 39.861px;
+    height: 51.157px;
+    left: 153.656px;
+    top: 14.843px;
+    transform: matrix(1,0,0,1,0,0);
+}
+
+.Trazado_8_A4_Path_102 {
+    overflow: visible;
+    position: absolute;
+    width: 34.541px;
+    height: 66px;
+    left: 201.545px;
+    top: 0px;
+    transform: matrix(1,0,0,1,0,0);
+}
+
+.Trazado_9_A4_Path_103 {
+    overflow: visible;
+    position: absolute;
+    width: 21.747px;
+    height: 13.335px;
+    left: 243.223px;
+    top: 52.665px;
+    transform: matrix(1,0,0,1,0,0);
+}
+
+.Trazado_10_A4_Path_104 {
+    overflow: visible;
+    position: absolute;
+    width: 22.019px;
+    height: 10.146px;
+    left: 243.223px;
+    top: 44.202px;
+    transform: matrix(1,0,0,1,0,0);
+}
+
+.Icon_material_person {
+    overflow: visible;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    left: 2781px;
+    top: 94.522px;
+    transform: matrix(1,0,0,1,0,0);
+}

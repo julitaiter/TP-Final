@@ -51,7 +51,7 @@ namespace TPFinal_TOAST.Models
             Desconectar(Conn);
             return LasRecetas;
         }
-        public static Receta TraerReceta(string Nombre_Receta)
+        public static Receta TraerReceta(int idrec)
         {
             SqlConnection Conn = Conectar();
             Receta UnaReceta = new Receta();
@@ -60,7 +60,7 @@ namespace TPFinal_TOAST.Models
             SqlCommand Consulta = Conn.CreateCommand();
             Consulta.CommandType = System.Data.CommandType.StoredProcedure;
             Consulta.CommandText = "TraerInfoReceta";
-            Consulta.Parameters.Add(new SqlParameter("@NombreReceta", Nombre_Receta));
+            Consulta.Parameters.Add(new SqlParameter("@IDReceta", idrec));
             SqlDataReader Lector = Consulta.ExecuteReader();
 
             while (Lector.Read())
@@ -372,12 +372,12 @@ namespace TPFinal_TOAST.Models
             }
             return ListaNumeros;
         }
-        public static List<Receta> TraerRecetaRandom(List<int> num)
+        public static List<Receta> TraerRecetasRandom(List<int> num)
         {
             SqlConnection Conn = Conectar();
             Receta UnaReceta = new Receta();
             List<Ingrediente> Ingredientes = new List<Ingrediente>();
-            List<Receta> recetas = new List<Receta>();
+            List<Receta> Listarecetas = new List<Receta>();
 
             SqlCommand Consulta = Conn.CreateCommand();
             Consulta.CommandType = System.Data.CommandType.StoredProcedure;
@@ -399,11 +399,11 @@ namespace TPFinal_TOAST.Models
                     HttpPostedFileBase Foto = null;
                     UnaReceta = new Receta(IDReceta, NombreReceta, Categoria, Preparacion, TiempoPreparacion, CantidadPlatos, Dificultad, Foto, NombreFoto, Ingredientes);
                     UnaReceta.Ingredientes = UnaReceta.ListarIngredientes();
-                    recetas.Add(UnaReceta);
+                    Listarecetas.Add(UnaReceta);
                 }
             }
             Desconectar(Conn);
-            return UnaReceta;
+            return Listarecetas;
         }
 
     }
