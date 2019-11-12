@@ -51,6 +51,7 @@ namespace TPFinal_TOAST.Models
         private static SqlConnection Conectar()
         {
             string strConn = "Server=.;Database=BD - TOAST;Trusted_Connection=True;";
+            strConn += "Integrated Security = False; User = alumno; Password = alumno;";
             SqlConnection Conexion = new SqlConnection(strConn);
             Conexion.Open();
 
