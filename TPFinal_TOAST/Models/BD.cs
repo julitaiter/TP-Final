@@ -372,7 +372,7 @@ namespace TPFinal_TOAST.Models
             }
             return ListaNumeros;
         }
-        public static List<Receta> TraerRecetaRandom(List<int> num)
+        public static List<Receta> TraerRecetasRandom(List<int> num)
         {
             SqlConnection Conn = Conectar();
             Receta UnaReceta = new Receta();
@@ -403,7 +403,7 @@ namespace TPFinal_TOAST.Models
                 }
             }
             Desconectar(Conn);
-            return UnaReceta;
+            return recetas;
         }
 
     }
