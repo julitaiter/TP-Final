@@ -405,7 +405,7 @@ namespace TPFinal_TOAST.Models
             Desconectar(Conn);
             return Listarecetas;
         }
-        public Categoria TraerUnaCategoria(int IdCat)
+        public Categoria TraerCategoria(int IdCat)
         {
             SqlConnection Conn = Conectar();
             SqlCommand Consulta = Conn.CreateCommand();
@@ -424,15 +424,13 @@ namespace TPFinal_TOAST.Models
             Desconectar(Conn);
             return cat;
         }
-        public List<Categoria> TraerCategorias()
+        public List<Categoria> ListarCategorias()
         {
             List<Categoria> categ = new List<Categoria>();
             SqlConnection Conn = Conectar();
             SqlCommand Consulta = Conn.CreateCommand();
             Consulta.CommandType = System.Data.CommandType.StoredProcedure;
-            Consulta.CommandText = "TraerCategoria";
-            Consulta.Parameters.Add(new SqlParameter("@IDC" +
-                "ategoria", IdCat));
+            Consulta.CommandText = "ListarCategoria";
             SqlDataReader Lector = Consulta.ExecuteReader();
             while (Lector.Read())
             {
