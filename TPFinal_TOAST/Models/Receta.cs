@@ -18,6 +18,7 @@ namespace TPFinal_TOAST.Models
         private HttpPostedFileBase _Foto;
         private string _NombreFoto;
         private List<Ingrediente> _Ingredientes;
+        private List<Receta> _Favoritos;
 
         public int IDReceta { get => _IDReceta; set => _IDReceta = value; }
         public string NombreReceta { get => _NombreReceta; set => _NombreReceta = value; }
@@ -29,12 +30,13 @@ namespace TPFinal_TOAST.Models
         public List<Ingrediente> Ingredientes { get => _Ingredientes; set => _Ingredientes = value; }
         public HttpPostedFileBase Foto { get => _Foto; set => _Foto = value; }
         public string NombreFoto { get => _NombreFoto; set => _NombreFoto = value; }
+        public List<Receta> Favoritos { get => _Favoritos; set => _Favoritos = value; }
 
         public Receta()
         {
         }
 
-        public Receta(int IDReceta, string NombreReceta, int Categoria, string Preparacion, int TiempoPreparacion, float CantidadPlatos, float Dificultad, HttpPostedFileBase foto, string nom_foto, List<Ingrediente> Ingredientes)
+        public Receta(int IDReceta, string NombreReceta, int Categoria, string Preparacion, int TiempoPreparacion, float CantidadPlatos, float Dificultad, HttpPostedFileBase foto, string nom_foto, List<Ingrediente> Ingredientes, List<Receta> favs)
         {
             _IDReceta = IDReceta;
             _NombreReceta = NombreReceta;
@@ -46,6 +48,7 @@ namespace TPFinal_TOAST.Models
             _NombreFoto = nom_foto;
             _Foto = foto;
             _Ingredientes = Ingredientes;
+            _Favoritos = favs;
         }
 
         private static SqlConnection Conectar()
@@ -84,5 +87,6 @@ namespace TPFinal_TOAST.Models
             Desconectar(Conn);
             return Ingredientes;
         }
+
     }
 }

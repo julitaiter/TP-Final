@@ -405,6 +405,45 @@ namespace TPFinal_TOAST.Models
             Desconectar(Conn);
             return Listarecetas;
         }
+        public Categoria TraerUnaCategoria(int IdCat)
+        {
+            SqlConnection Conn = Conectar();
+            SqlCommand Consulta = Conn.CreateCommand();
+            Categoria cat = new Categoria();
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandText = "TraerCategoria";
+            Consulta.Parameters.Add(new SqlParameter("@IDC" +
+                "ategoria", IdCat));
+            SqlDataReader Lector = Consulta.ExecuteReader();
+            while (Lector.Read())
+            {
+                int IdCategoria = Convert.ToInt32(Lector["IDCategoria"]);
+                string NomCat = Lector["NomCategoria"].ToString();
+                cat = new Categoria(IdCategoria, NomCat);
+            }
+            Desconectar(Conn);
+            return cat;
+        }
+        public List<Categoria> TraerCategorias()
+        {
+            List<Categoria> categ = new List<Categoria>();
+            SqlConnection Conn = Conectar();
+            SqlCommand Consulta = Conn.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandText = "TraerCategoria";
+            Consulta.Parameters.Add(new SqlParameter("@IDC" +
+                "ategoria", IdCat));
+            SqlDataReader Lector = Consulta.ExecuteReader();
+            while (Lector.Read())
+            {
+                int IdCategoria = Convert.ToInt32(Lector["IDCategoria"]);
+                string NomCat = Lector["NomCategoria"].ToString();
+                Categoria cat = new Categoria(IdCategoria, NomCat);
+                categ.Add(cat);
+            }
+            Desconectar(Conn);
+            return cat;
 
+        }
     }
 }
