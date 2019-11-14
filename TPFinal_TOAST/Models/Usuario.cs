@@ -46,6 +46,18 @@ namespace TPFinal_TOAST.Models
             Foto = foto;
             _Favoritos = favs;
         }
+        private static SqlConnection Conectar()
+        {
+            string strConn = "Server=.;Database=BD - TOAST;Trusted_Connection=True;";
+            SqlConnection Conexion = new SqlConnection(strConn);
+            Conexion.Open();
+
+            return Conexion;
+        }
+        private static void Desconectar(SqlConnection Conn)
+        {
+            Conn.Close();
+        }
         public List<Receta> TraerFavoritos()
         {
             List<Receta> Recetas = new List<Receta>();
@@ -76,6 +88,5 @@ namespace TPFinal_TOAST.Models
             Desconectar(Conn);
             return Ingredientes;
         }
-
     }
 }

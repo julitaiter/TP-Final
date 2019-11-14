@@ -407,7 +407,7 @@ namespace TPFinal_TOAST.Models
             Desconectar(Conn);
             return Listarecetas;
         }
-        public Categoria TraerCategoria(int IdCat)
+        public static Categoria TraerCategoria(int IdCat)
         {
             SqlConnection Conn = Conectar();
             SqlCommand Consulta = Conn.CreateCommand();
@@ -425,7 +425,7 @@ namespace TPFinal_TOAST.Models
             Desconectar(Conn);
             return cat;
         }
-        public List<Categoria> ListarCategorias()
+        public static List<Categoria> ListarCategorias()
         {
             List<Categoria> categ = new List<Categoria>();
             SqlConnection Conn = Conectar();
@@ -441,9 +441,9 @@ namespace TPFinal_TOAST.Models
                 categ.Add(cat);
             }
             Desconectar(Conn);
-            return cat;
+            return categ;
         }
-        public void InsertarFavorito(int idUsuario, int idReceta)
+        public static void InsertarFavorito(int idUsuario, int idReceta)
         {
             SqlConnection Conn = Conectar();
             SqlCommand Consulta = Conn.CreateCommand();
@@ -454,7 +454,7 @@ namespace TPFinal_TOAST.Models
             Consulta.ExecuteNonQuery();
             Desconectar(Conn);
         }
-        public void EliminarFavorito (int idUsuario, int idReceta)
+        public static void EliminarFavorito (int idUsuario, int idReceta)
         {
             SqlConnection Conn = Conectar();
             SqlCommand Consulta = Conn.CreateCommand();
