@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.Data.SqlClient;
 
 namespace TPFinal_TOAST.Models
 {
@@ -46,27 +47,16 @@ namespace TPFinal_TOAST.Models
             Foto = foto;
             _Favoritos = favs;
         }
-        private static SqlConnection Conectar()
-        {
-            string strConn = "Server=.;Database=BD - TOAST;Trusted_Connection=True;";
-            SqlConnection Conexion = new SqlConnection(strConn);
-            Conexion.Open();
-
-            return Conexion;
-        }
-        private static void Desconectar(SqlConnection Conn)
-        {
-            Conn.Close();
-        }
         public List<Receta> TraerFavoritos()
         {
             List<Receta> Recetas = new List<Receta>();
-            SqlConnection Conn = Conectar();
+            SqlConnection Conn = BD.Conectar();
+            List<Ingrediente> Ingredientes = new List<Ingrediente>();
 
             SqlCommand Consulta = Conn.CreateCommand();
             Consulta.CommandType = System.Data.CommandType.StoredProcedure;
             Consulta.CommandText = "TraerFavoritosxUsuario";
-            Consulta.Parameters.Add(new SqlParameter("@IDUsuario", _IDUsuario));
+            Consulta.Parameters.Add(new SqlParameter("@IDUsuario", IDUsuario));
             SqlDataReader Lector = Consulta.ExecuteReader();
 
             while (Lector.Read())
@@ -80,13 +70,13 @@ namespace TPFinal_TOAST.Models
                 float Dificultad = Convert.ToInt32(Lector["Dificultad"]);
                 string NombreFoto = Lector["Foto"].ToString();
                 HttpPostedFileBase Foto = null;
-                UnaReceta = new Receta(IDReceta, NombreReceta, Categoria, Preparacion, TiempoPreparacion, CantidadPlatos, Dificultad, Foto, NombreFoto, Ingredientes);
+                Receta UnaReceta = new Receta(IDReceta, NombreReceta, Categoria, Preparacion, TiempoPreparacion, CantidadPlatos, Dificultad, Foto, NombreFoto, Ingredientes);
                 UnaReceta.Ingredientes = UnaReceta.ListarIngredientes();
                 Recetas.Add(UnaReceta);
             }
 
-            Desconectar(Conn);
-            return Ingredientes;
+            BD.Desconectar(Conn);
+            return Recetas;
         }
     }
 }

@@ -48,23 +48,10 @@ namespace TPFinal_TOAST.Models
             _Ingredientes = Ingredientes;
         }
 
-        private static SqlConnection Conectar()
-        {
-            string strConn = "Server=.;Database=BD - TOAST;Trusted_Connection=True;";
-            SqlConnection Conexion = new SqlConnection(strConn);
-            Conexion.Open();
-
-            return Conexion;
-        }
-        private static void Desconectar(SqlConnection Conn)
-        {
-            Conn.Close();
-        }
-
         public List<Ingrediente> ListarIngredientes()
         {
             List<Ingrediente> Ingredientes = new List<Ingrediente>();
-            SqlConnection Conn = Conectar();
+            SqlConnection Conn = BD.Conectar();
 
             SqlCommand Consulta = Conn.CreateCommand();
             Consulta.CommandType = System.Data.CommandType.StoredProcedure;
@@ -81,7 +68,7 @@ namespace TPFinal_TOAST.Models
                 Ingredientes.Add(UnIngrediente);
             }
 
-            Desconectar(Conn);
+            BD.Desconectar(Conn);
             return Ingredientes;
         }
     }

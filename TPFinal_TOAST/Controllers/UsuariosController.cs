@@ -21,7 +21,7 @@ namespace TPFinal_TOAST.Controllers
         }
         public ActionResult Login()
         {
-            return View("Loguear");
+            return View();
         }
         [HttpPost]
         public ActionResult Loguear(Usuario User) 
