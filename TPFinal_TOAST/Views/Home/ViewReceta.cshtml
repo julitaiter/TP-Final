@@ -71,7 +71,7 @@
                 <span>@Model.NombreReceta</span><span style="font-style:normal;font-weight:normal;">.</span>
             </div>
             <div id="minutos">
-                <span>minutos</span>
+                <span>@Model.TiempoPreparacion</span>
             </div>
             <div id="ID50">
                 <span>@Model.TiempoPreparacion</span>
@@ -100,10 +100,13 @@
         </div>
         <div id="Componente_16___2" class="Componente_16___2">
             <div id="Ingredientes_">
-                <span>Ingredientes.</span>
+                @foreach (Ingrediente ing in Model.Ingredientes)
+                {
+                    <span>@ing</span>
+                }
             </div>
             <div id="Instrucciones_">
-                <span>Instrucciones.</span>
+                <span>@Model.Preparacion</span>
             </div>
             <div id="Para_la_masa__400_gr__Harina_l">
                 <span>Para la masa:<br />400 gr. Harina leudante<br />60 gr. Azúcar<br />200 gr. Manteca/ mantequilla<br />1 Huevo<br />Pizca Sal<br />2 cdas. Agua fría (si es necesario)<br />Para el relleno:<br />1 1/2 k. Manzanas verdes o rojas<br />100 gr. Azúcar<br />20 gr. Fécula de maíz<br />Jugo de medio limón<br />1 cdta. Canela en polvo</span>
@@ -125,7 +128,7 @@
             </svg>
             <div id="Header">
                 <div id="Categor_as">
-                    <span>Categorías</span>
+                    <span>@Model.Categoria</span>
                 </div>
                 <div id="Submit_Button">
                     <svg class="Button">
