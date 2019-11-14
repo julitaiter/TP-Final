@@ -11,30 +11,30 @@ namespace TPFinal_TOAST.Controllers
     public class UsuariosController : Controller
     {
         // GET: Usuarios
-        public ActionResult Index()
+        public ActionResult Index(Usuario user)
         {
-            return View();
+            return View(user);
         }
         public ActionResult ListarUsuarios()
         {
             return View();
         }
-        public ActionResult Login()
+        public ActionResult Login() 
         {
-            return View();
+            return View(); //CORREGIR
         }
         [HttpPost]
-        public ActionResult Loguear(Usuario User) 
+        public ActionResult LoginOK(Usuario User) 
         {
             bool validacion = BD.ValidarUsuario(User);
             if (validacion)
             {
                 User = BD.TraerUsuario(User.IDUsuario);
-                return View("Index", User);
+                return RedirectToAction("Index", User); //CORREGIR
             }
             else
             {
-                return View("Loguear", User);
+                return RedirectToAction("Login", User); //CORREGIR
             }
         }
         public ActionResult RM(string modo, int id)

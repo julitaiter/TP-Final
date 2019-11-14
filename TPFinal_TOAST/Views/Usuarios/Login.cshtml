@@ -1,7 +1,7 @@
 ﻿@using TPFinal_TOAST.Models
 @model Usuario
 <h1>Iniciar sesión</h1>
-@using (Html.BeginForm("Loguear", "Usuarios", FormMethod.Post))
+@using (Html.BeginForm("LoginOK", "Usuarios", FormMethod.Post))
 {
 
     <p>Email:</p> @Html.TextBoxFor(model => model.Mail, new { type = "email" }) @Html.ValidationMessageFor(model => model.Mail)<br />
@@ -9,4 +9,4 @@
 
     <input type="submit" value="Enviar" />
 }
-<p>¿No tenés cuenta? @Html.ActionLink("Registrate", "RM", "Usuarios", new { modo="Insertar",id=-1},null)</p>
+<p>¿No tenés cuenta? @Html.ActionLink("Registrate", "RM", "Usuarios", new { modo = "Insertar", id = -1 }, null)</p>

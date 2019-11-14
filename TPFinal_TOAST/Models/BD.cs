@@ -9,6 +9,7 @@ namespace TPFinal_TOAST.Models
 {
     public static class BD
     {
+        //Metodos de SQL
         public static SqlConnection Conectar()
         {
             System.Security.SecureString contra = new NetworkCredential("", "alumno").SecurePassword;
@@ -24,6 +25,251 @@ namespace TPFinal_TOAST.Models
         public static void Desconectar(SqlConnection Conn)
         {
             Conn.Close();
+        }
+
+        //Metodos Insertar
+        public static void IngresarReceta(string NombreReceta, int Categoria, string Preparacion, int TiempoPreparacion, float CantPlatos, float Dificultad, string Foto)
+        {
+            SqlConnection Conn = Conectar();
+            SqlCommand Consulta = Conn.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandText = "IngresarRecetas";
+            Consulta.Parameters.Add(new SqlParameter("@NombreReceta", NombreReceta));
+            Consulta.Parameters.Add(new SqlParameter("@Categoria", Categoria));
+            Consulta.Parameters.Add(new SqlParameter("@Preparacion", Preparacion));
+            Consulta.Parameters.Add(new SqlParameter("@TiempoPreparacion", TiempoPreparacion));
+            Consulta.Parameters.Add(new SqlParameter("@CantidadPlatos", CantPlatos));
+            Consulta.Parameters.Add(new SqlParameter("@Dificultad", Dificultad));
+            Consulta.Parameters.Add(new SqlParameter("@Foto", Foto));
+            Consulta.ExecuteNonQuery();
+            Desconectar(Conn);
+        }
+        public static void IngresarIngrediente(string NombreIngrediente)
+        {
+            SqlConnection Conn = Conectar();
+            SqlCommand Consulta = Conn.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandText = "IngresarIngrediente";
+            Consulta.Parameters.Add(new SqlParameter("@NombreIngrediente", NombreIngrediente));
+            Consulta.ExecuteNonQuery();
+            Desconectar(Conn);
+        }
+        public static void InsertarUsuario(Usuario user)
+        {
+            SqlConnection Conn = Conectar();
+            SqlCommand Consulta = Conn.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandText = "InsertarUsuario";
+            Consulta.Parameters.Add(new SqlParameter("@Nombre_Usuario", user.Nombre_Usuario));
+            Consulta.Parameters.Add(new SqlParameter("@Nombre", user.Nombre));
+            Consulta.Parameters.Add(new SqlParameter("@Apellido", user.Apellido));
+            Consulta.Parameters.Add(new SqlParameter("@Mail", user.Mail));
+            Consulta.Parameters.Add(new SqlParameter("@Contraseña", user.Contraseña));
+            Consulta.Parameters.Add(new SqlParameter("@Admin", user.Admin));
+            Consulta.Parameters.Add(new SqlParameter("@Nombre_Foto", user.NombreFoto));
+            Consulta.ExecuteNonQuery();
+            Desconectar(Conn);
+        }
+        public static void InsertarFavorito(int idUsuario, int idReceta)
+        {
+            SqlConnection Conn = Conectar();
+            SqlCommand Consulta = Conn.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandText = "InsertarFavorito";
+            Consulta.Parameters.Add(new SqlParameter("@IDUsuario", idUsuario));
+            Consulta.Parameters.Add(new SqlParameter("@IDReceta", idReceta));
+            Consulta.ExecuteNonQuery();
+            Desconectar(Conn);
+        }
+        public static void IngresarRxI(string NombreReceta, string NombreIngrediente, string Cantidad)
+        {
+            SqlConnection Conn = Conectar();
+            SqlCommand Consulta = Conn.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandText = "IngresarRxI";
+            Consulta.Parameters.Add(new SqlParameter("@NombreReceta", NombreReceta));
+            Consulta.Parameters.Add(new SqlParameter("@NombreIngrediente", NombreIngrediente));
+            Consulta.Parameters.Add(new SqlParameter("@Cantidad", Cantidad));
+            Consulta.ExecuteNonQuery();
+            Desconectar(Conn);
+        }
+
+        //Metodos Modificar
+        public static void ModificarUsuario(Usuario user)
+        {
+            SqlConnection Conn = Conectar();
+            SqlCommand Consulta = Conn.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandText = "ModificarUsuario";
+            Consulta.Parameters.Add(new SqlParameter("@Nombre_Usuario", user.Nombre_Usuario));
+            Consulta.Parameters.Add(new SqlParameter("@Nombre", user.Nombre));
+            Consulta.Parameters.Add(new SqlParameter("@Apellido", user.Apellido));
+            Consulta.Parameters.Add(new SqlParameter("@Mail", user.Mail));
+            Consulta.Parameters.Add(new SqlParameter("@Contraseña", user.Contraseña));
+            Consulta.Parameters.Add(new SqlParameter("@Nombre_Foto", user.NombreFoto));
+            Consulta.ExecuteNonQuery();
+            Desconectar(Conn);
+        }
+        public static void ModificarReceta(int IDReceta, string NombreReceta, int Categoria, string Preparacion, int TiempoPreparacion, float CantPlatos, float Dificultad, string Foto)
+        {
+            SqlConnection Conn = Conectar();
+            SqlCommand Consulta = Conn.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandText = "ModificarReceta";
+            Consulta.Parameters.Add(new SqlParameter("@NombreReceta", NombreReceta));
+            Consulta.Parameters.Add(new SqlParameter("@Categoria", Categoria));
+            Consulta.Parameters.Add(new SqlParameter("@Preparacion", Preparacion));
+            Consulta.Parameters.Add(new SqlParameter("@TiempoPreparacion", TiempoPreparacion));
+            Consulta.Parameters.Add(new SqlParameter("@CantidadPlatos", CantPlatos));
+            Consulta.Parameters.Add(new SqlParameter("@Dificultad", Dificultad));
+            Consulta.Parameters.Add(new SqlParameter("@Foto", Foto));
+            Consulta.ExecuteNonQuery();
+            Desconectar(Conn);
+        }
+
+        //Metodos Eliminar
+        public static void EliminarReceta(int IDReceta)
+        {
+            SqlConnection Conn = Conectar();
+            SqlCommand Consulta = Conn.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandText = "EliminarReceta";
+            Consulta.Parameters.Add(new SqlParameter("@IDReceta", IDReceta));
+            Consulta.ExecuteNonQuery();
+            Desconectar(Conn);
+        }
+        public static void EliminarUsuario(int IDUsuario)
+        {
+            SqlConnection Conn = Conectar();
+            SqlCommand Consulta = Conn.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandText = "EliminarUsuario";
+            Consulta.Parameters.Add(new SqlParameter("@IDUsuario", IDUsuario));
+            Consulta.ExecuteNonQuery();
+            Desconectar(Conn);
+        }
+        public static void EliminarFavorito(int idUsuario, int idReceta)
+        {
+            SqlConnection Conn = Conectar();
+            SqlCommand Consulta = Conn.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandText = "EliminarFavorito" +
+                "";
+            Consulta.Parameters.Add(new SqlParameter("@IDUsuario", idUsuario));
+            Consulta.Parameters.Add(new SqlParameter("@IDReceta", idReceta));
+            Consulta.ExecuteNonQuery();
+            Desconectar(Conn);
+        }
+
+        //Metodos Traer
+        public static Receta TraerReceta(int idrec)
+        {
+            SqlConnection Conn = Conectar();
+            Receta UnaReceta = new Receta();
+            List<Ingrediente> Ingredientes = new List<Ingrediente>();
+
+            SqlCommand Consulta = Conn.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandText = "TraerInfoReceta";
+            Consulta.Parameters.Add(new SqlParameter("@IDReceta", idrec));
+            SqlDataReader Lector = Consulta.ExecuteReader();
+
+            while (Lector.Read())
+            {
+                int IDReceta = Convert.ToInt32(Lector["IDReceta"]);
+                string NombreReceta = Lector["NombreReceta"].ToString();
+                int Categoria = Convert.ToInt32(Lector["Categoria"]);
+                string Preparacion = Lector["Preparacion"].ToString();
+                int TiempoPreparacion = Convert.ToInt32(Lector["TiempoPreparacion"]);
+                float CantidadPlatos = Convert.ToInt32(Lector["CantidadPlatos"]);
+                float Dificultad = Convert.ToInt32(Lector["Dificultad"]);
+                string NombreFoto = Lector["Foto"].ToString();
+                HttpPostedFileBase Foto = null;
+                UnaReceta = new Receta(IDReceta, NombreReceta, Categoria, Preparacion, TiempoPreparacion, CantidadPlatos, Dificultad, Foto, NombreFoto, Ingredientes);
+                UnaReceta.Ingredientes = UnaReceta.ListarIngredientes();
+            }
+
+            Desconectar(Conn);
+            return UnaReceta;
+        }
+        public static Usuario TraerUsuario(int IDUsuario)
+        {
+            SqlConnection Conn = Conectar();
+            Usuario UnUsuario = new Usuario();
+            List<Receta> Favoritos = new List<Receta>();
+
+            SqlCommand Consulta = Conn.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandText = "TraerUsuario";
+            Consulta.Parameters.Add(new SqlParameter("@IDUsuario", IDUsuario));
+            SqlDataReader Lector = Consulta.ExecuteReader();
+
+            if (Lector.Read())
+            {
+                int id = Convert.ToInt32(Lector["IDUsuario"]);
+                string Nombre_Usuario = Lector["Nombre_Usuario"].ToString();
+                string Nombre = Lector["Nombre"].ToString();
+                string Apellido = Lector["Apellido"].ToString();
+                string Mail = Lector["Mail"].ToString();
+                string Contraseña = Lector["Contraseña"].ToString();
+                bool Admin = Convert.ToBoolean(Lector["Admin"]);
+                string NombreFoto = Lector["Nombre_Foto"].ToString();
+                HttpPostedFileBase Foto = null;
+                UnUsuario = new Usuario(IDUsuario, Nombre_Usuario, Nombre, Apellido, Mail, Contraseña, Admin, Foto, NombreFoto, Favoritos);
+                Favoritos = UnUsuario.TraerFavoritos();
+            }
+            Desconectar(Conn);
+            return UnUsuario;
+        }
+        public static List<Receta> TraerRecetasRandom(List<int> num)
+        {
+            SqlConnection Conn = Conectar();
+            Receta UnaReceta = new Receta();
+            List<Ingrediente> Ingredientes = new List<Ingrediente>();
+            List<Receta> Listarecetas = new List<Receta>();
+
+            SqlCommand Consulta = Conn.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandText = "TraerRecetaRandom";
+            Consulta.Parameters.Add(new SqlParameter("@NumeroRandom0", num[0]));
+            Consulta.Parameters.Add(new SqlParameter("@NumeroRandom1", num[1]));
+            Consulta.Parameters.Add(new SqlParameter("@NumeroRandom2", num[2]));
+            SqlDataReader Lector = Consulta.ExecuteReader();
+            while (Lector.Read())
+            {
+                int IDReceta = Convert.ToInt32(Lector["IDReceta"]);
+                string NombreReceta = Lector["NombreReceta"].ToString();
+                int Categoria = Convert.ToInt32(Lector["Categoria"]);
+                string Preparacion = Lector["Preparacion"].ToString();
+                int TiempoPreparacion = Convert.ToInt32(Lector["TiempoPreparacion"]);
+                float CantidadPlatos = Convert.ToInt32(Lector["CantidadPlatos"]);
+                float Dificultad = Convert.ToInt32(Lector["Dificultad"]);
+                string NombreFoto = Lector["Foto"].ToString();
+                HttpPostedFileBase Foto = null;
+                UnaReceta = new Receta(IDReceta, NombreReceta, Categoria, Preparacion, TiempoPreparacion, CantidadPlatos, Dificultad, Foto, NombreFoto, Ingredientes);
+                UnaReceta.Ingredientes = UnaReceta.ListarIngredientes();
+                Listarecetas.Add(UnaReceta);
+            }
+            Desconectar(Conn);
+            return Listarecetas;
+        }
+        public static Categoria TraerCategoria(int IdCat)
+        {
+            SqlConnection Conn = Conectar();
+            SqlCommand Consulta = Conn.CreateCommand();
+            Categoria cat = new Categoria();
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandText = "TraerCategoria";
+            Consulta.Parameters.Add(new SqlParameter("@IDCategoria", IdCat));
+            SqlDataReader Lector = Consulta.ExecuteReader();
+            while (Lector.Read())
+            {
+                int IdCategoria = Convert.ToInt32(Lector["IDCategoria"]);
+                string NomCat = Lector["NomCategoria"].ToString();
+                cat = new Categoria(IdCategoria, NomCat);
+            }
+            Desconectar(Conn);
+            return cat;
         }
         public static List<Receta> TraerRecetas(string ElIngrediente)
         {
@@ -56,101 +302,25 @@ namespace TPFinal_TOAST.Models
             Desconectar(Conn);
             return LasRecetas;
         }
-        public static Receta TraerReceta(int idrec)
-        {
-            SqlConnection Conn = Conectar();
-            Receta UnaReceta = new Receta();
-            List<Ingrediente> Ingredientes = new List<Ingrediente>();
 
+        //Metodos Listar (Todos los campos)
+        public static List<Categoria> ListarCategorias()
+        {
+            List<Categoria> categ = new List<Categoria>();
+            SqlConnection Conn = Conectar();
             SqlCommand Consulta = Conn.CreateCommand();
             Consulta.CommandType = System.Data.CommandType.StoredProcedure;
-            Consulta.CommandText = "TraerInfoReceta";
-            Consulta.Parameters.Add(new SqlParameter("@IDReceta", idrec));
+            Consulta.CommandText = "ListarCategoria";
             SqlDataReader Lector = Consulta.ExecuteReader();
-
             while (Lector.Read())
             {
-                int IDReceta = Convert.ToInt32(Lector["IDReceta"]);
-                string NombreReceta = Lector["NombreReceta"].ToString();
-                int Categoria = Convert.ToInt32(Lector["Categoria"]);
-                string Preparacion = Lector["Preparacion"].ToString();
-                int TiempoPreparacion = Convert.ToInt32(Lector["TiempoPreparacion"]);
-                float CantidadPlatos = Convert.ToInt32(Lector["CantidadPlatos"]);
-                float Dificultad = Convert.ToInt32(Lector["Dificultad"]);
-                string NombreFoto = Lector["Foto"].ToString();
-                HttpPostedFileBase Foto = null;
-                UnaReceta = new Receta(IDReceta, NombreReceta, Categoria, Preparacion, TiempoPreparacion, CantidadPlatos, Dificultad, Foto, NombreFoto, Ingredientes);
-                UnaReceta.Ingredientes = UnaReceta.ListarIngredientes();
+                int IdCategoria = Convert.ToInt32(Lector["IDCategoria"]);
+                string NomCat = Lector["NomCategoria"].ToString();
+                Categoria cat = new Categoria(IdCategoria, NomCat);
+                categ.Add(cat);
             }
-
             Desconectar(Conn);
-            return UnaReceta;
-        }
-        public static void IngresarReceta(string NombreReceta, int Categoria, string Preparacion, int TiempoPreparacion, float CantPlatos, float Dificultad, string Foto)
-        {
-            SqlConnection Conn = Conectar();
-            SqlCommand Consulta = Conn.CreateCommand();
-            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
-            Consulta.CommandText = "IngresarRecetas";
-            Consulta.Parameters.Add(new SqlParameter("@NombreReceta", NombreReceta));
-            Consulta.Parameters.Add(new SqlParameter("@Categoria", Categoria));
-            Consulta.Parameters.Add(new SqlParameter("@Preparacion", Preparacion));
-            Consulta.Parameters.Add(new SqlParameter("@TiempoPreparacion", TiempoPreparacion));
-            Consulta.Parameters.Add(new SqlParameter("@CantidadPlatos", CantPlatos));
-            Consulta.Parameters.Add(new SqlParameter("@Dificultad", Dificultad));
-            Consulta.Parameters.Add(new SqlParameter("@Foto", Foto));
-            Consulta.ExecuteNonQuery();
-            Desconectar(Conn);
-        }
-        public static void IngresarIngrediente(string NombreIngrediente)
-        {
-            SqlConnection Conn = Conectar();
-            SqlCommand Consulta = Conn.CreateCommand();
-            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
-            Consulta.CommandText = "IngresarIngrediente";
-            Consulta.Parameters.Add(new SqlParameter("@NombreIngrediente", NombreIngrediente));
-            Consulta.ExecuteNonQuery();
-            Desconectar(Conn);
-        }
-        public static bool ComprobarIngrediente(string NombreIngrediente)
-        {
-            bool Comprobar = false;
-            int contador = 0;
-            SqlConnection Conn = Conectar();
-            Receta UnaReceta = new Receta();
-            List<Ingrediente> Ingredientes = new List<Ingrediente>();
-
-            SqlCommand Consulta = Conn.CreateCommand();
-            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
-            Consulta.CommandText = "ComprobarIngrediente";
-            Consulta.Parameters.Add(new SqlParameter("@NombreIngrediente", NombreIngrediente));
-            SqlDataReader Lector = Consulta.ExecuteReader();
-
-            while (Lector.Read())
-            {
-                string Nombre = Lector["NombreIngrediente"].ToString();
-                contador++;
-            }
-
-            if (contador > 0)
-            {
-                Comprobar = true;
-            }
-
-            Desconectar(Conn);
-            return Comprobar;
-        }
-        public static void IngresarRxI(string NombreReceta, string NombreIngrediente, string Cantidad)
-        {
-            SqlConnection Conn = Conectar();
-            SqlCommand Consulta = Conn.CreateCommand();
-            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
-            Consulta.CommandText = "IngresarRxI";
-            Consulta.Parameters.Add(new SqlParameter("@NombreReceta", NombreReceta));
-            Consulta.Parameters.Add(new SqlParameter("@NombreIngrediente", NombreIngrediente));
-            Consulta.Parameters.Add(new SqlParameter("@Cantidad", Cantidad));
-            Consulta.ExecuteNonQuery();
-            Desconectar(Conn);
+            return categ;
         }
         public static List<Receta> ListarRecetas()
         {
@@ -182,16 +352,6 @@ namespace TPFinal_TOAST.Models
 
             Desconectar(Conn);
             return ListaDeRecetas;
-        }
-        public static void EliminarReceta(int IDReceta)
-        {
-            SqlConnection Conn = Conectar();
-            SqlCommand Consulta = Conn.CreateCommand();
-            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
-            Consulta.CommandText = "EliminarReceta";
-            Consulta.Parameters.Add(new SqlParameter("@IDReceta", IDReceta));
-            Consulta.ExecuteNonQuery();
-            Desconectar(Conn);
         }
         public static List<Receta> FiltrarRecetas(string NombreReceta, int Categoria, int TiempoPreparacion, float Cantidad, float Dificultad)
         {
@@ -230,66 +390,6 @@ namespace TPFinal_TOAST.Models
             Desconectar(Conn);
             return ListaDeRecetas;
         }
-        public static void InsertarUsuario(Usuario user)
-        {
-            SqlConnection Conn = Conectar();
-            SqlCommand Consulta = Conn.CreateCommand();
-            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
-            Consulta.CommandText = "InsertarUsuario";
-            Consulta.Parameters.Add(new SqlParameter("@Nombre_Usuario", user.Nombre_Usuario));
-            Consulta.Parameters.Add(new SqlParameter("@Nombre", user.Nombre));
-            Consulta.Parameters.Add(new SqlParameter("@Apellido", user.Apellido));
-            Consulta.Parameters.Add(new SqlParameter("@Mail", user.Mail));
-            Consulta.Parameters.Add(new SqlParameter("@Contraseña", user.Contraseña));
-            Consulta.Parameters.Add(new SqlParameter("@Admin", user.Admin));
-            Consulta.Parameters.Add(new SqlParameter("@Nombre_Foto", user.NombreFoto));
-            Consulta.ExecuteNonQuery();
-            Desconectar(Conn);
-        }
-        public static void EliminarUsuario(int IDUsuario)
-        {
-            SqlConnection Conn = Conectar();
-            SqlCommand Consulta = Conn.CreateCommand();
-            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
-            Consulta.CommandText = "EliminarUsuario";
-            Consulta.Parameters.Add(new SqlParameter("@IDUsuario", IDUsuario));
-            Consulta.ExecuteNonQuery();
-            Desconectar(Conn);
-        }
-        public static void ModificarUsuario(Usuario user)
-        {
-            SqlConnection Conn = Conectar();
-            SqlCommand Consulta = Conn.CreateCommand();
-            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
-            Consulta.CommandText = "ModificarUsuario";
-            Consulta.Parameters.Add(new SqlParameter("@Nombre_Usuario", user.Nombre_Usuario));
-            Consulta.Parameters.Add(new SqlParameter("@Nombre", user.Nombre));
-            Consulta.Parameters.Add(new SqlParameter("@Apellido", user.Apellido));
-            Consulta.Parameters.Add(new SqlParameter("@Mail", user.Mail));
-            Consulta.Parameters.Add(new SqlParameter("@Contraseña", user.Contraseña));
-            Consulta.Parameters.Add(new SqlParameter("@Nombre_Foto", user.NombreFoto));
-            Consulta.ExecuteNonQuery();
-            Desconectar(Conn);
-        }
-        public static bool ValidarUsuario(Usuario user)
-        {
-            bool Validacion = false;
-            SqlConnection Conn = Conectar();
-
-            SqlCommand Consulta = Conn.CreateCommand();
-            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
-            Consulta.CommandText = "ValidarUsuario";
-            Consulta.Parameters.Add(new SqlParameter("@Mail", user.Mail));
-            Consulta.Parameters.Add(new SqlParameter("@Contraseña", user.Contraseña));
-            SqlDataReader Lector = Consulta.ExecuteReader();
-            if (Lector.Read())
-            {
-                user.IDUsuario = Convert.ToInt32(Lector["IDUsuario"]);
-                Validacion = true;
-            }
-            Desconectar(Conn);
-            return Validacion;
-        }
         public static List<Usuario> ListarUsuarios()
         {
             SqlConnection Conn = Conectar();
@@ -310,7 +410,7 @@ namespace TPFinal_TOAST.Models
                 string Mail = Lector["Mail"].ToString();
                 string Contraseña = Lector["Contraseña"].ToString();
                 bool Admin = Convert.ToBoolean(Lector["Admin"]);
-                string NombreFoto = Lector["Foto"].ToString();                
+                string NombreFoto = Lector["Foto"].ToString();
                 HttpPostedFileBase Foto = null;
                 UnUsuario = new Usuario(IDUsuario, Nombre_Usuario, Nombre, Apellido, Mail, Contraseña, Admin, Foto, NombreFoto, Favoritos);
                 Favoritos = UnUsuario.TraerFavoritos();
@@ -319,34 +419,54 @@ namespace TPFinal_TOAST.Models
             Desconectar(Conn);
             return ListaUsuarios;
         }
-        public static Usuario TraerUsuario(int IDUsuario)
+
+        //Otros Metodos
+        public static bool ComprobarIngrediente(string NombreIngrediente)
         {
+            bool Comprobar = false;
+            int contador = 0;
             SqlConnection Conn = Conectar();
-            Usuario UnUsuario = new Usuario();
-            List<Receta> Favoritos = new List<Receta>();
+            Receta UnaReceta = new Receta();
+            List<Ingrediente> Ingredientes = new List<Ingrediente>();
 
             SqlCommand Consulta = Conn.CreateCommand();
             Consulta.CommandType = System.Data.CommandType.StoredProcedure;
-            Consulta.CommandText = "TraerUsuario";
-            Consulta.Parameters.Add(new SqlParameter("@IDUsuario", IDUsuario));
+            Consulta.CommandText = "ComprobarIngrediente";
+            Consulta.Parameters.Add(new SqlParameter("@NombreIngrediente", NombreIngrediente));
             SqlDataReader Lector = Consulta.ExecuteReader();
 
+            while (Lector.Read())
+            {
+                string Nombre = Lector["NombreIngrediente"].ToString();
+                contador++;
+            }
+
+            if (contador > 0)
+            {
+                Comprobar = true;
+            }
+
+            Desconectar(Conn);
+            return Comprobar;
+        }
+        public static bool ValidarUsuario(Usuario user)
+        {
+            bool Validacion = false;
+            SqlConnection Conn = Conectar();
+
+            SqlCommand Consulta = Conn.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandText = "ValidarUsuario";
+            Consulta.Parameters.Add(new SqlParameter("@Mail", user.Mail));
+            Consulta.Parameters.Add(new SqlParameter("@Contraseña", user.Contraseña));
+            SqlDataReader Lector = Consulta.ExecuteReader();
             if (Lector.Read())
             {
-                int id = Convert.ToInt32(Lector["IDUsuario"]);
-                string Nombre_Usuario = Lector["Nombre_Usuario"].ToString();
-                string Nombre = Lector["Nombre"].ToString();
-                string Apellido = Lector["Apellido"].ToString();
-                string Mail = Lector["Mail"].ToString();
-                string Contraseña = Lector["Contraseña"].ToString();
-                bool Admin = Convert.ToBoolean(Lector["Admin"]);
-                string NombreFoto = Lector["Nombre_Foto"].ToString();
-                HttpPostedFileBase Foto = null;
-                UnUsuario = new Usuario(IDUsuario, Nombre_Usuario, Nombre, Apellido, Mail, Contraseña, Admin, Foto, NombreFoto, Favoritos);
-                Favoritos = UnUsuario.TraerFavoritos();
+                user.IDUsuario = Convert.ToInt32(Lector["IDUsuario"]);
+                Validacion = true;
             }
             Desconectar(Conn);
-            return UnUsuario;
+            return Validacion;
         }
         public static int CantidadRecetas()
         {
@@ -381,97 +501,6 @@ namespace TPFinal_TOAST.Models
                 }
             }
             return ListaNumeros;
-        }
-        public static List<Receta> TraerRecetasRandom(List<int> num)
-        {
-            SqlConnection Conn = Conectar();
-            Receta UnaReceta = new Receta();
-            List<Ingrediente> Ingredientes = new List<Ingrediente>();
-            List<Receta> Listarecetas = new List<Receta>();
-
-            SqlCommand Consulta = Conn.CreateCommand();
-            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
-            Consulta.CommandText = "TraerRecetaRandom";
-            SqlDataReader Lector = Consulta.ExecuteReader();
-            Consulta.Parameters.Add(new SqlParameter("@NumeroRandom0", num[0]));
-            Consulta.Parameters.Add(new SqlParameter("@NumeroRandom1", num[1]));
-            Consulta.Parameters.Add(new SqlParameter("@NumeroRandom2", num[2]));
-            while (Lector.Read())
-            {
-                int IDReceta = Convert.ToInt32(Lector["IDReceta"]);
-                string NombreReceta = Lector["NombreReceta"].ToString();
-                int Categoria = Convert.ToInt32(Lector["Categoria"]);
-                string Preparacion = Lector["Preparacion"].ToString();
-                int TiempoPreparacion = Convert.ToInt32(Lector["TiempoPreparacion"]);
-                float CantidadPlatos = Convert.ToInt32(Lector["CantidadPlatos"]);
-                float Dificultad = Convert.ToInt32(Lector["Dificultad"]);
-                string NombreFoto = Lector["Foto"].ToString();
-                HttpPostedFileBase Foto = null;
-                UnaReceta = new Receta(IDReceta, NombreReceta, Categoria, Preparacion, TiempoPreparacion, CantidadPlatos, Dificultad, Foto, NombreFoto, Ingredientes);
-                UnaReceta.Ingredientes = UnaReceta.ListarIngredientes();
-                Listarecetas.Add(UnaReceta);
-            }
-            Desconectar(Conn);
-            return Listarecetas;
-        }
-        public static Categoria TraerCategoria(int IdCat)
-        {
-            SqlConnection Conn = Conectar();
-            SqlCommand Consulta = Conn.CreateCommand();
-            Categoria cat = new Categoria();
-            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
-            Consulta.CommandText = "TraerCategoria";
-            Consulta.Parameters.Add(new SqlParameter("@IDCategoria", IdCat));
-            SqlDataReader Lector = Consulta.ExecuteReader();
-            while (Lector.Read())
-            {
-                int IdCategoria = Convert.ToInt32(Lector["IDCategoria"]);
-                string NomCat = Lector["NomCategoria"].ToString();
-                cat = new Categoria(IdCategoria, NomCat);
-            }
-            Desconectar(Conn);
-            return cat;
-        }
-        public static List<Categoria> ListarCategorias()
-        {
-            List<Categoria> categ = new List<Categoria>();
-            SqlConnection Conn = Conectar();
-            SqlCommand Consulta = Conn.CreateCommand();
-            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
-            Consulta.CommandText = "ListarCategoria";
-            SqlDataReader Lector = Consulta.ExecuteReader();
-            while (Lector.Read())
-            {
-                int IdCategoria = Convert.ToInt32(Lector["IDCategoria"]);
-                string NomCat = Lector["NomCategoria"].ToString();
-                Categoria cat = new Categoria(IdCategoria, NomCat);
-                categ.Add(cat);
-            }
-            Desconectar(Conn);
-            return categ;
-        }
-        public static void InsertarFavorito(int idUsuario, int idReceta)
-        {
-            SqlConnection Conn = Conectar();
-            SqlCommand Consulta = Conn.CreateCommand();
-            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
-            Consulta.CommandText = "InsertarFavorito";
-            Consulta.Parameters.Add(new SqlParameter("@IDUsuario", idUsuario));
-            Consulta.Parameters.Add(new SqlParameter("@IDReceta", idReceta));
-            Consulta.ExecuteNonQuery();
-            Desconectar(Conn);
-        }
-        public static void EliminarFavorito (int idUsuario, int idReceta)
-        {
-            SqlConnection Conn = Conectar();
-            SqlCommand Consulta = Conn.CreateCommand();
-            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
-            Consulta.CommandText = "EliminarFavorito" +
-                "";
-            Consulta.Parameters.Add(new SqlParameter("@IDUsuario", idUsuario));
-            Consulta.Parameters.Add(new SqlParameter("@IDReceta", idReceta));
-            Consulta.ExecuteNonQuery();
-            Desconectar(Conn);
         }
     }
 }

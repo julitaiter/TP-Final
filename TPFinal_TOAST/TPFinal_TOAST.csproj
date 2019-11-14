@@ -199,9 +199,9 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\ViewReceta.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Usuarios\Loguear.cshtml" />
     <Content Include="Views\Usuarios\RM.cshtml" />
     <Content Include="Views\Usuarios\Index.cshtml" />
+    <Content Include="Views\Usuarios\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
