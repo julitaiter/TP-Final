@@ -332,8 +332,10 @@ namespace TPFinal_TOAST.Models
                 string Contraseña = Lector["Contraseña"].ToString();
                 bool Admin = Convert.ToBoolean(Lector["Admin"]);
                 string NombreFoto = Lector["Nombre_Foto"].ToString();
+                List<Receta> Favoritos = new List<Receta>();
+                Favoritos = Usuario.TraerFavoritos();
                 HttpPostedFileBase Foto = null;
-                UnUsuario = new Usuario(IDUsuario, Nombre_Usuario, Nombre, Apellido, Mail, Contraseña, Admin, Foto, NombreFoto);
+                UnUsuario = new Usuario(IDUsuario, Nombre_Usuario, Nombre, Apellido, Mail, Contraseña, Admin, Foto, NombreFoto, Favoritos);
             }
             Desconectar(Conn);
             return UnUsuario;
@@ -412,8 +414,7 @@ namespace TPFinal_TOAST.Models
             Categoria cat = new Categoria();
             Consulta.CommandType = System.Data.CommandType.StoredProcedure;
             Consulta.CommandText = "TraerCategoria";
-            Consulta.Parameters.Add(new SqlParameter("@IDC" +
-                "ategoria", IdCat));
+            Consulta.Parameters.Add(new SqlParameter("@IDCategoria", IdCat));
             SqlDataReader Lector = Consulta.ExecuteReader();
             while (Lector.Read())
             {
@@ -441,7 +442,30 @@ namespace TPFinal_TOAST.Models
             }
             Desconectar(Conn);
             return cat;
-
         }
+        public void InsertarFavorito(int idUsuario, int idReceta)
+        {
+            SqlConnection Conn = Conectar();
+            SqlCommand Consulta = Conn.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandText = "InsertarFavorito";
+            Consulta.Parameters.Add(new SqlParameter("@IDUsuario", idUsuario));
+            Consulta.Parameters.Add(new SqlParameter("@IDReceta", idReceta));
+            Consulta.ExecuteNonQuery();
+            Desconectar(Conn);
+        }
+        public void EliminarFavorito (int idUsuario, int idReceta)
+        {
+            SqlConnection Conn = Conectar();
+            SqlCommand Consulta = Conn.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandText = "EliminarFavorito" +
+                "";
+            Consulta.Parameters.Add(new SqlParameter("@IDUsuario", idUsuario));
+            Consulta.Parameters.Add(new SqlParameter("@IDReceta", idReceta));
+            Consulta.ExecuteNonQuery();
+            Desconectar(Conn);
+        }
+
     }
 }
