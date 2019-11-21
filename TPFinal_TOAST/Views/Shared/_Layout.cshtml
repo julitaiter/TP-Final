@@ -4,29 +4,32 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <title>//@ViewBag.Title - Mi aplicación ASP.NET</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Toast", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Iniciar sesión", "Login", "Usuarios")</li>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container d-flex align-items-center">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+            <form action="#" class="searchform order-lg-last">
+                <div class="form-group d-flex">
+                    <input type="text" class="form-control pl-3" placeholder="Search">
+                    <button type="submit" placeholder="" class="form-control search"><span class="ion-ios-search"></span></button>
+                </div>
+            </form>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active"><a class="nav-link pl-0" href='@Html.ActionLink("Home", "Index", "Home")'></a></li>
+                    <li class="nav-item"><a class="nav-link" href='@Html.ActionLink("IniciarSesion", "Login", "Usuarios")'></a></li>
+                    <li class="nav-item"><a class="nav-link" href='@Html.ActionLink("Categorias", "ViewCategoria", "Home")'></a></li>
+                    <li class="nav-item"><a class="nav-link" href='@Html.ActionLink("Subir Receta", "SubirReceta", "Home")'></a></li>
                 </ul>
             </div>
         </div>
-    </div>
+    </nav>
     <div class="container body-content">
         @RenderBody()
         <hr />
