@@ -102,7 +102,9 @@
             <div id="Ingredientes_">
                 @foreach (Ingrediente ing in Model.Ingredientes)
                 {
-                    <span>@ing</span>
+                    <ul>
+                        <li>@ing.NombreIngrediente</li>
+                    </ul>
                 }
             </div>
             <div id="Instrucciones_">

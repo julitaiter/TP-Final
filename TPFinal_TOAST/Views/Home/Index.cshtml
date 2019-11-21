@@ -37,12 +37,12 @@
         <div class="blog-entry">
             @foreach(Receta rec in ViewBag.ListaRecetas)
             {
-            <a href="blog-single.html" class="block-20 d-flex align-items-end" style="background-image:none" src="~/Content/Fotos/Recetas/@rec.NombreFoto">
+            <a class="block-20 d-flex align-items-end" style="background-image:none" src="~/Content/Fotos/Recetas/@rec.NombreFoto">
             </a>
             <div class="text bg-white p-4">
                 <h3 class="heading"><a href="#">@rec.NombreReceta</a></h3>
                 <div class="d-flex align-items-center mt-4">
-                    <p class="mb-0"><a href="#" class="btn btn-primary"> Ver Receta <span class="ion-ios-arrow-round-forward"></span></a></p>
+                    <p class="mb-0"><a href="@Url.Action("ViewReceta", "Home", new { id = rec.IDReceta })" class="btn btn-primary"> Ver Receta <span class="ion-ios-arrow-round-forward"></span></a></p>
                     <p class="ml-auto mb-0">
                         <a href="#" class="mr-2">Fav</a>
                         <a href="#" class="meta-chat"><span class="icon-chat"></span>rec.Cant_Likes</a>

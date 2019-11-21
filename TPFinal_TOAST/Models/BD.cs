@@ -81,7 +81,7 @@ namespace TPFinal_TOAST.Models
             SqlCommand Consulta = Conn.CreateCommand();
             Consulta.CommandType = System.Data.CommandType.StoredProcedure;
             Consulta.CommandText = "TraerInfoReceta";
-            Consulta.Parameters.Add(new SqlParameter("@IDReceta", idrec));
+            Consulta.Parameters.Add(new SqlParameter("@id", idrec));
             SqlDataReader Lector = Consulta.ExecuteReader();
 
             while (Lector.Read())
