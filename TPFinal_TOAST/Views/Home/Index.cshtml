@@ -66,7 +66,7 @@
 
 <section class="home-slider owl-carousel">
 
-    <div class="slider-item" style="background-image:url(images/bg_2.jpg);">
+    <div class="slider-item" style="background-image:none" src="~/Content/Fotos/Otros/fondo.png">
         <div class="overlay"></div>
         <div class="container">
             <div class="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
@@ -82,7 +82,7 @@
         <div class="blog-entry">
             @foreach(Receta rec in ViewBag.ListaRecetas)
             {
-            <a href="blog-single.html" class="block-20 d-flex align-items-end" style="background-image: url('images/image_2.jpg');">
+            <a href="blog-single.html" class="block-20 d-flex align-items-end" style="background-image:none" src="~/Content/Fotos/Recetas/@rec.NombreFoto">
             </a>
             <div class="text bg-white p-4">
                 <h3 class="heading"><a href="#">@rec.NombreReceta</a></h3>
