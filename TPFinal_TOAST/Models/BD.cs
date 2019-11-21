@@ -211,9 +211,9 @@ namespace TPFinal_TOAST.Models
                 float CantidadPlatos1 = Convert.ToInt32(Lector["CantidadPlatos"]);
                 float Dificultad1 = Convert.ToInt32(Lector["Dificultad"]);
                 string NombreFoto = Lector["Foto"].ToString();
-                int Cant_Likes = Convert.ToInt32(Lector["Cant_Likes"]);
+                int Cant_Likes1 = Convert.ToInt32(Lector["Cant_Likes"]);
                 HttpPostedFileBase Foto = null;
-                UnaReceta = new Receta(IDReceta, NombreReceta1, Categoria1, Preparacion, TiempoPreparacion1, CantidadPlatos1, Dificultad1, Foto, NombreFoto, Ingredientes, Cant_Likes);
+                UnaReceta = new Receta(IDReceta, NombreReceta1, Categoria1, Preparacion, TiempoPreparacion1, CantidadPlatos1, Dificultad1, Foto, NombreFoto, Ingredientes, Cant_Likes1);
                 UnaReceta.Ingredientes = UnaReceta.ListarIngredientes();
                 ListaDeRecetas.Add(UnaReceta);
             }
