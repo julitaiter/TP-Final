@@ -53,7 +53,7 @@ namespace TPFinal_TOAST.Controllers
             }
             else
             {
-                string NuevaUbicacion = Server.MapPath("~/Content/Fotos/") + user.Foto.FileName;
+                string NuevaUbicacion = Server.MapPath("~/Content/Fotos/Perfiles/") + user.Foto.FileName;
                 user.Foto.SaveAs(NuevaUbicacion);
                 user.NombreFoto = user.Foto.FileName;
                 user.Admin = false;
