@@ -16,31 +16,6 @@
     <link rel="stylesheet" href="~/Content/style.css">
 </head>
 <body>
-<div class="bg-top navbar-light">
-    <div class="container">
-        <div class="row no-gutters d-flex align-items-center align-items-stretch">
-            <div class="col-md-4 d-flex align-items-center py-4">
-                <a class="navbar-brand" href="index.html">Toast</a>
-            </div>
-            <div class="col-lg-8 d-block">
-                <div class="row d-flex">
-                    <div class="col-md d-flex topper align-items-center align-items-stretch py-md-4">
-                        <div class="icon d-flex justify-content-center align-items-center"></div>
-
-                    </div>
-                </div>
-                <div class="col-md d-flex topper align-items-center align-items-stretch py-md-4">
-                    <div class="icon d-flex justify-content-center align-items-center"></div>
-                </div>
-            </div>
-            <div class="col-md topper d-flex align-items-center justify-content-end">
-                <p class="mb-0 d-block">
-                    </a>
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 
@@ -62,12 +37,12 @@
         <div class="blog-entry">
             @foreach(Receta rec in ViewBag.ListaRecetas)
             {
-            <a href="blog-single.html" class="block-20 d-flex align-items-end" style="background-image:none" src="~/Content/Fotos/Recetas/@rec.NombreFoto">
+            <a class="block-20 d-flex align-items-end" style="background-image:none" src="~/Content/Fotos/Recetas/@rec.NombreFoto">
             </a>
             <div class="text bg-white p-4">
                 <h3 class="heading"><a href="#">@rec.NombreReceta</a></h3>
                 <div class="d-flex align-items-center mt-4">
-                    <p class="mb-0"><a href="#" class="btn btn-primary"> Ver Receta <span class="ion-ios-arrow-round-forward"></span></a></p>
+                    <p class="mb-0"><a href="@Url.Action("ViewReceta", "Home", new { id = rec.IDReceta })" class="btn btn-primary"> Ver Receta <span class="ion-ios-arrow-round-forward"></span></a></p>
                     <p class="ml-auto mb-0">
                         <a href="#" class="mr-2">Fav</a>
                         <a href="#" class="meta-chat"><span class="icon-chat"></span>rec.Cant_Likes</a>
