@@ -1,0 +1,8 @@
+﻿@using TPFinal_TOAST.Models
+@model Receta
+
+@foreach (Receta r in ViewBag.recxcat)
+{
+    <img src="~/Content/Fotos/Recetas/@r.NombreFoto" alt="@r.NombreFoto"/>
+    <a href="@Url.Action("ViewReceta", "Home", new { id = r.IDReceta })"> @r.NombreReceta </a>
+}

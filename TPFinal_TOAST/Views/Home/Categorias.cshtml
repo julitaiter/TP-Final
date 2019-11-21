@@ -1,0 +1,7 @@
+﻿@using TPFinal_TOAST.Models
+@model Categoria
+
+@foreach (Categoria categoria in ViewBag.List)
+{
+    <a href="@Url.Action("RecetaCategoria", "Home", new { IdCat = categoria.IdCategoria })" > @categoria.Nom_Categoria </a>   
+}

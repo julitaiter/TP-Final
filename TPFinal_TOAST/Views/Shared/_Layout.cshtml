@@ -20,11 +20,14 @@
                 @Html.ActionLink("Toast", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-              
-                    <li>@Html.ActionLink("Iniciar sesión", "Login", "Usuarios")</li>
-                </ul>
+                <div class="row">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Iniciar sesión", "Login", "Usuarios")</li>
+                        <li>@Html.ActionLink("Categorías", "ViewCategoria", "Home")</li>
+                        <li>@Html.ActionLink("Subir receta", "SubirReceta", "Home")</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

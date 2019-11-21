@@ -221,6 +221,37 @@ namespace TPFinal_TOAST.Models
             Desconectar(Conn);
             return ListaDeRecetas;
         }
+        public static List<Receta> TraerRecetasxCat(int IdCat)
+        {
+            List<Receta> LasRecetas = new List<Receta>();
+            List<Ingrediente> Ingredientes = new List<Ingrediente>();
+            SqlConnection Conn = Conectar();
+
+            SqlCommand Consulta = Conn.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.Text;
+            Consulta.CommandText = "SELECT *  FROM Recetas WHERE Categoria =" + IdCat;
+            SqlDataReader Lector = Consulta.ExecuteReader();
+            while (Lector.Read())
+            {
+                int IDReceta = Convert.ToInt32(Lector["IDReceta"]);
+                string NombreReceta = Lector["NombreReceta"].ToString();
+                int Categoria = Convert.ToInt32(Lector["Categoria"]);
+                string Preparacion = Lector["Preparacion"].ToString();
+                int TiempoPreparacion = Convert.ToInt32(Lector["TiempoPreparacion"]);
+                float CantidadPlatos = Convert.ToInt32(Lector["CantidadPlatos"]);
+                float Dificultad = Convert.ToInt32(Lector["Dificultad"]);
+                string NombreFoto = Lector["Foto"].ToString();
+                int Cant_Likes = Convert.ToInt32(Lector["Cant_Likes"]);
+                HttpPostedFileBase Foto = null;
+                Receta UnaReceta = new Receta(IDReceta, NombreReceta, Categoria, Preparacion, TiempoPreparacion, CantidadPlatos, Dificultad, Foto, NombreFoto, Ingredientes, Cant_Likes);
+                UnaReceta.Ingredientes = UnaReceta.ListarIngredientes();
+                LasRecetas.Add(UnaReceta);
+            }
+
+            Desconectar(Conn);
+            return LasRecetas;
+        }
+
 
         //Metodos Usuarios
         public static void InsertarUsuario(Usuario user)
