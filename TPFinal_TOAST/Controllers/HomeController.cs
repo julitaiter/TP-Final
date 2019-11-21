@@ -18,7 +18,7 @@ namespace TPFinal_TOAST.Controllers
           NumRecetas = BD.CantidadRecetas();
           NumerosRandom = BD.GenerarRandoms(3, NumRecetas);
           ListaRecetas = BD.TraerRecetasRandom(NumerosRandom);
-          ViewBag.recetas = ListaRecetas; 
+          ViewBag.ListaRecetas = ListaRecetas;
           return View();
         }
 
