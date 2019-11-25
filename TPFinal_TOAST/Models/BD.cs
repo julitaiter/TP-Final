@@ -477,7 +477,7 @@ namespace TPFinal_TOAST.Models
             SqlConnection Conn = Conectar();
             SqlCommand Consulta = Conn.CreateCommand();
             Consulta.CommandType = System.Data.CommandType.StoredProcedure;
-            Consulta.CommandText = "ListarCategoria";
+            Consulta.CommandText = "ListarCategorias";
             SqlDataReader Lector = Consulta.ExecuteReader();
             while (Lector.Read())
             {

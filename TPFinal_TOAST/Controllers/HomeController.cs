@@ -21,7 +21,7 @@ namespace TPFinal_TOAST.Controllers
           ViewBag.ListaRecetas = ListaRecetas;
           return View();
         }
-
+       
         public ActionResult ViewReceta(int id)
         {
             Receta rec = BD.TraerReceta(id);

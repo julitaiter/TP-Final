@@ -1,7 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using TPFinal_TOAST.Models
+@model Categoria
+
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
@@ -24,20 +27,11 @@
                                 Categorías
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Aves</a>
-                                <a class="dropdown-item" href="#">Bebidas</a>
-                                <a class="dropdown-item" href="#">Carnes</a>
-                                <a class="dropdown-item" href="#">Verduras</a>
-                                <a class="dropdown-item" href="#">Guisos y Sopas</a>
-                                <a class="dropdown-item" href="#">Pastas y Arroces</a>
-                                <a class="dropdown-item" href="#">Pastelería</a>
-                                <a class="dropdown-item" href="#">Pescados y Mariscos</a>
-                                <a class="dropdown-item" href="#">Pizzas</a>
-                                <a class="dropdown-item" href="#">Postres</a>
-                                <a class="dropdown-item" href="#">Panadería</a>
-                                <a class="dropdown-item" href="#">Huevos y Lácteos</a>
-                                <a class="dropdown-item" href="#">Salsas</a>
-                                <a class="dropdown-item" href="#">Otros</a>
+                                @foreach (Categoria cat in ViewBag.LCat)
+                                {
+                                    @{Html.Action("SiteName", "Layout")}
+                                    <a class="dropdown-item" href=@Url.Action("RecetaCategoria", "Home", new { IdCat = cat.IdCategoria })>@cat.Nom_Categoria</a>
+                                }
                             </div>
                         </li>
                     </div>
