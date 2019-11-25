@@ -36,15 +36,19 @@
 }
 /*DESDE ACA VAN MIS CSS*/
 #Titulo {
-    font-family: "Monteserrat Regular";
-    color: #1F1F1F;
-    font-size: 50px;
+    margin-left:20px;
 }
-#Punto{
-    font-family: "Monteserrat Regular";
-    color: #F78B0B;
-    font-size: 50px;
+
+.Izquierda{
+    margin-left:780px;
 }
+.Elementos {
+    font: Regular 36px/60px Segoe UI;
+    letter-spacing: 0.9px;
+    color: #666666;
+    opacity: 1;
+}
+
 *,
 *::before,
 *::after {
