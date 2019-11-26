@@ -13,7 +13,7 @@ namespace TPFinal_TOAST.Models
         [Required(ErrorMessage = "Ingrese un titulo de receta")]
         public string NombreReceta { get; set; }
         [Required(ErrorMessage = "Ingrese categoría")]
-        public int Categoria { get; set; }
+        public Categoria Categoria { get; set; }
         [Required(ErrorMessage = "Ingrese instrucciones para preparar la receta")]
         public string Preparacion { get; set; }
         [Required(ErrorMessage = "Ingrese tiempo de preparación de receta")]
@@ -21,7 +21,7 @@ namespace TPFinal_TOAST.Models
         [Required(ErrorMessage = "Ingrese cantidad de platos de receta")]
         public float CantidadPlatos { get; set; }
         [Required(ErrorMessage = "Ingrese dificultad de receta")]
-        public float Dificultad { get; set; }
+        public Dificultad Dificultad { get; set; }
         [Required(ErrorMessage = "Ingrese ingredientes de receta")]
         public List<Ingrediente> Ingredientes { get; set; }
         [Required(ErrorMessage = "Ingrese foto de receta")]
@@ -33,7 +33,7 @@ namespace TPFinal_TOAST.Models
         {
         }
 
-        public Receta(int idReceta, string nombreReceta, int categoria, string preparacion, int tiempoPreparacion, float cantidadPlatos, float dificultad, HttpPostedFileBase foto, string nom_foto, List<Ingrediente> ingredientes, int likes)
+        public Receta(int idReceta, string nombreReceta, Categoria categoria, string preparacion, int tiempoPreparacion, float cantidadPlatos, Dificultad dificultad, HttpPostedFileBase foto, string nom_foto, List<Ingrediente> ingredientes, int likes)
         {
             IDReceta = idReceta;
             NombreReceta = nombreReceta;
@@ -56,7 +56,7 @@ namespace TPFinal_TOAST.Models
             SqlCommand Consulta = Conn.CreateCommand();
             Consulta.CommandType = System.Data.CommandType.StoredProcedure;
             Consulta.CommandText = "TraerIngredientes";
-            Consulta.Parameters.Add(new SqlParameter("@IDReceta", _IDReceta));
+            Consulta.Parameters.Add(new SqlParameter("@IDReceta", IDReceta));
             SqlDataReader Lector = Consulta.ExecuteReader();
 
             while (Lector.Read())
