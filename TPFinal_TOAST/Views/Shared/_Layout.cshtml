@@ -29,7 +29,7 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 @foreach (Categoria cat in ViewBag.LCat)
                                 {
-                                    @{Html.Action("SiteName", "Layout")}
+                                    {Html.Action("SiteName", "Layout")}
                                     <a class="dropdown-item" href=@Url.Action("RecetaCategoria", "Home", new { IdCat = cat.IdCategoria })>@cat.Nom_Categoria</a>
                                 }
                             </div>

@@ -35,11 +35,12 @@ namespace TPFinal_TOAST.Controllers
             return View();
         }
 
-        public ActionResult RecetaCategoria(int IdCat)
+        public ActionResult RecetaCategoria(int IdCat, string Nom)
         {
             Categoria c = BD.TraerCategoria(IdCat);
             List<Receta> rec = BD.TraerRecetasxCat(c.IdCategoria);
             ViewBag.recxcat = rec;
+            ViewBag.nom = Nom;
             return View();
         }
     }
