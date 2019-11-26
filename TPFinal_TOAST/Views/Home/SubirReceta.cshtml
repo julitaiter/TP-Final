@@ -1,0 +1,15 @@
+﻿@using TPFinal_TOAST.Models
+@model Receta
+
+<h1>Nueva receta</h1>
+@using (Html.BeginForm("RecetaSubida", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <img src="~/Content/Fotos/Otros/Upload_Icon.png" alt="Subir foto" /> @Html.TextBoxFor(model => model.Foto, new { type = "file" }) @Html.ValidationMessageFor(model => model.Foto)<br />
+    <p>Título:</p> @Html.TextBoxFor(model => model.NombreReceta) @Html.ValidationMessageFor(model => model.NombreReceta)<br />
+    <p>Elegir categoría:</p> @Html.DropDownListFor(model => model.Categoria, new SelectList(ViewBag.lecat, "IDCategoria", "Seleccionar")) @Html.ValidationMessageFor(model => model.NombreReceta)<br />
+    <p>Ingredientes:</p> @Html.TextBoxFor(model => model.Ingredientes) @Html.ValidationMessageFor(model => model.Ingredientes)<br />
+    <p>Instrucciones:</p> @Html.TextBoxFor(model => model.Preparacion) @Html.ValidationMessageFor(model => model.Preparacion)<br />
+    <p>Dificultad:</p> @Html.DropDownListFor(model => model.Dificultad, new SelectList(ViewBag.lecat, "IDCategoria", "Seleccionar")) @Html.ValidationMessageFor(model => model.NombreReceta)<br />
+    <p>Título:</p> @Html.TextBoxFor(model => model.NombreReceta) @Html.ValidationMessageFor(model => model.NombreReceta)<br />
+
+}

@@ -42,5 +42,20 @@ namespace TPFinal_TOAST.Controllers
             ViewBag.recxcat = rec;
             return View();
         }
+
+        public ActionResult SubirReceta()
+        {
+            List<Categoria> lcat = BD.ListarCategorias();
+            List<int> Dificultad = new List<int>(){ 1, 2, 3 };
+            ViewBag.lcat = lcat;
+            ViewBag.dif = Dificultad;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult RecetaSubida()
+        {
+            return View();
+        }
     }
 }
