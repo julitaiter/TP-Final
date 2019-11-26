@@ -49,6 +49,118 @@
     opacity: 1;
 }
 
+/*  ViewReceta: */
+#NombreReceta {
+    top: 0px;
+    left: 0px;
+    width: 1498px;
+    height: 239px;
+    text-align: left;
+    font: Bold 180px/239px Segoe UI;
+    letter-spacing: 0;
+    color: #FFFFFF;
+}
+
+#DificultadReceta {
+    top: 551px;
+    left: 103px;
+    width: 139px;
+    height: 100px;
+    text-align: left;
+    font: Semibold 75px/100px Segoe UI;
+    letter-spacing: 0;
+    color: #F1F1F1;
+    opacity: 0.75;
+}
+
+#DatosReceta {
+    text-align: center;
+    font: Semibold 155px/206px Segoe UI;
+    letter-spacing: 0;
+    color: #F1F1F1;
+    opacity: 1;
+}
+
+#NombreDatosReceta {
+    text-align: center;
+    font: Semibold 45px/60px Segoe UI;
+    letter-spacing: 0;
+    color: #F1F1F1;
+    opacity: 1;
+}
+
+#TituloIngredientesInstrucciones {
+    text-align: left;
+    font: Bold 90px/120px Segoe UI;
+    letter-spacing: 0;
+    color: #1F1F1F;
+    opacity: 1;
+}
+
+#TextoIngredientesInstrucciones {
+    text-align: left;
+    font: Regular 45px/90px Segoe UI;
+    letter-spacing: 0;
+    color: #1F1F1F;
+    opacity: 1;
+}
+
+#VerMás {
+    text-align: right;
+    font: Regular 40px/90px Segoe UI;
+    letter-spacing: 0;
+    color: #999999;
+    opacity: 1;
+}
+
+/*  ViewIndex:  */
+#TítuloHeroBold {
+    top: 0px;
+    left: 0px;
+    width: 628px;
+    height: 120px;
+    text-align: left;
+    font: Bold 90px/120px Segoe UI;
+    letter-spacing: 0;
+    color: #FFFFFF;
+}
+
+#TítuloHeroRegular {
+    top: 120px;
+    left: 0px;
+    width: 941px;
+    height: 120px;
+    text-align: left;
+    font: Regular 90px/120px Segoe UI;
+    letter-spacing: 0;
+    color: #FFFFFF;
+}
+
+#SubtituloHero {
+    top: 854px;
+    left: 550px;
+    width: 1503px;
+    height: 46px;
+    text-align: left;
+    font: Regular 34px/60px Segoe UI;
+    letter-spacing: 0.85px;
+    color: #FFFFFF;
+    opacity: 1;
+}
+
+#TituloTendencias {
+    top: 1503px;
+    left: 178px;
+    width: 348px;
+    height: 96px;
+    text-align: left;
+    letter-spacing: 0;
+    color: #999999;
+    opacity: 1;
+}
+
+
+
 *,
 *::before,
 *::after {
