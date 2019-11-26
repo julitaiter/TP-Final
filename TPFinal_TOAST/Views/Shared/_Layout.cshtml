@@ -1,5 +1,8 @@
 ﻿@using TPFinal_TOAST.Models
 @model Categoria
+@{
+    List<Categoria> LCat = BD.ListarCategorias();
+ }
 
 <!DOCTYPE html>
 <html>
@@ -13,7 +16,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div id="Titulo"><a class="navbar-brand" href="#"> <img src="~/Content/Fotos/Otros/Logo_Toast.png" alt="Toast" width="180" height="50" /></a></div>
+        <div id="Titulo"><a class="navbar-brand" href='@Url.Action("Index", "Home")'> <img src="~/Content/Fotos/Otros/Logo_Toast.png" alt="Toast" width="150" height="60" /></a></div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -27,10 +30,9 @@
                                 Categorías
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                @foreach (Categoria cat in ViewBag.LCat)
+                                @foreach (Categoria cat in LCat)
                                 {
-                                    {Html.Action("SiteName", "Layout")}
-                                    <a class="dropdown-item" href=@Url.Action("RecetaCategoria", "Home", new { IdCat = cat.IdCategoria })>@cat.Nom_Categoria</a>
+                                    <a class="dropdown-item" href='@Url.Action("RecetaCategoria", "Home", new { IdCat = cat.IdCategoria })'>@cat.Nom_Categoria</a>
                                 }
                             </div>
                         </li>
@@ -38,12 +40,12 @@
                 </div>
                 <div class="Elementos">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Subir una Receta</a>
+                        <a class="nav-link active" href='@Url.Action("SubirReceta", "Home")'>Subir una Receta</a>
                     </li>
                 </div>
                 <div class="Elementos">
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><img src="~/Content/Fotos/Otros/User_Icon.png" alt="Iniciar Sesión" width="25" height="25" /></a>
+                        <a class="nav-link" href='@Url.Action("Login", "Usuarios")'><img src="~/Content/Fotos/Otros/User_Icon.png" alt="Iniciar Sesión" width="25" height="25" /></a>
                     </li>
                 </div>
             </ul>
