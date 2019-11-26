@@ -3,52 +3,49 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
+using System.ComponentModel.DataAnnotations;
 
 namespace TPFinal_TOAST.Models
 {
     public class Receta
     {
-        private int _IDReceta;
-        private string _NombreReceta;
-        private int _Categoria;
-        private string _Preparacion;
-        private int _TiempoPreparacion;
-        private float _CantidadPlatos;
-        private float _Dificultad;
-        private HttpPostedFileBase _Foto;
-        private string _NombreFoto;
-        private List<Ingrediente> _Ingredientes;
-        private int _Cant_Likes;
-
-        public int IDReceta { get => _IDReceta; set => _IDReceta = value; }
-        public string NombreReceta { get => _NombreReceta; set => _NombreReceta = value; }
-        public int Categoria { get => _Categoria; set => _Categoria = value; }
-        public string Preparacion { get => _Preparacion; set => _Preparacion = value; }
-        public int TiempoPreparacion { get => _TiempoPreparacion; set => _TiempoPreparacion = value; }
-        public float CantidadPlatos { get => _CantidadPlatos; set => _CantidadPlatos = value; }
-        public float Dificultad { get => _Dificultad; set => _Dificultad = value; }
-        public List<Ingrediente> Ingredientes { get => _Ingredientes; set => _Ingredientes = value; }
-        public HttpPostedFileBase Foto { get => _Foto; set => _Foto = value; }
-        public string NombreFoto { get => _NombreFoto; set => _NombreFoto = value; }
-        public int Cant_Likes { get => _Cant_Likes; set => _Cant_Likes = value; }
+        public int IDReceta { get; set; }
+        [Required(ErrorMessage = "Ingrese un titulo de receta")]
+        public string NombreReceta { get; set; }
+        [Required(ErrorMessage = "Ingrese categoría")]
+        public int Categoria { get; set; }
+        [Required(ErrorMessage = "Ingrese instrucciones para preparar la receta")]
+        public string Preparacion { get; set; }
+        [Required(ErrorMessage = "Ingrese tiempo de preparación de receta")]
+        public int TiempoPreparacion { get; set; }
+        [Required(ErrorMessage = "Ingrese cantidad de platos de receta")]
+        public float CantidadPlatos { get; set; }
+        [Required(ErrorMessage = "Ingrese dificultad de receta")]
+        public float Dificultad { get; set; }
+        [Required(ErrorMessage = "Ingrese ingredientes de receta")]
+        public List<Ingrediente> Ingredientes { get; set; }
+        [Required(ErrorMessage = "Ingrese foto de receta")]
+        public HttpPostedFileBase Foto { get; set; }
+        public string NombreFoto { get; set; }
+        public int Cant_Likes { get; set; }
 
         public Receta()
         {
         }
 
-        public Receta(int IDReceta, string NombreReceta, int Categoria, string Preparacion, int TiempoPreparacion, float CantidadPlatos, float Dificultad, HttpPostedFileBase foto, string nom_foto, List<Ingrediente> Ingredientes, int likes)
+        public Receta(int idReceta, string nombreReceta, int categoria, string preparacion, int tiempoPreparacion, float cantidadPlatos, float dificultad, HttpPostedFileBase foto, string nom_foto, List<Ingrediente> ingredientes, int likes)
         {
-            _IDReceta = IDReceta;
-            _NombreReceta = NombreReceta;
-            _Categoria = Categoria;
-            _Preparacion = Preparacion;
-            _TiempoPreparacion = TiempoPreparacion;
-            _CantidadPlatos = CantidadPlatos;
-            _Dificultad = Dificultad;
-            _NombreFoto = nom_foto;
-            _Foto = foto;
-            _Ingredientes = Ingredientes;
-            _Cant_Likes = likes;
+            IDReceta = idReceta;
+            NombreReceta = nombreReceta;
+            Categoria = categoria;
+            Preparacion = preparacion;
+            TiempoPreparacion = tiempoPreparacion;
+            CantidadPlatos = cantidadPlatos;
+            Dificultad = dificultad;
+            NombreFoto = nom_foto;
+            Foto = foto;
+            Ingredientes = ingredientes;
+            Cant_Likes = likes;
         }
 
         public List<Ingrediente> ListarIngredientes()

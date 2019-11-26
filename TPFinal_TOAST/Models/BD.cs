@@ -490,6 +490,45 @@ namespace TPFinal_TOAST.Models
             return categ;
         }
 
+        //Metodos Dificultad
+        public static Dificultad TraerDificultad(int IDReceta)
+        {
+            SqlConnection Conn = Conectar();
+            SqlCommand Consulta = Conn.CreateCommand();
+            Dificultad difi = new Dificultad();
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandText = "TraerDificultad";
+            Consulta.Parameters.Add(new SqlParameter("@IDReceta", IDReceta));
+            SqlDataReader Lector = Consulta.ExecuteReader();
+            while (Lector.Read())
+            {
+                int Id = Convert.ToInt32(Lector["IDDificultad"]);
+                string nom = Lector["NombreDificultad"].ToString();
+                difi = new Dificultad(Id, nom);
+            }
+            Desconectar(Conn);
+            return difi;
+        }
+        public static List<Dificultad> ListarDificultades()
+        {
+            List<Dificultad> difi = new List<Dificultad>();
+            SqlConnection Conn = Conectar();
+            SqlCommand Consulta = Conn.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandText = "ListarDificultades";
+            SqlDataReader Lector = Consulta.ExecuteReader();
+            while (Lector.Read())
+            {
+                int id = Convert.ToInt32(Lector["IDDificultad"]);
+                string nom = Lector["NombreDificultad"].ToString();
+                Dificultad dif = new Dificultad(id, nom);
+                difi.Add(dif);
+            }
+            Desconectar(Conn);
+            return difi;
+
+        }
+
         //Metodos Random
         public static List<Receta> TraerRecetasRandom(List<int> num)
         {
