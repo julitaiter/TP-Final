@@ -16,10 +16,13 @@ namespace TPFinal_TOAST.Controllers
           Receta UnaReceta = new Receta();
           List<Receta> ListaRecetas = new List<Receta>();
           NumRecetas = BD.CantidadRecetas();
-          NumerosRandom = BD.GenerarRandoms(3, NumRecetas);
+          NumerosRandom = BD.GenerarRandoms(4, NumRecetas);
           ListaRecetas = BD.TraerRecetasRandom(NumerosRandom);
-          ViewBag.ListaRecetas = ListaRecetas;
-          return View();
+          ViewBag.Receta1 = ListaRecetas[0];
+          ViewBag.Receta2 = ListaRecetas[1];
+          ViewBag.Receta3 = ListaRecetas[2];
+          ViewBag.Receta4 = ListaRecetas[3];
+            return View();
         }
        
         public ActionResult ViewReceta(int id)

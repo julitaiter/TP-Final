@@ -564,6 +564,7 @@ namespace TPFinal_TOAST.Models
             Consulta.Parameters.Add(new SqlParameter("@NumeroRandom0", num[0]));
             Consulta.Parameters.Add(new SqlParameter("@NumeroRandom1", num[1]));
             Consulta.Parameters.Add(new SqlParameter("@NumeroRandom2", num[2]));
+            Consulta.Parameters.Add(new SqlParameter("@NumeroRandom3", num[3]));
             SqlDataReader Lector = Consulta.ExecuteReader();
             while (Lector.Read())
             {
