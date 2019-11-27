@@ -89,5 +89,9 @@ namespace TPFinal_TOAST.Controllers
             BD.EliminarReceta(id);
             return View("Index");
         }
+        public ActionResult BuscarXIng()
+        {
+            return View();
+        }
     }
 }
