@@ -168,12 +168,15 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\flaticon.css" />
+    <Content Include="Content\font-awesome1.css" />
+    <Content Include="Content\hero-slider1.css" />
     <Content Include="Content\icomoon.css" />
     <Content Include="Content\ionicons.css" />
     <Content Include="Content\magnific-popup.css" />
     <Content Include="Content\owl.theme.default.min.css" />
     <Content Include="Content\Recetas.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Content\tooplate-style1.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
