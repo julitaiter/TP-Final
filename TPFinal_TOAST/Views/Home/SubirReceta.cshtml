@@ -1,17 +1,30 @@
 ﻿@using TPFinal_TOAST.Models
 @model Receta
 
-
-<h1>Nueva receta</h1>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/animate.css">
+    <link rel="stylesheet" href="~/Content/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/Content/magnific-popup.css">
+    <link rel="stylesheet" href="~/Content/aos.css">
+    <link rel="stylesheet" href="~/Content/ionicons.css">
+    <link rel="stylesheet" href="~/Content/flaticon.css">
+    <link rel="stylesheet" href="~/Content/icomoon.css">
+    <link rel="stylesheet" href="~/Content/style.css">
+</head>
+<div id="TitNuevaReceta"><h1>Nueva receta</h1></div>
 @using (Html.BeginForm("RecetaSubida", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    <img src="~/Content/Fotos/Otros/Upload_Icon.png" alt="Subir foto" /> @Html.TextBoxFor(model => model.Foto, new { type = "file" }) @Html.ValidationMessageFor(model => model.Foto)<br />
-    <p>Título:</p> @Html.TextBoxFor(model => model.NombreReceta) @Html.ValidationMessageFor(model => model.NombreReceta)<br />
-    <p>Elegir categoría:</p> @Html.DropDownListFor(model => model.Categoria, new SelectList(ViewBag.lcat, "IdCategoria", "Nom_Categoria")) @Html.ValidationMessageFor(model => model.Categoria)<br />
-    <p>Ingredientes:</p> @Html.TextBoxFor(model => model.Ingredientes) @Html.ValidationMessageFor(model => model.Ingredientes)<br />
-    <p>Instrucciones:</p> @Html.TextBoxFor(model => model.Preparacion) @Html.ValidationMessageFor(model => model.Preparacion)<br />
-    <p>Dificultad:</p> @Html.DropDownListFor(model => model.Dificultad, new SelectList(ViewBag.lcat, "IDDificultad", "NombreDificultad")) @Html.ValidationMessageFor(model => model.Dificultad)<br />
-    <p>Tiempo de Preparacion:</p> @Html.TextBoxFor(model => model.TiempoPreparacion) @Html.ValidationMessageFor(model => model.TiempoPreparacion)<br />
-    <p>Cantidad de Platos:</p> @Html.TextBoxFor(model => model.CantidadPlatos) @Html.ValidationMessageFor(model => model.CantidadPlatos)<br />
+    <div class="UploadFoto"> <img src="~/Content/Fotos/Otros/Upload_Icon2.png" alt="Subir foto" width="270" height="220" /> @Html.TextBoxFor(model => model.Foto, new { type = "file" }) @Html.ValidationMessageFor(model => model.Foto)<br /></div>
+    <div class="Subir_Receta2"><p>Elegir categoría:</p> <div class="Textbox1"> @Html.DropDownListFor(model => model.Categoria, new SelectList(ViewBag.Categorias)) @Html.ValidationMessageFor(model => model.Categoria)<br /> </div></div>
+    <div class="Subir_Receta"><p>Ingredientes:</p> @Html.TextBoxFor(model => model.Ingredientes) @Html.ValidationMessageFor(model => model.Ingredientes)<br /></div>
+    <div class="Subir_Receta"><p>Instrucciones:</p> @Html.TextBoxFor(model => model.Preparacion) @Html.ValidationMessageFor(model => model.Preparacion)<br /></div>
+    <div class="Subir_Receta"><p>Dificultad:</p> @Html.DropDownListFor(model => model.Dificultad, new SelectList(ViewBag.Dificultades)) @Html.ValidationMessageFor(model => model.Dificultad)<br /></div>
+    <div class="Subir_Receta"><p>Tiempo de Preparacion:</p> @Html.TextBoxFor(model => model.TiempoPreparacion) @Html.ValidationMessageFor(model => model.TiempoPreparacion)<br /></div>
+    <div class="Subir_Receta"><p>Cantidad de Platos:</p> @Html.TextBoxFor(model => model.CantidadPlatos) @Html.ValidationMessageFor(model => model.CantidadPlatos)<br /></div>
 
 }

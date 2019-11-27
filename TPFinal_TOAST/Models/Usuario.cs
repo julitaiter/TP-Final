@@ -52,6 +52,7 @@ namespace TPFinal_TOAST.Models
             List<Receta> Recetas = new List<Receta>();
             SqlConnection Conn = BD.Conectar();
             List<Ingrediente> Ingredientes = new List<Ingrediente>();
+            Receta UnaReceta = new Receta();
 
             SqlCommand Consulta = Conn.CreateCommand();
             Consulta.CommandType = System.Data.CommandType.StoredProcedure;
@@ -63,15 +64,19 @@ namespace TPFinal_TOAST.Models
             {
                 int IDReceta = Convert.ToInt32(Lector["IDReceta"]);
                 string NombreReceta = Lector["NombreReceta"].ToString();
-                int Categoria = Convert.ToInt32(Lector["Categoria"]);
+                int idcate = Convert.ToInt32(Lector["Categoria"]);
                 string Preparacion = Lector["Preparacion"].ToString();
                 int TiempoPreparacion = Convert.ToInt32(Lector["TiempoPreparacion"]);
                 float CantidadPlatos = Convert.ToInt32(Lector["CantidadPlatos"]);
-                float Dificultad = Convert.ToInt32(Lector["Dificultad"]);
+                int iddifi = Convert.ToInt32(Lector["Dificultad"]);
                 string NombreFoto = Lector["Foto"].ToString();
                 int Cant_Likes = Convert.ToInt32(Lector["Cant_Likes"]);
                 HttpPostedFileBase Foto = null;
-                Receta UnaReceta = new Receta(IDReceta, NombreReceta, Categoria, Preparacion, TiempoPreparacion, CantidadPlatos, Dificultad, Foto, NombreFoto, Ingredientes, Cant_Likes);
+                Dificultad LaDificultad = new Dificultad();
+                LaDificultad = BD.TraerDificultad(iddifi);
+                Categoria LaCategoria = new Categoria();
+                LaCategoria = BD.TraerCategoria(idcate);
+                UnaReceta = new Receta(IDReceta, NombreReceta, LaCategoria, Preparacion, TiempoPreparacion, CantidadPlatos, LaDificultad, Foto, NombreFoto, Ingredientes, Cant_Likes);
                 UnaReceta.Ingredientes = UnaReceta.ListarIngredientes();
                 Recetas.Add(UnaReceta);
             }

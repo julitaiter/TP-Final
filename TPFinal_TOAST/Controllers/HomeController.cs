@@ -46,10 +46,23 @@ namespace TPFinal_TOAST.Controllers
 
         public ActionResult SubirReceta()
         {
-            List<Categoria> lcat = BD.ListarCategorias();
-            List<int> Dificultad = new List<int>(){ 1, 2, 3 };
-            ViewBag.lcat = lcat;
-            ViewBag.dif = Dificultad;
+            List<Categoria> LasCategorias = BD.ListarCategorias();
+            List<Dificultad> LasDificultades = BD.ListarDificultades();
+            List<string> NomCategorias = new List<string>();
+            List<string> NomDificultades = new List<string>();
+            foreach(Categoria UnaCategoria in LasCategorias)
+            {
+                NomCategorias.Add(UnaCategoria.Nom_Categoria);
+            }
+            foreach (Dificultad UnaDificultad in LasDificultades)
+            {
+                NomDificultades.Add(UnaDificultad.NombreDificultad);
+            }
+            /* Paso solo un viewbag con string y no con categorias ni dificultades porque habria que agregar
+             mas de un model a la view, cosa que no es posible */
+
+            ViewBag.Categorias = NomCategorias;
+            ViewBag.Dificultades = NomDificultades;
             return View();
         }
 

@@ -39,6 +39,14 @@
     margin-left:15px;
 }
 
+#TitNuevaReceta {
+    font-family: 'Segoe UI';
+    text-align: left;
+    letter-spacing: 0;
+    color: #1F1F1F;
+    opacity: 1;
+}
+
 .Izquierda{
     margin-left:780px;
 }
@@ -46,6 +54,23 @@
     font: Regular 36px/60px Segoe UI;
     letter-spacing: 0.9px;
     color: #666666;
+    opacity: 1;
+}
+
+.Subir_Receta {
+    font: Regular 36px/60px Segoe UI;
+}
+.Subir_Receta2 {
+    display: inline-block;
+    font: Regular 36px/60px Segoe UI;
+}
+.UploadFoto {
+    display: inline-block;
+}
+.Textbox1 {
+    display: inline-block;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 10px;
     opacity: 1;
 }
 
