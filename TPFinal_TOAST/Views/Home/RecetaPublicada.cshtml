@@ -1,5 +1,6 @@
 ﻿@using TPFinal_TOAST.Models
-@model Usuario
+@model Receta
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,7 +16,13 @@
     <link rel="stylesheet" href="~/Content/icomoon.css">
     <link rel="stylesheet" href="~/Content/style.css">
 </head>
-<h1>Mi perfil</h1>
-<img height="100" width="100" src="~/Content/Fotos/Perfiles/@Model.NombreFoto" />
-<h2>@Model.Nombre_Usuario</h2>
-@Html.ActionLink("Modificar usuario", "RM", "Usuarios", new { modo = "Editar", id = Model.IDUsuario }, null)
+<div align="center">
+    <img src="~/Content/Fotos/Otros/recetaok.png" alt="recetaok.png" />
+</div>
+<div align="center">
+    <h2>¡Su receta ha sido publicada con éxito!</h2>
+</div>
+<div align="center">
+    @Html.ActionLink("Ver receta", "ViewReceta", "Home", new {  id = Model.IDReceta }, null)
+</div>
+

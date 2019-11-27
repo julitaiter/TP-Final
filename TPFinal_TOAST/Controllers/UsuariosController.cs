@@ -21,7 +21,7 @@ namespace TPFinal_TOAST.Controllers
         }
         public ActionResult Login() 
         {
-            return View(); //CORREGIR
+            return View();
         }
         [HttpPost]
         public ActionResult LoginOK(Usuario User) 

@@ -1,5 +1,22 @@
 ﻿@using TPFinal_TOAST.Models
 @model Receta
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/animate.css">
+    <link rel="stylesheet" href="~/Content/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/Content/magnific-popup.css">
+    <link rel="stylesheet" href="~/Content/aos.css">
+    <link rel="stylesheet" href="~/Content/ionicons.css">
+    <link rel="stylesheet" href="~/Content/flaticon.css">
+    <link rel="stylesheet" href="~/Content/icomoon.css">
+    <link rel="stylesheet" href="~/Content/style.css">
+</head>
+<body>
     <div id="Receta" class="">
         <div id="Componente_11___55" class="Componente_11___55">
             <svg class="Trazado_13" viewBox="0 0 2880 549">
@@ -42,7 +59,8 @@
                     </path>
                 </svg>
             </div>
-            <div id="Enviar_una_idea"> <!-- no es necesario -->
+            <div id="Enviar_una_idea">
+                <!-- no es necesario -->
                 <span>Enviar una idea</span>
             </div>
             <div id="_">
@@ -107,7 +125,7 @@
             <div id="Instrucciones_">
                 <span>@Model.Preparacion</span>
             </div>
-            <div id="Ingredientes">
+            <!--<div id="Ingredientes">
                 <span>Para la masa:<br />400 gr. Harina leudante<br />60 gr. Azúcar<br />200 gr. Manteca/ mantequilla<br />1 Huevo<br />Pizca Sal<br />2 cdas. Agua fría (si es necesario)<br />Para el relleno:<br />1 1/2 k. Manzanas verdes o rojas<br />100 gr. Azúcar<br />20 gr. Fécula de maíz<br />Jugo de medio limón<br />1 cdta. Canela en polvo</span>
             </div>
             <div id="Listado">
@@ -115,7 +133,7 @@
             </div>
             <div id="Instrucciones">
                 <span></span><span style="font-style:normal;font-weight:normal;font-size:45px;color:rgba(31,31,31,1);">Con las yemas de los dedos formar un arenado con la harina, la sal, la manteca y el azúcar, luego agregar el huevo,<br /> si es necesario agregar 2 cucharadas de agua fría, integrar (no amasar) todos los ingredientes. Luego extender la <br />masa sobre papel film y reservamos en la heladera mientras preparamos las manzanas. (30' aprox.)<br />Mezclar la manzana (previamente peladas y ralladas) con el azúcar, el limón, la fécula de maíz y la canela en polvo. <br />Sacar la masa de la heladera,extender con un rodillo y forrar una tartera de 24 cm. reservando un poco de masa <br />para el enrejado.<br />Vaciar el relleno en la tartera y luego con la masa reservada hacer el enrejado y cubrir la tarta.<br />Llevar a horno precalentado de 170 grados por 45' aproximadamente. Retirar del horno y dejar enfriar sobre una <br />rejilla, luego desmoldar.</span>
-            </div>
+            </div>-->
             <div id="Ver_Mas_Similares">
                 <span>VER MÁS POSTRES</span>
             </div>
@@ -175,4 +193,9 @@
             </svg>
         </div>
     </div>
-
+    <div>
+        <button type="button" data-confirm="¿Querés eliminar esta receta?">
+            @Html.ActionLink("Eliminar receta", "EliminarReceta", "Home", new { id = Model.IDReceta })
+        </button>
+    </div>
+</body>

@@ -1,12 +1,27 @@
 ﻿@using TPFinal_TOAST.Models
 @model Receta
-    <h1 class="mb-4"> @ViewBag.nom </h1>
-    <div style="background-image:url('fondo.png');">
-        <div class="row">
-            @foreach (Receta r in ViewBag.recxcat)
-            {
-                <img class="card-img" src="~/Content/Fotos/Recetas/@r.NombreFoto" alt="@r.NombreFoto" />
-                <a class="mb-0" href="@Url.Action("ViewReceta", "Home", new { id = r.IDReceta })"> @r.NombreReceta </a>
-            }
-        </div>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/animate.css">
+    <link rel="stylesheet" href="~/Content/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/Content/magnific-popup.css">
+    <link rel="stylesheet" href="~/Content/aos.css">
+    <link rel="stylesheet" href="~/Content/ionicons.css">
+    <link rel="stylesheet" href="~/Content/flaticon.css">
+    <link rel="stylesheet" href="~/Content/icomoon.css">
+    <link rel="stylesheet" href="~/Content/style.css">
+</head>
+<h1 class="mb-4"> @ViewBag.nom </h1>
+<div style="background-image:url('fondo.png');">
+    <div class="row">
+        @foreach (Receta r in ViewBag.recxcat)
+        {
+            <img class="card-img" src="~/Content/Fotos/Recetas/@r.NombreFoto" alt="@r.NombreFoto" />
+            <a class="mb-0" href="@Url.Action("ViewReceta", "Home", new { id = r.IDReceta })"> @r.NombreReceta </a>
+        }
     </div>
+</div>

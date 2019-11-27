@@ -40,7 +40,7 @@ namespace TPFinal_TOAST.Controllers
             Categoria c = BD.TraerCategoria(IdCat);
             List<Receta> rec = BD.TraerRecetasxCat(c.IdCategoria);
             ViewBag.recxcat = rec;
-            ViewBag.nom = Nom;
+            ViewBag.nom = c.Nom_Categoria;
             return View();
         }
 
@@ -67,9 +67,24 @@ namespace TPFinal_TOAST.Controllers
         }
 
         [HttpPost]
-        public ActionResult RecetaSubida()
+        public ActionResult RecetaSubida(Receta rec)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                return View("SubirReceta", rec);
+            }
+            else
+            {
+                string NuevaUbicacion = Server.MapPath("~/Content/Fotos/Perfiles/") + rec.Foto.FileName;
+                rec.Foto.SaveAs(NuevaUbicacion);
+                rec.NombreFoto = rec.Foto.FileName;
+                return View("RecetaPublicada", rec);
+            }
+        }
+        public ActionResult EliminarReceta(int id)
+        {
+            BD.EliminarReceta(id);
+            return View("Index");
         }
     }
 }

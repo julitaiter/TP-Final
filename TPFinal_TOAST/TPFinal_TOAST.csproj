@@ -207,13 +207,12 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\RecetaPublicada.cshtml" />
     <Content Include="Views\Home\ViewReceta.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Usuarios\RM.cshtml" />
     <Content Include="Views\Usuarios\Index.cshtml" />
     <Content Include="Views\Usuarios\Login.cshtml" />
-    <Content Include="Views\Home\Categorias.cshtml" />
     <Content Include="Views\Home\RecetaCategoria.cshtml" />
     <Content Include="Views\Home\SubirReceta.cshtml" />
   </ItemGroup>

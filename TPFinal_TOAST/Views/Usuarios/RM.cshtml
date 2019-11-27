@@ -22,6 +22,10 @@ else
     <p>Foto:</p> @Html.TextBoxFor(model => model.Foto, new { type = "file" }) @Html.ValidationMessageFor(model => model.Foto)<br />
     if (ViewBag.modo == "Insertar")
     {
+        <p>¿Ya tenés cuenta? @Html.ActionLink("Inicia sesión", "Login", "Usuarios")</p>
+    }
+    if (ViewBag.modo == "Insertar")
+    {
         <input type="submit" value="Crear usuario" />
     }
     else
