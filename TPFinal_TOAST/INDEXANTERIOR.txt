@@ -1,0 +1,60 @@
+
+<section class="home-slider owl-carousel">
+    <div class="slider-item" style="background-image:none" src="~/Content/Fotos/Otros/fondo.png">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
+                <h1 class="mb-4">Buscar recetas nunca ha sido más fácil.</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<h3>Recetas</h3>
+<div class="row">
+    <div class="col-md-6 col-lg-4 ftco-animate">
+        <div class="blog-entry">
+            @foreach(Receta rec in ViewBag.ListaRecetas)
+            {
+            <a class="block-20 d-flex align-items-end" style="background-image:none" src="~/Content/Fotos/Recetas/@rec.NombreFoto">
+            </a>
+            <div class="text bg-white p-4">
+                <h3 class="heading"><a href="#">@rec.NombreReceta</a></h3>
+                <div class="d-flex align-items-center mt-4">
+                    <p class="mb-0"><a href="@Url.Action("ViewReceta", "Home", new { id = rec.IDReceta })" class="btn btn-primary"> Ver Receta <span class="ion-ios-arrow-round-forward"></span></a></p>
+                    <p class="ml-auto mb-0">
+                        <a href="#" class="mr-2">Fav</a>
+                        <a href="#" class="meta-chat"><span class="icon-chat"></span>rec.Cant_Likes</a>
+                    </p>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</div>
+
+<footer class="ftco-footer ftco-bg-dark ftco-section">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-md-6 col-lg-3">
+                <div class="ftco-footer-widget mb-5">
+                    <div class="block-23 mb-3">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="col-md-6 col-lg-3">
+                    <div class="ftco-footer-widget mb-5 ml-md-4">
+                        <ul class="list-unstyled"></ul>
+                    </div>
+                </div>
+                <p>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;
+                    <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
