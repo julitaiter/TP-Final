@@ -229,7 +229,7 @@ Single slide style
 }
 
     .cd-hero-slider li:first-of-type {
-        background-image: url(../Content/Fotos/index/slide_01.jpg);
+        background-image: url(../Content/Fotos/index/slide_03.png);
     }
 
     .cd-hero-slider li:nth-of-type(2) {
@@ -237,7 +237,7 @@ Single slide style
     }
 
     .cd-hero-slider li:nth-of-type(3) {
-        background-image: url(../Content/Fotos/index/slide_03.jpg);
+        background-image: url(../Content/Fotos/index/slide_01.jpg);
     }
 
 .cd-hero-slider .cd-full-width,

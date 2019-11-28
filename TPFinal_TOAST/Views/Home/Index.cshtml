@@ -38,7 +38,7 @@
                         <h2>Buscar recetas</h2>
                         <p>Tan sólo ingresar un ingrediente alcanza para ver cientos de recetas que podrás hacer con este.</p>
                         <div class="primary-button">
-                            <a href='@Url.Action("BuscarXIng", "Home")' class="scroll-link" data-id="about">Buscar por ingrediente</a>
+                            <a href='@Url.Action("BuscarXIng", "Home")'>Buscar por ingrediente</a>
                         </div>
                     </div>
                 </div> <!-- .cd-full-width -->
@@ -51,7 +51,7 @@
                         <h2>Buscar recetas</h2>
                         <p>Tan sólo ingresar un ingrediente alcanza para ver cientos de recetas que podrás hacer con este.</p>
                         <div class="primary-button">
-                            <a href="#">Buscar por ingredientes</a>
+                            <a href='@Url.Action("BuscarXIng", "Home")'>Buscar por ingredientes</a>
                         </div>
                     </div>
                 </div> <!-- .cd-full-width -->
@@ -59,15 +59,16 @@
 
             <li class="third-slide">
                 <div class="cd-full-width">
-                    <span>Nunca ha sido tan fácil</span>
-                    <h2>Buscar recetas</h2>
-                    <p>Tan sólo ingresar un ingrediente alcanza para ver cientos de recetas que podrás hacer con este.</p>
-                    <div class="primary-button">
-                        <a href="#">Buscar por ingredientes</a>
+                    <div class="tm-slide-content-div slide-caption">
+                        <span>Nunca ha sido tan fácil</span>
+                        <h2>Buscar recetas</h2>
+                        <p>Tan sólo ingresar un ingrediente alcanza para ver cientos de recetas que podrás hacer con este.</p>
+                        <div class="primary-button">
+                            <a href='@Url.Action("BuscarXIng", "Home")'>Buscar por ingredientes</a>
+                        </div>
                     </div>
                 </div>
-                </div> <!-- .cd-full-width -->
-            </li>
+</li>
         </ul> <!-- .cd-hero-slider -->
 
         <div class="cd-slider-nav">
@@ -88,7 +89,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-heading">
-                        <h4>Recetas</h4>
+                        <h4>Tendencias</h4>
                         <div class="line-dec"></div>
                     </div>
                 </div>
@@ -97,6 +98,7 @@
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="service-item first-service">
                         <div class="icon"></div>
+                        <img src="~/Content/Fotos/Recetas/@ViewBag.Receta1.NombreFoto" alt="@ViewBag.Receta1.NombreFoto"/>
                         <h4>@ViewBag.Receta1.NombreReceta</h4>
                         <a class="mb-0" href='@Url.Action("ViewReceta", "Home", new { id = @ViewBag.Receta1.IDReceta })'> Ver receta </a>
                     </div>
@@ -104,6 +106,7 @@
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="service-item second-service">
                         <div class="icon"></div>
+                        <img src="~/Content/Fotos/Recetas/@ViewBag.Receta2.NombreFoto" alt="@ViewBag.Receta2.NombreFoto" />
                         <h4>@ViewBag.Receta2.NombreReceta</h4>
                         <a class="mb-0" href='@Url.Action("ViewReceta", "Home", new { id = @ViewBag.Receta2.IDReceta })'> Ver receta </a>
                     </div>
@@ -111,6 +114,7 @@
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="service-item third-service">
                         <div class="icon"></div>
+                        <img src="~/Content/Fotos/Recetas/@ViewBag.Receta3.NombreFoto" alt="@ViewBag.Receta3.NombreFoto" />
                         <h4>@ViewBag.Receta3.NombreReceta</h4>
                         <a class="mb-0" href='@Url.Action("ViewReceta", "Home", new { id = @ViewBag.Receta3.IDReceta })'> Ver receta </a>
                     </div>
@@ -118,6 +122,7 @@
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="service-item fourth-service">
                         <div class="icon"></div>
+                        <img src="~/Content/Fotos/Recetas/@ViewBag.Receta4.NombreFoto" alt="@ViewBag.Receta4.NombreFoto" />
                         <h4>@ViewBag.Receta4.NombreReceta</h4>
                         <a class="mb-0" href='@Url.Action("ViewReceta", "Home", new { id = @ViewBag.Receta4.IDReceta })'> Ver receta </a>
                     </div>
@@ -132,8 +137,8 @@
 
     <script src="js/vendor/bootstrap.min.js"></script>
 
-    <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
+    <script src="~/Content/plugins1.js"></script>
+    <script src="~/Content/main1.js"></script>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript">
@@ -189,5 +194,5 @@
     <script src="js/scrollax.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
     <script src="js/google-map.js"></script>
-    <script src="js/main.js"></script>
+    <script src="~/Content/main1.js"></script>
 </body>
