@@ -53,5 +53,12 @@
             <span class="info">ej. Manzana, Miel, Papas, Cebolla</span>
         </form>
     </div>
+    <h2>Ingredientes:</h2>
+    <ul>
+        @foreach (string s in ViewBag.IngredientesBuscados)
+        {
+            <li>s</li>
+        }
+    </ul>
     <script src="~/Content/extention/choices.js"></script>
 </body>

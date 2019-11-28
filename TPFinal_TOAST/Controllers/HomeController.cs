@@ -24,20 +24,17 @@ namespace TPFinal_TOAST.Controllers
           ViewBag.Receta4 = ListaRecetas[3];
             return View();
         }
-       
         public ActionResult ViewReceta(int id)
         {
             Receta rec = BD.TraerReceta(id);
             return View(rec);
         }
-
         public ActionResult Categorias()
         {
             List<Categoria> LisCat = BD.ListarCategorias();
             ViewBag.List = LisCat;
             return View();
         }
-
         public ActionResult RecetaCategoria(int IdCat, string Nom)
         {
             Categoria c = BD.TraerCategoria(IdCat);
@@ -46,7 +43,6 @@ namespace TPFinal_TOAST.Controllers
             ViewBag.nom = c.Nom_Categoria;
             return View();
         }
-
         public ActionResult SubirReceta()
         {
             List<Categoria> LasCategorias = BD.ListarCategorias();
@@ -68,7 +64,6 @@ namespace TPFinal_TOAST.Controllers
             ViewBag.Dificultades = NomDificultades;
             return View();
         }
-
         [HttpPost]
         public ActionResult RecetaSubida(Receta rec)
         {
@@ -95,6 +90,7 @@ namespace TPFinal_TOAST.Controllers
         }
         public ActionResult BusqXIng(string Buscar)
         {
+            ViewBag.IngredientesBuscados = "";
             List<string> Lista;
             if (Session["ListaIngredientes"]==null)
             {
