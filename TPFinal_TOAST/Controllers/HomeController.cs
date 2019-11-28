@@ -83,6 +83,7 @@ namespace TPFinal_TOAST.Controllers
         {
             ViewBag.IngredientesBuscados = "";
             ViewBag.MisRecetasEncontradas = "";
+            ViewBag.CantRecetasEncontradas = 0;
 
             List<string> Lista;
             if (Session["ListaIngredientes"]==null)
@@ -101,17 +102,19 @@ namespace TPFinal_TOAST.Controllers
             Session["ListaIngredientes"] = Lista;
             ViewBag.IngredientesBuscados = Lista;
 
-            List<string> LasRecetasEncontradas;
+            List<Receta> LasRecetasEncontradas;
             if (Session["ListaRecetasEncontradas"] == null)
             {
-                LasRecetasEncontradas = new List<string>();
+                LasRecetasEncontradas = new List<Receta>();
             }
             else
             {
-                LasRecetasEncontradas = (List<string>)Session["ListaRecetasEncontradas"];
+                LasRecetasEncontradas = (List<Receta>)Session["ListaRecetasEncontradas"];
             }
 
-            List<Receta> RecetasEncontradas = new List<Receta>();
+            ViewBag.CantRecetasEncontradas = LasRecetasEncontradas.Count();
+
+            List <Receta> RecetasEncontradas = new List<Receta>();
             List<List<Receta>> TodasLasRecetas = new List<List<Receta>>();
             List<Receta> RecetasAMostrar = new List<Receta>();
             bool Repetido = false;
@@ -172,12 +175,13 @@ namespace TPFinal_TOAST.Controllers
             {
                 foreach (Receta UnaReceta in RecetasAMostrar)
                 {
-                    LasRecetasEncontradas.Add(UnaReceta.NombreReceta);
+                    LasRecetasEncontradas.Add(UnaReceta);
                 }
             }
 
             Session["ListaRecetasEncontradas"] = LasRecetasEncontradas;
             ViewBag.MisRecetasEncontradas = LasRecetasEncontradas;
+            ViewBag.CantRecetasEncontradas = LasRecetasEncontradas.Count();
 
             return View("BuscarXIng");
         }

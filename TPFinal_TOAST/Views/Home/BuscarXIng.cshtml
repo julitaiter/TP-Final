@@ -54,35 +54,40 @@
         </form>
     </div>
     <div>
-        <h2>Ingredientes:</h2>
         <ul>
             @if (ViewBag.IngredientesBuscados != null)
             {
+                <h2 class="IngredientesTit"><b> Ingredientes: </b></h2><br />
                 foreach (string s in ViewBag.IngredientesBuscados)
                 {
-                    <li>@s</li>
+                    <div class="NomIngrediente">
+                        <li>@s</li>
+                    </div>
+
+                    <div class="TrashButton">
+                        <button class="btn-search" type="submit"><img src="~/Content/Fotos/Otros/Trash.png" /></button>
+                    </div>
+
                 }
             }
 
         </ul>
     </div>
-
-    <h1 class="mb-3"> @ViewBag.nom </h1>
-    <div style="background-image:url('fondo.png');">
+    @if (ViewBag.MisRecetasEncontradas != null)
+    {
+        <h2 class="Resultados">Resultados:</h2> <p> @ViewBag.CantRecetasEncontradas resultados</p>
         <div class="row">
             @foreach (Receta r in ViewBag.MisRecetasEncontradas)
             {
                 <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="service-item first-service">
                     <div class="icon"></div>
-                    <div class="service-itemCat first-service">
-                        <img class="card-img" src="~/Content/Fotos/Recetas/@r.NombreFoto" alt="@r.NombreFoto" />
-                        <a class="mb-0" href='@Url.Action("ViewReceta", "Home", new { id = r.IDReceta })'> @r.NombreReceta </a>
+                    <img class="FotosIndex" src="~/Content/Fotos/Recetas/@r.NombreFoto" alt="@r.NombreFoto" />
+                    <a class="NombreReceta" href='@Url.Action("ViewReceta", "Home", new { id = r.IDReceta })'> <b> @r.NombreReceta </b> </a>                    
                     </div>
                 </div>
             }
         </div>
-    </div>
-
-
+    }
     <script src="~/Content/extention/choices.js"></script>
 </body>

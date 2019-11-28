@@ -819,7 +819,7 @@ button {
 }
 
 .s130 {
-    min-height: 100vh;
+    min-height: 80vh;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-pack: center;
@@ -938,7 +938,7 @@ button {
                     }
 
                         .s130 form .inner-form .input-field.second-wrap .btn-search:hover {
-                            background: #009451;
+                            background: #F4B161;
                         }
 
                         .s130 form .inner-form .input-field.second-wrap .btn-search:focus {
