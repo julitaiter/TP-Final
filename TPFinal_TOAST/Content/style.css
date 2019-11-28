@@ -47,15 +47,9 @@
     opacity: 1;
 }
 
-#body2 {
-    background-color: #ffffff;
-    width: 800px;
-    margin: 0 auto;
-    margin-top: 150px;
-    background-image: url(lulifotos/fondogif.gif);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+.FotosIndex{
+    height: 150px;
+    width: 350px;
 }
 
 .Izquierda{
@@ -2939,14 +2933,14 @@ fieldset:disabled a.btn {
 
 .btn-primary {
     color: #fff;
-    background-color: #F78B0B;
-    border-color: #F78B0B;
+    background-color: #007bff;
+    border-color: #007bff;
 }
 
     .btn-primary:hover {
         color: #fff;
-        background-color: #e8aa5e;
-        border-color: #e8aa5e;
+        background-color: #0069d9;
+        border-color: #0062cc;
     }
 
     .btn-primary:focus, .btn-primary.focus {
