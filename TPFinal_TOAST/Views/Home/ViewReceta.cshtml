@@ -15,23 +15,27 @@
     <link rel="stylesheet" href="~/Content/flaticon.css">
     <link rel="stylesheet" href="~/Content/icomoon.css">
     <link rel="stylesheet" href="~/Content/style.css">
+    <!--<link rel="stylesheet" href="~/Content/Recetas.css">-->
 </head>
 <body>
     <div id="Receta" class="">
         <div id="Componente_11___55" class="Componente_11___55">
             <svg class="Trazado_13" viewBox="0 0 2880 549">
-        <path fill="rgba(31,31,31,1)" id="Trazado_13" d="M 0 0 L 2880 0 L 2880 549 L 0 549 L 0 0 Z">
-        </path>
-    </svg>
-
-
-
-
+                <path fill="rgba(31,31,31,1)" id="Trazado_13" d="M 0 0 L 2880 0 L 2880 549 L 0 549 L 0 0 Z">
+                </path>
+            </svg>
         </div>
+
+
+
+      
         <div id="Componente_15___2" class="Componente_15___2">
             <div id="Nombre_Receta">
                 <h1> @Model.NombreReceta </h1>
             </div>
+
+            <img src="~/Content/@Model.NombreFoto" />
+
             <div id="minutos">
                 <h2> Tiempo de preparacion @Model.TiempoPreparacion minutos </h2>
             </div>
@@ -53,7 +57,7 @@
                 }
             </div>
             <div id="Instrucciones_">
-                <span>@Model.Preparacion</span>
+                <h2>@Model.Preparacion</h2>
             </div>
             <!--<div id="Ingredientes">
                 <span>Para la masa:<br />400 gr. Harina leudante<br />60 gr. Azúcar<br />200 gr. Manteca/ mantequilla<br />1 Huevo<br />Pizca Sal<br />2 cdas. Agua fría (si es necesario)<br />Para el relleno:<br />1 1/2 k. Manzanas verdes o rojas<br />100 gr. Azúcar<br />20 gr. Fécula de maíz<br />Jugo de medio limón<br />1 cdta. Canela en polvo</span>
@@ -64,9 +68,6 @@
             <div id="Instrucciones">
                 <span></span><span style="font-style:normal;font-weight:normal;font-size:45px;color:rgba(31,31,31,1);">Con las yemas de los dedos formar un arenado con la harina, la sal, la manteca y el azúcar, luego agregar el huevo,<br /> si es necesario agregar 2 cucharadas de agua fría, integrar (no amasar) todos los ingredientes. Luego extender la <br />masa sobre papel film y reservamos en la heladera mientras preparamos las manzanas. (30' aprox.)<br />Mezclar la manzana (previamente peladas y ralladas) con el azúcar, el limón, la fécula de maíz y la canela en polvo. <br />Sacar la masa de la heladera,extender con un rodillo y forrar una tartera de 24 cm. reservando un poco de masa <br />para el enrejado.<br />Vaciar el relleno en la tartera y luego con la masa reservada hacer el enrejado y cubrir la tarta.<br />Llevar a horno precalentado de 170 grados por 45' aproximadamente. Retirar del horno y dejar enfriar sobre una <br />rejilla, luego desmoldar.</span>
             </div>-->
-            <div id="Ver_Mas_Similares">
-                <span>VER MÁS POSTRES</span>
-            </div>
         </div>
         <div id="Componente_12___12" class="Componente_12___12">
             <svg class="Rect_ngulo_4">
