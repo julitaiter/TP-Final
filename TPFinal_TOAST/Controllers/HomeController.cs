@@ -108,7 +108,7 @@ namespace TPFinal_TOAST.Controllers
             if (!Lista.Contains(Buscar))
             {
                 Lista.Add(Buscar);
-            }
+            } 
 
             Session["ListaIngredientes"] = Lista;
             ViewBag.IngredientesBuscados = Lista;
