@@ -28,37 +28,37 @@ namespace TPFinal_TOAST.Models
         }
 
         //Metodos Recetas
-        public static void IngresarReceta(string NombreReceta, int Categoria, string Preparacion, int TiempoPreparacion, float CantPlatos, float Dificultad, string Foto, int Cant_Likes)
+        public static void IngresarReceta(Receta rec)
         {
             SqlConnection Conn = Conectar();
             SqlCommand Consulta = Conn.CreateCommand();
             Consulta.CommandType = System.Data.CommandType.StoredProcedure;
             Consulta.CommandText = "IngresarRecetas";
-            Consulta.Parameters.Add(new SqlParameter("@NombreReceta", NombreReceta));
-            Consulta.Parameters.Add(new SqlParameter("@Categoria", Categoria));
-            Consulta.Parameters.Add(new SqlParameter("@Preparacion", Preparacion));
-            Consulta.Parameters.Add(new SqlParameter("@TiempoPreparacion", TiempoPreparacion));
-            Consulta.Parameters.Add(new SqlParameter("@CantidadPlatos", CantPlatos));
-            Consulta.Parameters.Add(new SqlParameter("@Dificultad", Dificultad));
-            Consulta.Parameters.Add(new SqlParameter("@Foto", Foto));
-            Consulta.Parameters.Add(new SqlParameter("@Cant_Likes", Cant_Likes));
+            Consulta.Parameters.Add(new SqlParameter("@NombreReceta", rec.NombreReceta));
+            Consulta.Parameters.Add(new SqlParameter("@Categoria", rec.Categoria));
+            Consulta.Parameters.Add(new SqlParameter("@Preparacion", rec.Preparacion));
+            Consulta.Parameters.Add(new SqlParameter("@TiempoPreparacion", rec.TiempoPreparacion));
+            Consulta.Parameters.Add(new SqlParameter("@CantidadPlatos", rec.CantidadPlatos));
+            Consulta.Parameters.Add(new SqlParameter("@Dificultad", rec.Dificultad));
+            Consulta.Parameters.Add(new SqlParameter("@Foto", rec.NombreFoto));
+            Consulta.Parameters.Add(new SqlParameter("@Cant_Likes", rec.Cant_Likes));
             Consulta.ExecuteNonQuery();
             Desconectar(Conn);
         }
-        public static void ModificarReceta(int IDReceta, string NombreReceta, int Categoria, string Preparacion, int TiempoPreparacion, float CantPlatos, float Dificultad, string Foto, int Cant_Likes)
+        public static void ModificarReceta(Receta rec)
         {
             SqlConnection Conn = Conectar();
             SqlCommand Consulta = Conn.CreateCommand();
             Consulta.CommandType = System.Data.CommandType.StoredProcedure;
             Consulta.CommandText = "ModificarReceta";
-            Consulta.Parameters.Add(new SqlParameter("@NombreReceta", NombreReceta));
-            Consulta.Parameters.Add(new SqlParameter("@Categoria", Categoria));
-            Consulta.Parameters.Add(new SqlParameter("@Preparacion", Preparacion));
-            Consulta.Parameters.Add(new SqlParameter("@TiempoPreparacion", TiempoPreparacion));
-            Consulta.Parameters.Add(new SqlParameter("@CantidadPlatos", CantPlatos));
-            Consulta.Parameters.Add(new SqlParameter("@Dificultad", Dificultad));
-            Consulta.Parameters.Add(new SqlParameter("@Foto", Foto));
-            Consulta.Parameters.Add(new SqlParameter("@Cant_Likes", Cant_Likes));
+            Consulta.Parameters.Add(new SqlParameter("@NombreReceta", rec.NombreReceta));
+            Consulta.Parameters.Add(new SqlParameter("@Categoria", rec.Categoria));
+            Consulta.Parameters.Add(new SqlParameter("@Preparacion", rec.Preparacion));
+            Consulta.Parameters.Add(new SqlParameter("@TiempoPreparacion", rec.TiempoPreparacion));
+            Consulta.Parameters.Add(new SqlParameter("@CantidadPlatos", rec.CantidadPlatos));
+            Consulta.Parameters.Add(new SqlParameter("@Dificultad", rec.Dificultad));
+            Consulta.Parameters.Add(new SqlParameter("@Foto", rec.NombreFoto));
+            Consulta.Parameters.Add(new SqlParameter("@Cant_Likes", rec.Cant_Likes));
             Consulta.ExecuteNonQuery();
             Desconectar(Conn);
         }
@@ -465,8 +465,7 @@ namespace TPFinal_TOAST.Models
             SqlConnection Conn = Conectar();
             SqlCommand Consulta = Conn.CreateCommand();
             Consulta.CommandType = System.Data.CommandType.StoredProcedure;
-            Consulta.CommandText = "EliminarFavorito" +
-                "";
+            Consulta.CommandText = "EliminarFavorito";
             Consulta.Parameters.Add(new SqlParameter("@IDUsuario", idUsuario));
             Consulta.Parameters.Add(new SqlParameter("@IDReceta", idReceta));
             Consulta.ExecuteNonQuery();

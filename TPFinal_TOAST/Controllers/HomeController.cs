@@ -24,20 +24,17 @@ namespace TPFinal_TOAST.Controllers
           ViewBag.Receta4 = ListaRecetas[3];
             return View();
         }
-       
         public ActionResult ViewReceta(int id)
         {
             Receta rec = BD.TraerReceta(id);
             return View(rec);
         }
-
         public ActionResult Categorias()
         {
             List<Categoria> LisCat = BD.ListarCategorias();
             ViewBag.List = LisCat;
             return View();
         }
-
         public ActionResult RecetaCategoria(int IdCat, string Nom)
         {
             Categoria c = BD.TraerCategoria(IdCat);
@@ -46,29 +43,17 @@ namespace TPFinal_TOAST.Controllers
             ViewBag.nom = c.Nom_Categoria;
             return View();
         }
-
         public ActionResult SubirReceta()
         {
             List<Categoria> LasCategorias = BD.ListarCategorias();
             List<Dificultad> LasDificultades = BD.ListarDificultades();
-            List<string> NomCategorias = new List<string>();
-            List<string> NomDificultades = new List<string>();
-            foreach(Categoria UnaCategoria in LasCategorias)
-            {
-                NomCategorias.Add(UnaCategoria.Nom_Categoria);
-            }
-            foreach (Dificultad UnaDificultad in LasDificultades)
-            {
-                NomDificultades.Add(UnaDificultad.NombreDificultad);
-            }
             /* Paso solo un viewbag con string y no con categorias ni dificultades porque habria que agregar
              mas de un model a la view, cosa que no es posible */
 
-            ViewBag.Categorias = NomCategorias;
-            ViewBag.Dificultades = NomDificultades;
+            ViewBag.Categorias = LasCategorias;
+            ViewBag.Dificultades = LasDificultades;
             return View();
-        }
-
+        } //CORREGIR
         [HttpPost]
         public ActionResult RecetaSubida(Receta rec)
         {
@@ -81,6 +66,7 @@ namespace TPFinal_TOAST.Controllers
                 string NuevaUbicacion = Server.MapPath("~/Content/Fotos/Perfiles/") + rec.Foto.FileName;
                 rec.Foto.SaveAs(NuevaUbicacion);
                 rec.NombreFoto = rec.Foto.FileName;
+                BD.IngresarReceta(rec);
                 return View("RecetaPublicada", rec);
             }
         }
@@ -95,6 +81,7 @@ namespace TPFinal_TOAST.Controllers
         }
         public ActionResult BusqXIng(string Buscar)
         {
+            ViewBag.IngredientesBuscados = "";
             List<string> Lista;
             if (Session["ListaIngredientes"]==null)
             {
