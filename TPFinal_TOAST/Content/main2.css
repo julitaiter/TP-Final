@@ -824,9 +824,9 @@ button {
     display: flex;
     -ms-flex-pack: center;
     justify-content: center;
-    font-family: 'Poppins', sans-serif;
-    background: url("../images/Searchs_130.png");
-    background-position: bottom right;
+    font-family: 'Segoe UI';
+    background: url(../Content/Fotos/index/slide_03.png);
+    background-position: top;
     background-repeat: no-repeat;
     background-size: 100%;
     padding: 15px;
@@ -919,7 +919,7 @@ button {
                     }
 
                 .s130 form .inner-form .input-field.second-wrap {
-                    min-width: 216px;
+                    min-width: 70px;
                 }
 
                     .s130 form .inner-form .input-field.second-wrap .btn-search {
@@ -932,7 +932,7 @@ button {
                         cursor: pointer;
                         position: relative;
                         z-index: 0;
-                        background: #00ad5f;
+                        background: #F78B0B;
                         transition: all .2s ease-out, color .2s ease-out;
                         font-weight: 300;
                     }
@@ -948,7 +948,7 @@ button {
 
         .s130 form .info {
             font-size: 15px;
-            color: black;
+            color: white;
             padding-left: 26px;
         }
 

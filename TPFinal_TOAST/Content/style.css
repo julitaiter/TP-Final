@@ -39,6 +39,11 @@
     margin-left:15px;
 }
 
+.BuscXRec {
+    color: white;
+    font-family: 'Segoe UI';
+}
+
 #TitNuevaReceta {
     font-family: 'Segoe UI';
     text-align: left;
