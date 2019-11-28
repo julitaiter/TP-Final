@@ -27,7 +27,7 @@
 </head>
 <body>
     <div class="s130">
-        <form  action='@Url.Action("BusqXIng", "Home")'>
+        <form action='@Url.Action("BusqXIng", "Home")'>
             <div>
                 <div class="BuscXRec" align="center">
                     <h1> Mis Ingredientes</h1>
@@ -53,12 +53,36 @@
             <span class="info">ej. Manzana, Miel, Papas, Cebolla</span>
         </form>
     </div>
-    <h2>Ingredientes:</h2>
-    <ul>
-        @foreach (string s in ViewBag.IngredientesBuscados)
-        {
-            <li>s</li>
-        }
-    </ul>
+    <div>
+        <h2>Ingredientes:</h2>
+        <ul>
+            @if (ViewBag.IngredientesBuscados != null)
+            {
+                foreach (string s in ViewBag.IngredientesBuscados)
+                {
+                    <li>@s</li>
+                }
+            }
+
+        </ul>
+    </div>
+
+    <h1 class="mb-3"> @ViewBag.nom </h1>
+    <div style="background-image:url('fondo.png');">
+        <div class="row">
+            @foreach (Receta r in ViewBag.MisRecetasEncontradas)
+            {
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="icon"></div>
+                    <div class="service-itemCat first-service">
+                        <img class="card-img" src="~/Content/Fotos/Recetas/@r.NombreFoto" alt="@r.NombreFoto" />
+                        <a class="mb-0" href='@Url.Action("ViewReceta", "Home", new { id = r.IDReceta })'> @r.NombreReceta </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+
     <script src="~/Content/extention/choices.js"></script>
 </body>
