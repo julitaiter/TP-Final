@@ -30,15 +30,15 @@
 <h1 class="mb-3"> @ViewBag.nom </h1>
 <div style="background-image:url('fondo.png');">
     <div class="row">
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="service-item first-service">
+        @foreach (Receta r in ViewBag.recxcat)
+        {
+            <div class="col-md-3 col-sm-6 col-xs-12">
                 <div class="icon"></div>
-                    @foreach (Receta r in ViewBag.recxcat)
-                    {
-                        <img class="card-img" src="~/Content/Fotos/Recetas/@r.NombreFoto" alt="@r.NombreFoto" />
-                        <a class="mb-0" href='@Url.Action("ViewReceta", "Home", new { id = r.IDReceta })'> @r.NombreReceta </a>
-                    }
+                <div class="service-itemCat first-service">
+                    <img class="card-img" src="~/Content/Fotos/Recetas/@r.NombreFoto" alt="@r.NombreFoto" />
+                    <a class="mb-0" href='@Url.Action("ViewReceta", "Home", new { id = r.IDReceta })'> @r.NombreReceta </a>
+                </div>
             </div>
-        </div>
+        }
     </div>
 </div>
