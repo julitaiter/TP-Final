@@ -93,5 +93,117 @@ namespace TPFinal_TOAST.Controllers
         {
             return View();
         }
+        public ActionResult BusqXIng(string Buscar)
+        {
+            List<string> Lista;
+            if (Session["ListaIngredientes"]==null)
+            {
+                Lista = new List<string>();
+            }
+            else
+            {
+                Lista = (List<string>)Session["ListaIngredientes"];
+            }
+
+            if (!Lista.Contains(Buscar))
+            {
+                Lista.Add(Buscar);
+            }
+
+            Session["ListaIngredientes"] = Lista;
+            ViewBag.IngredientesBuscados = Lista;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            List<Receta> RecetasEncontradas = new List<Receta>();
+            List<List<Receta>> TodasLasRecetas = new List<List<Receta>>();
+            List<Receta> RecetasAMostrar = new List<Receta>();
+            bool Repetido = false;
+            int i = 0;
+            int Coincidencias = 0;
+
+            //DEBERIA AGREGAR A LA LISTA QUE SE CONECTA CON UL
+            
+/*            if (ing != "") 
+            {
+                IngredientesCLST.Add(ing);
+            }
+
+            //DEBERIA, EN BASE A LA LISTA DE UL (INGREDIENTES INGRESADOS), BUSCAR LAS RECETAS POR INGREDIENTE EN LA BASE DE DATOS
+            
+            foreach (string ElIngrediente in IngredientesCLST)
+            {
+                RecetasEncontradas = BD.TraerRecetas(ElIngrediente);
+                TodasLasRecetas.Add(RecetasEncontradas);
+            }
+
+
+            foreach (List<Receta> ListaRecetas in TodasLasRecetas)
+            {
+                foreach (Receta UnaReceta in ListaRecetas)
+                {
+                    Coincidencias = 0;
+                    Repetido = false;
+
+                    foreach (Ingrediente UnIngrediente in UnaReceta.Ingredientes)
+                    {
+                        i = 0;
+                        if (Coincidencias != IngredientesCLST.Count() && IngredientesCLST.Count() != 0)
+                        {
+                            do
+                            {
+                                if (UnIngrediente.NombreIngrediente.ToLower() == IngredientesCLST[i].ToLower())
+                                {
+                                    Coincidencias++;
+                                }
+                                i++;
+
+                            } while (i - 1 != IngredientesCLST.Count() - 1);
+                        }
+
+                        if (Coincidencias == IngredientesCLST.Count() && IngredientesCLST.Count() != 0)
+                        {
+                            foreach (Receta LaReceta in RecetasAMostrar)
+                            {
+                                if (LaReceta.NombreReceta.ToLower() == UnaReceta.NombreReceta.ToLower())
+                                {
+                                    Repetido = true;
+                                }
+
+                            } //Busqueda de repeticiones en las recetas (Descarte de recetas repetidas)
+
+                            if (Repetido == false)
+                            {
+                                RecetasAMostrar.Add(UnaReceta);
+                                Coincidencias = 0;
+                            }
+                        }
+                    }
+                }
+            }
+
+            lstRecetasEncontradas.Items.Clear();
+            if (RecetasAMostrar.Count != 0)
+            {
+                foreach (Receta UnaReceta in RecetasAMostrar)
+                {
+                    lstRecetasEncontradas.Items.Add(UnaReceta.NombreReceta);
+                }
+            }*/
+
+            return View("BuscarXIng");
+        }
     }
 }
