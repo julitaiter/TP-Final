@@ -15,6 +15,17 @@
     <link rel="stylesheet" href="~/Content/flaticon.css">
     <link rel="stylesheet" href="~/Content/icomoon.css">
     <link rel="stylesheet" href="~/Content/style.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="~/Content/fontAwesome1.css">
+    <link rel="stylesheet" href="~/Content/hero-slider1.css">
+    <link rel="stylesheet" href="~/Content/tooplate-style1.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    <script src="~/Content/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+    <link href="~/Content/main2.css" rel="stylesheet" />
 </head>
 <div align="center">
     <img src="~/Content/Fotos/Otros/recetaok.png" alt="recetaok.png" />
@@ -23,6 +34,6 @@
     <h2>¡Su receta ha sido publicada con éxito!</h2>
 </div>
 <div align="center">
-    @Html.ActionLink("Ver receta", "ViewReceta", "Home", new {  id = Model.IDReceta }, null)
+    @Html.ActionLink("Ver receta", "ViewReceta", "Home", new {  id = Model.IDReceta })
 </div>
 
