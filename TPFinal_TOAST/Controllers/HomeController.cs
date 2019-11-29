@@ -180,5 +180,16 @@ namespace TPFinal_TOAST.Controllers
 
             return View("BuscarXIng");
         }
+        public ActionResult Favoritos(int IdRec, int IdUsu)
+        {
+            BD.InsertarFavorito(IdUsu, IdRec);
+            return View("BuscarXIng");
+        }
+        public ActionResult VaciarLista(List<string> lista)
+        {
+            lista = null;
+            ViewBag.IngredientesBuscados = lista;
+            return View("BuscarXIng");
+        }
     }
 }

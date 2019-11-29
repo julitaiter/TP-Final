@@ -58,6 +58,8 @@
             @if (ViewBag.IngredientesBuscados != null)
             {
                 <h2 class="IngredientesTit"><b> Ingredientes ingresados: </b></h2><br />
+                @Html.ActionLink("Vaciar lista", "VaciarLista", "Home", new { lista=ViewBag.IngredientesBuscados });<br />
+
                 foreach (string s in ViewBag.IngredientesBuscados)
                 {
                     <div class="NomIngrediente">
@@ -87,7 +89,15 @@
                         
                         <a class="NombreReceta" href='@Url.Action("ViewReceta", "Home", new { id = r.IDReceta })'> <h4>@r.NombreReceta</h4></a> <br />
                         <div class="first-service icon">
-                            <img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Agregar a Favoritos" />
+                            @{Usuario user = (Usuario)Session["Usuario"]; }
+                            @if (Session["Usuario"] != null)
+                            {
+                                <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu= user.IDUsuario})"><img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Agregar a Favoritos" /></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("Login", "Usuarios")"><img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Agregar a Favoritos" /></a>
+                            }
                         </div>
                     </div>
                 </div>
