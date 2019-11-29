@@ -11,8 +11,9 @@ namespace TPFinal_TOAST.Controllers
     public class UsuariosController : Controller
     {
         // GET: Usuarios
-        public ActionResult Index(Usuario user)
+        public ActionResult Index(int id)
         {
+            Usuario user = BD.TraerUsuario(id);
             return View(user);
         }
         public ActionResult ListarUsuarios()
@@ -31,7 +32,7 @@ namespace TPFinal_TOAST.Controllers
             {
                 User = BD.TraerUsuario(User.IDUsuario);
                 Session["Usuario"] = User;
-                return RedirectToAction("Index", User); //CORREGIR
+                return RedirectToAction("Index", new { id = User.IDUsuario }); //CORREGIR
 
             }
             else
