@@ -73,7 +73,7 @@ namespace TPFinal_TOAST.Controllers
         public ActionResult Logout()
         {
             Session["Usuario"] = null;
-            return View("Index", "Home");
+            return View("Login");
         }
     }
 }
