@@ -24,7 +24,7 @@ namespace TPFinal_TOAST.Controllers
         {
             return View();
         }
-        [HttpPost]
+               
         public ActionResult LoginOK(string email, string pass) 
         {
             Usuario User = new Usuario();

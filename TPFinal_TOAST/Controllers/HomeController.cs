@@ -41,11 +41,23 @@ namespace TPFinal_TOAST.Controllers
         {
             List<Categoria> LasCategorias = BD.ListarCategorias();
             List<Dificultad> LasDificultades = BD.ListarDificultades();
+            List<string> NomCategorias = new List<string>();
+            List<string> NomDificultades = new List<string>();
 
-            ViewBag.Categorias = LasCategorias;
-            ViewBag.Dificultades = LasDificultades;
+            foreach (Categoria UnaCategoria in LasCategorias)
+            {
+                NomCategorias.Add(UnaCategoria.Nom_Categoria);
+            }
+            foreach (Dificultad UnaDificultad in LasDificultades)
+            {
+                NomDificultades.Add(UnaDificultad.NombreDificultad);
+            }
+
+            ViewBag.Categorias = NomCategorias;
+            ViewBag.Dificultades = NomDificultades;
             return View();
-        } //CORREGIR
+
+        } 
         [HttpPost]
         public ActionResult RecetaSubida(Receta rec)
         {
