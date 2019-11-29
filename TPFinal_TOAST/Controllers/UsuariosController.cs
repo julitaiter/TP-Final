@@ -32,12 +32,12 @@ namespace TPFinal_TOAST.Controllers
             {
                 User = BD.TraerUsuario(User.IDUsuario);
                 Session["Usuario"] = User;
-                return RedirectToAction("Index", new { id = User.IDUsuario }); //CORREGIR
+                return RedirectToAction("Index", new { id = User.IDUsuario });
 
             }
             else
             {
-                return RedirectToAction("Login", User); //CORREGIR
+                return RedirectToAction("Login", User);
             }
         }
         public ActionResult RM(string modo, int id)
