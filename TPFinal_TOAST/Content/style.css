@@ -395,6 +395,21 @@ img {
     border-style: none;
 }
 
+.imgViewReceta {
+    
+    vertical-align: middle;
+    border-style: none;
+    margin-left: 5%;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.divViewReceta
+{
+    height:300px;
+    width: 500px;
+}
+
 svg {
     overflow: hidden;
     vertical-align: middle;
@@ -560,6 +575,14 @@ h1, h2, h3, h4, h5, h6,
     margin-bottom: 0.5rem;
     font-weight: 500;
     line-height: 1.2;
+}
+
+.h1ViewReceta {
+    margin-top: 1%;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+    font-family:'Segoe UI';
 }
 
 h1, .h1 {
