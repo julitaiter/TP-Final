@@ -30,7 +30,9 @@ namespace TPFinal_TOAST.Controllers
             if (validacion)
             {
                 User = BD.TraerUsuario(User.IDUsuario);
+                Session["Usuario"] = User;
                 return RedirectToAction("Index", User); //CORREGIR
+
             }
             else
             {
@@ -67,6 +69,11 @@ namespace TPFinal_TOAST.Controllers
                 }
                 return View("Index",user);
             }
+        }
+        public ActionResult Logout()
+        {
+            Session["Usuario"] = null;
+            return View("Login");
         }
     }
 }

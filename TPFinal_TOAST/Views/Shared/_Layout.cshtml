@@ -45,7 +45,18 @@
                 </div>
                 <div class="Elementos">
                     <li class="nav-item">
-                        <a class="nav-link" href='@Url.Action("Login", "Usuarios")'><img src="~/Content/Fotos/Otros/User_Icon.png" alt="Iniciar Sesión" width="25" height="25" /></a>
+                        @{
+                            if (Session["Usuario"] == null)
+                            {
+                                <a class="nav-link" href='@Url.Action("Login", "Usuarios")'><img src="~/Content/Fotos/Otros/User_Icon.png" alt="Iniciar Sesión" width="25" height="25" /></a>
+                            }
+                            else
+                            {
+                                Usuario User = (Usuario)Session["Usuario"];
+                                <a class="nav-link" href='@Url.Action("Index", "Usuarios", new { user = User})'><img src="~/Content/Fotos/Perfiles/@User.NombreFoto" alt="@User.Nombre_Usuario" width="25" height="25" /></a>
+                            }
+                        }
+
                     </li>
                 </div>
             </ul>

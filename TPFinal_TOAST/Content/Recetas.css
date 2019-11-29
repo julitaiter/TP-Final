@@ -9,13 +9,6 @@
     --web-view-ids: Receta;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    border: none;
-}
-
 #Receta {
     position: absolute;
     box-sizing: border-box;
@@ -199,14 +192,14 @@
     letter-spacing: 0.25px;
 }
 
-#Componente_15___2 {
+/*#Componente_15___2 {
     position: absolute;
     width: 2880px;
     height: 757.12px;
     left: 0px;
     top: 212px;
     overflow: visible;
-}
+}*/
 
 #Buscar_recetas__nunca_ha_sido_ {
     position: absolute;
@@ -277,18 +270,12 @@
 }
 
 #minutos {
-    position: absolute;
-    left: 1203px;
-    top: 582px;
     overflow: visible;
-    width: 167px;
-    white-space: nowrap;
-    text-align: center;
     font-family: Segoe UI;
     font-style: normal;
     font-weight: bold;
-    font-size: 45px;
     color: rgba(241,241,241,1);
+    margin-left: 24px;
 }
 
 #ID50 {
@@ -322,7 +309,7 @@
     color: rgba(241,241,241,1);
 }
 
-#raciones {
+ #raciones {
     position: absolute;
     left: 1500px;
     top: 582px;
@@ -335,6 +322,8 @@
     font-weight: bold;
     font-size: 45px;
     color: rgba(241,241,241,0.902);
+    display: inline-block;
+    margin-left: 15px;
 }
 
 #ID8 {
@@ -391,12 +380,7 @@
     overflow: visible;
 }
 
-#Ingredientes_ {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    overflow: visible;
-    width: 556px;
+Ingredientes_ {
     white-space: nowrap;
     text-align: left;
     font-family: Segoe UI;
@@ -406,18 +390,16 @@
 }
 
 #Instrucciones_ {
-    position: absolute;
-    left: 0px;
-    top: 1430px;
-    overflow: visible;
-    width: 583px;
-    white-space: nowrap;
-    text-align: left;
     font-family: Segoe UI;
     font-style: normal;
     font-weight: bold;
-    font-size: 90px;
     color: rgba(31,31,31,1);
+    margin-bottom: 100px;
+}
+
+.correte
+{
+    margin-top: 1px;
 }
 
 #Para_la_masa__400_gr__Harina_l {
@@ -497,7 +479,7 @@
     overflow: visible;
 }
 
-.Rect_ngulo_4 {
+/*.Rect_ngulo_4 {
     filter: drop-shadow(0px 8px 20px rgba(0, 0, 0, 0.161));
     position: absolute;
     overflow: visible;
@@ -505,7 +487,7 @@
     height: 271.486px;
     left: 0px;
     top: 0px;
-}
+}*/
 
 #Header {
     position: absolute;
@@ -514,6 +496,7 @@
     left: 2223px;
     top: 83.356px;
     overflow: visible;
+    margin-bottom: 5px;
 }
 
 #Categor_as {
