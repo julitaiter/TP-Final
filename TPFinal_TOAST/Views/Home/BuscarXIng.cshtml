@@ -44,7 +44,7 @@
                             <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
                         </svg>
                     </div>
-                    <input id="search" name="Buscar" type="text" placeholder="Ingresa los ingredientes" />
+                    <input id="search" name="Buscar" type="text" placeholder="Ingresa los ingredientes" required="required" pattern="[A-Za-z].{1,}" title="Ingrese valores válidos"/>
                 </div>
                 <div class="input-field second-wrap">
                     <button class="btn-search" type="submit">+</button>
@@ -57,7 +57,7 @@
         <ul>
             @if (ViewBag.IngredientesBuscados != null)
             {
-                <h2 class="IngredientesTit"><b> Ingredientes: </b></h2><br />
+                <h2 class="IngredientesTit"><b> Ingredientes ingresados: </b></h2><br />
                 foreach (string s in ViewBag.IngredientesBuscados)
                 {
                     <div class="NomIngrediente">
@@ -65,8 +65,10 @@
                     </div>
 
                     <div class="TrashButton">
-                        <button class="btn-search" type="submit"><img src="~/Content/Fotos/Otros/Trash.png" /></button>
-                    </div>
+                        <form action='@Url.Action("BusqXIng", "Home")'>
+                            <button class="btn-search" type="submit" name="Eliminar" value="@s"><img src="~/Content/Fotos/Otros/Trash.png" /></button>
+                        </form>           
+                    </div> <br /> <br />
 
                 }
             }
@@ -81,7 +83,6 @@
             {
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="service-item first-service">
-                    <div class="icon"></div>
                     <img class="FotosIndex" src="~/Content/Fotos/Recetas/@r.NombreFoto" alt="@r.NombreFoto" />
                     <a class="NombreReceta" href='@Url.Action("ViewReceta", "Home", new { id = r.IDReceta })'> <b> @r.NombreReceta </b> </a>                    
                     </div>

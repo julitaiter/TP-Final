@@ -47,14 +47,13 @@ namespace TPFinal_TOAST.Controllers
         {
             List<Categoria> LasCategorias = BD.ListarCategorias();
             List<Dificultad> LasDificultades = BD.ListarDificultades();
-            /* Paso solo un viewbag con string y no con categorias ni dificultades porque habria que agregar
-             mas de un model a la view, cosa que no es posible */
 
             ViewBag.Categorias = LasCategorias;
             ViewBag.Dificultades = LasDificultades;
             return View();
         } //CORREGIR
         [HttpPost]
+
         public ActionResult RecetaSubida(Receta rec)
         {
             if (!ModelState.IsValid)
@@ -79,7 +78,7 @@ namespace TPFinal_TOAST.Controllers
         {
             return View();
         }
-        public ActionResult BusqXIng(string Buscar)
+        public ActionResult BusqXIng(string Buscar, string Eliminar)
         {
             ViewBag.IngredientesBuscados = "";
             ViewBag.MisRecetasEncontradas = "";
@@ -95,22 +94,24 @@ namespace TPFinal_TOAST.Controllers
                 Lista = (List<string>)Session["ListaIngredientes"];
             }
 
-            if (!Lista.Contains(Buscar))
+            if(Buscar != null)
             {
-                Lista.Add(Buscar);
-            } 
+                if (!Lista.Contains(Buscar))
+                {
+                    Lista.Add(Buscar);
+                }
+            }
+
+            if(Eliminar != null)
+            {
+                Lista.Remove(Eliminar);
+            }
+
             Session["ListaIngredientes"] = Lista;
             ViewBag.IngredientesBuscados = Lista;
 
-            List<Receta> LasRecetasEncontradas;
-            if (Session["ListaRecetasEncontradas"] == null)
-            {
-                LasRecetasEncontradas = new List<Receta>();
-            }
-            else
-            {
-                LasRecetasEncontradas = (List<Receta>)Session["ListaRecetasEncontradas"];
-            }
+            List<Receta> LasRecetasEncontradas = new List<Receta>();
+            Session["ListaRecetasEncontradas"] = new List<Receta>();
 
             ViewBag.CantRecetasEncontradas = LasRecetasEncontradas.Count();
 
