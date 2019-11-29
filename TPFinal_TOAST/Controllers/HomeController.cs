@@ -70,6 +70,7 @@ namespace TPFinal_TOAST.Controllers
         }
         public ActionResult BuscarXIng()
         {
+            Session["ListaIngredientes"] = null;
             return View();
         }
         public ActionResult BusqXIng(string Buscar, string Eliminar)

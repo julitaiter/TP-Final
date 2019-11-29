@@ -33,10 +33,9 @@
         @foreach (Receta r in ViewBag.recxcat)
         {
             <div class="col-md-3 col-sm-6 col-xs-12">
-                <div class="icon"></div>
                 <div class="service-itemCat first-service">
-                    <img class="card-img" src="~/Content/Fotos/Recetas/@r.NombreFoto" alt="@r.NombreFoto" />
-                    <a class="mb-0" href='@Url.Action("ViewReceta", "Home", new { id = r.IDReceta })'> @r.NombreReceta </a>
+                    <img class="FotosIndex" src="~/Content/Fotos/Recetas/@r.NombreFoto" alt="@r.NombreFoto" /> <br />
+                    <a class="NombreReceta" href='@Url.Action("ViewReceta", "Home", new { id = r.IDReceta })'> <h4>@r.NombreReceta</h4> </a> <br />
                 </div>
             </div>
         }
