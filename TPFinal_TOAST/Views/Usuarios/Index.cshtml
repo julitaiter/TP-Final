@@ -18,5 +18,22 @@
 <h1>Mi perfil</h1>
 <img height="100" width="100" src="~/Content/Fotos/Perfiles/@Model.NombreFoto" />
 <h2>@Model.Nombre_Usuario</h2>
+
+<h2>Mis favoritos</h2>
+@foreach (Receta r in Model._Favoritos)
+{
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="service-item first-service">
+            <img class="FotosIndex" src="~/Content/Fotos/Recetas/@r.NombreFoto" alt="@r.NombreFoto" />
+
+            <a class="NombreReceta" href='@Url.Action("ViewReceta", "Home", new { id = r.IDReceta })'> <h4>@r.NombreReceta</h4></a> <br />
+            <div class="first-service icon">
+                <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu= Model.IDUsuario})"><img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Agregar a Favoritos" /></a>
+                <a href="@Url.Action("Login", "Usuarios")"><img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Agregar a Favoritos" /></a>
+            </div>
+        </div>
+    </div>
+
+}
 @Html.ActionLink("Modificar usuario", "RM", "Usuarios", new { modo = "Editar", id = Model.IDUsuario }, null)<br />
 @Html.ActionLink("Cerrar sesión", "Logout", "Usuarios")
