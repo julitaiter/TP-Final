@@ -176,11 +176,14 @@
     <Content Include="Content\magnific-popup.css" />
     <Content Include="Content\main1.js" />
     <Content Include="Content\main2.css" />
+    <Content Include="Content\main2.js" />
+    <Content Include="Content\main3.css" />
     <Content Include="Content\owl.theme.default.min.css" />
     <Content Include="Content\plugins1.js" />
     <Content Include="Content\Recetas.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\tooplate-style1.css" />
+    <Content Include="Content\util.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

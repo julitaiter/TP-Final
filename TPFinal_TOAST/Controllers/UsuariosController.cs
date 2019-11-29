@@ -25,8 +25,11 @@ namespace TPFinal_TOAST.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult LoginOK(Usuario User) 
+        public ActionResult LoginOK(string email, string pass) 
         {
+            Usuario User = new Usuario();
+            User.Mail = email;
+            User.Contraseña = pass;
             bool validacion = BD.ValidarUsuario(User);
             if (validacion)
             {
@@ -49,27 +52,19 @@ namespace TPFinal_TOAST.Controllers
         [HttpPost]
         public ActionResult RM2(Usuario user, string modo)
         {
-            if(!ModelState.IsValid)
+            string NuevaUbicacion = Server.MapPath("~/Content/Fotos/Perfiles/") + user.Foto.FileName;
+            user.Foto.SaveAs(NuevaUbicacion);
+            user.NombreFoto = user.Foto.FileName;
+            user.Admin = false;
+            if (modo=="Insertar")
             {
-                ViewBag.modo = modo;
-                return View("RM", user);
+                BD.InsertarUsuario(user);
             }
             else
             {
-                string NuevaUbicacion = Server.MapPath("~/Content/Fotos/Perfiles/") + user.Foto.FileName;
-                user.Foto.SaveAs(NuevaUbicacion);
-                user.NombreFoto = user.Foto.FileName;
-                user.Admin = false;
-                if (modo=="Insertar")
-                {
-                    BD.InsertarUsuario(user);
-                }
-                else
-                {
-                    BD.ModificarUsuario(user);
-                }
-                return View("Index",user);
+                BD.ModificarUsuario(user);
             }
+            return View("Index",user);
         }
         public ActionResult Logout()
         {
