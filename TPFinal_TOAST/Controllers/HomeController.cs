@@ -47,7 +47,6 @@ namespace TPFinal_TOAST.Controllers
             return View();
         } //CORREGIR
         [HttpPost]
-
         public ActionResult RecetaSubida(Receta rec)
         {
             if (!ModelState.IsValid)

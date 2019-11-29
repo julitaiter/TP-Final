@@ -501,9 +501,9 @@ namespace TPFinal_TOAST.Models
             SqlDataReader Lector = Consulta.ExecuteReader();
             while (Lector.Read())
             {
-                int IdCategoria = Convert.ToInt32(Lector["IDCategoria"]);
+                int id = Convert.ToInt32(Lector["IDCategoria"]);
                 string NomCat = Lector["NomCategoria"].ToString();
-                Categoria cat = new Categoria(IdCategoria, NomCat);
+                Categoria cat = new Categoria(id, NomCat);
                 categ.Add(cat);
             }
             Desconectar(Conn);
