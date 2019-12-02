@@ -42,10 +42,12 @@
                         {
                             if (user.IDUsuario == r.Autor)
                             {
-                                @Html.ActionLink("Editar receta", "RM", "Home", new { modo = "Editar", id = r.IDReceta }, null)<br />
+                                <div class="editarRec">
+                                    @Html.ActionLink("Editar receta", "ModificarReceta", "Home", new { id = r.IDReceta }, null)<br />
+                                </div>
                             }
 
-                            user._Favoritos = user.TraerFavoritos();
+                            user._Favoritos = user.TraerFavoritos(user.IDUsuario);
                             if (user._Favoritos.Contains(r))
                             {
                                 <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu= user.IDUsuario, modo = "Eliminar", view = "RecetaCategoria"})"><img src="~/Content/Fotos/Otros/Heart_Icon_Filled.png" alt="Heart_Icon_Filled" /></a>

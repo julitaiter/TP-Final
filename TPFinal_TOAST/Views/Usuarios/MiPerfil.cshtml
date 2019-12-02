@@ -64,7 +64,9 @@
                     <img class="FotosIndex" src="~/Content/Fotos/Recetas/@r.NombreFoto" alt="@r.NombreFoto" />
 
                     <a class="NombreReceta" href='@Url.Action("ViewReceta", "Home", new { id = r.IDReceta })'> <h4>@r.NombreReceta</h4></a> <br />
-                    @Html.ActionLink("Editar receta", "ModificarReceta", "Home", new { id = r.IDReceta }, null)<br />
+                    <div class="editarRec">
+                        @Html.ActionLink("Editar receta", "ModificarReceta", "Home", new { id = r.IDReceta }, null)<br />
+                    </div>
                     <div class="first-service icon">
                         @if (Session["Usuario"] != null)
                         {

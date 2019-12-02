@@ -54,7 +54,9 @@
     display: inline-block;
     margin-left: 10px;
 }
-
+.editarRec{
+    float:left;
+}
 .NomIngrediente {
     display: inline-block;
     font-size: 20px;

@@ -58,12 +58,16 @@
 
     </div>
     @{ Usuario user = (Usuario)Session["Usuario"];}
-    @if (Model.Autor == user.IDUsuario)
-    {
-        <div>
-            <button type="button" class="correte" data-confirm="¿Querés eliminar esta receta?">
-                @Html.ActionLink("Eliminar receta", "EliminarReceta", "Home", new { id = Model.IDReceta })
-            </button>
-        </div>
+    @{ if (Session["Usuario"] != null)
+        {
+            if (Model.Autor == user.IDUsuario)
+            {
+            <div>
+                <button type="button" class="correte" data-confirm="¿Querés eliminar esta receta?">
+                    @Html.ActionLink("Eliminar receta", "EliminarReceta", "Home", new { id = Model.IDReceta })
+                </button>
+            </div>
+            }
+        }
     }
 </body>

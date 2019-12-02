@@ -97,7 +97,9 @@
                             {
                                 if (user.IDUsuario == r.Autor)
                                 {
-                                    @Html.ActionLink("Editar receta", "RM", "Home", new { modo = "Editar", id = r.IDReceta }, null)<br />
+                                    <div class="editarRec">
+                                        @Html.ActionLink("Editar receta", "ModificarReceta", "Home", new { id = r.IDReceta }, null)<br />
+                                    </div>
                                 }
                                 user._Favoritos = user.TraerFavoritos(user.IDUsuario);
                                 if (user._Favoritos.Contains(r))
