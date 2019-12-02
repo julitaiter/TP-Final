@@ -57,7 +57,6 @@ namespace TPFinal_TOAST.Controllers
             ViewBag.Dificultades = NomDificultades;
             return View();
         } 
-
         [HttpPost]
         public ActionResult RecetaSubida(Receta rec)
         {
@@ -67,11 +66,15 @@ namespace TPFinal_TOAST.Controllers
             }
             else
             {
-                string NuevaUbicacion = Server.MapPath("~/Content/Fotos/Perfiles/") + rec.Foto.FileName;
-                rec.Foto.SaveAs(NuevaUbicacion);
-                rec.NombreFoto = rec.Foto.FileName;
-                BD.IngresarReceta(rec);
-                return View("RecetaPublicada", rec.IDReceta);
+                if (rec.Foto != null)
+                {
+                    string NuevaUbicacion = Server.MapPath("~/Content/Fotos/Perfiles/") + rec.Foto.FileName;
+                    rec.Foto.SaveAs(NuevaUbicacion);
+                    rec.NombreFoto = rec.Foto.FileName;
+                    BD.IngresarReceta(rec);
+                    return View("RecetaPublicada", rec);
+                }
+                return View("SubirReceta", rec);
             }
         }
         public ActionResult EliminarReceta(int id)
@@ -192,10 +195,17 @@ namespace TPFinal_TOAST.Controllers
 
             return View("BuscarXIng");
         }
-        public ActionResult Favoritos(int IdRec, int IdUsu)
+        public ActionResult Favoritos(int IdRec, int IdUsu, string modo, string view)
         {
-            BD.InsertarFavorito(IdUsu, IdRec);
-            return View("BuscarXIng");
+            if(modo=="Insertar")
+            {
+                BD.InsertarFavorito(IdUsu, IdRec);
+            }
+            else
+            {
+                BD.EliminarFavorito(IdUsu, IdRec);
+            }
+            return View(view);
         }
         public ActionResult VaciarLista(List<string> lista)
         {
@@ -203,11 +213,5 @@ namespace TPFinal_TOAST.Controllers
             ViewBag.IngredientesBuscados = lista;
             return View("BuscarXIng");
         }
-        public ActionResult RecetaPublicada(int IDReceta)
-        {
-            ViewBag.IDReceta = IDReceta;
-            return View();
-        }
     }
-
 }

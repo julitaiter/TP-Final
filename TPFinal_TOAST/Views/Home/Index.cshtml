@@ -96,28 +96,103 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="service-item first-service">
-                        <img class="FotosIndex" src="~/Content/Fotos/Recetas/@ViewBag.Receta1.NombreFoto" alt="@ViewBag.Receta1.NombreFoto"/>
-                        <a class="NombreReceta" href='@Url.Action("ViewReceta", "Home", new { id = @ViewBag.Receta1.IDReceta })'> <h4>@ViewBag.Receta1.NombreReceta</h4> </a> <br />
+                        <img class="FotosIndex" src="~/Content/Fotos/Recetas/@ViewBag.Receta1.NombreFoto" alt="@ViewBag.Receta1.NombreFoto" />
+                        <a class="NombreReceta" href='@Url.Action("ViewReceta", "Home", new { id = ViewBag.Receta1.IDReceta })'> <h4>@ViewBag.Receta1.NombreReceta</h4> </a> <br />
+                        <div class="first-service icon">
+                            @{Usuario user = (Usuario)Session["Usuario"]; }
+}
+                            @if (Session["Usuario"] != null)
+                            {
+                                user._Favoritos = user.TraerFavoritos();
+                                if (user._Favoritos.Contains(ViewBag.Receta1))
+                                {
+                                    <a href="@Url.Action("Favoritos", "Home", new { IdRec = ViewBag.Receta1.IDReceta, IdUsu= user.IDUsuario, modo = "Eliminar", view = "Index"})"><img src="~/Content/Fotos/Otros/Heart_Icon_Filled.png" alt="Heart_Icon_Filled" /></a>
+
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("Favoritos", "Home", new { IdRec = ViewBag.Receta1.IDReceta, IdUsu= user.IDUsuario, modo = "Insertar", view = "Index"})"><img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Heart_Icon" /></a>
+                                }
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("Login", "Usuarios")"><img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Agregar a Favoritos" /></a>
+                            }
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="service-item second-service">
                         <img class="FotosIndex" src="~/Content/Fotos/Recetas/@ViewBag.Receta2.NombreFoto" alt="@ViewBag.Receta2.NombreFoto" />
-                        <a class="NombreReceta" href='@Url.Action("ViewReceta", "Home", new { id = @ViewBag.Receta2.IDReceta })'> <h4>@ViewBag.Receta2.NombreReceta</h4> </a> <br />
+                        <a class="NombreReceta" href='@Url.Action("ViewReceta", "Home", new { id = ViewBag.Receta2.IDReceta })'> <h4>@ViewBag.Receta2.NombreReceta</h4> </a> <br />
+                        <div class="first-service icon">
+                            @if (Session["Usuario"] != null)
+                            {
+                                if (user._Favoritos.Contains(ViewBag.Receta2))
+                                {
+                                    <a href="@Url.Action("Favoritos", "Home", new { IdRec = ViewBag.Receta2.IDReceta, IdUsu= user.IDUsuario, modo = "Eliminar", view = "Index"})"><img src="~/Content/Fotos/Otros/Heart_Icon_Filled.png" alt="Heart_Icon_Filled" /></a>
+
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("Favoritos", "Home", new { IdRec = ViewBag.Receta2.IDReceta, IdUsu= user.IDUsuario, modo = "Insertar", view = "Index"})"><img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Heart_Icon" /></a>
+                                }
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("Login", "Usuarios")"><img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Agregar a Favoritos" /></a>
+                            }
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="service-item third-service">
                         <img class="FotosIndex" src="~/Content/Fotos/Recetas/@ViewBag.Receta3.NombreFoto" alt="@ViewBag.Receta3.NombreFoto" />
-                        <a class="NombreReceta" href='@Url.Action("ViewReceta", "Home", new { id = @ViewBag.Receta3.IDReceta })'> <h4>@ViewBag.Receta3.NombreReceta</h4> </a> <br />
+                        <a class="NombreReceta" href='@Url.Action("ViewReceta", "Home", new { id = ViewBag.Receta3.IDReceta })'> <h4>@ViewBag.Receta3.NombreReceta</h4> </a> <br />
+                        <div class="first-service icon">
+                            @if (Session["Usuario"] != null)
+                            {
+                                if (user._Favoritos.Contains(ViewBag.Receta3))
+                                {
+                                    <a href="@Url.Action("Favoritos", "Home", new { IdRec = ViewBag.Receta3.IDReceta, IdUsu= user.IDUsuario, modo = "Eliminar", view = "Index"})"><img src="~/Content/Fotos/Otros/Heart_Icon_Filled.png" alt="Heart_Icon_Filled" /></a>
+
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("Favoritos", "Home", new { IdRec = ViewBag.Receta3.IDReceta, IdUsu= user.IDUsuario, modo = "Insertar", view = "Index"})"><img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Heart_Icon" /></a>
+                                }
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("Login", "Usuarios")"><img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Agregar a Favoritos" /></a>
+                            }
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="service-item fourth-service">
                         <img class="FotosIndex" src="~/Content/Fotos/Recetas/@ViewBag.Receta4.NombreFoto" alt="@ViewBag.Receta4.NombreFoto" />
-                        <a class="NombreReceta" href='@Url.Action("ViewReceta", "Home", new { id = @ViewBag.Receta4.IDReceta })'> <h4>@ViewBag.Receta4.NombreReceta</h4> </a> <br />
+                        <a class="NombreReceta" href='@Url.Action("ViewReceta", "Home", new { id = ViewBag.Receta4.IDReceta })'> <h4>@ViewBag.Receta4.NombreReceta</h4> </a> <br />
+                        <div class="first-service icon">
+                            @if (Session["Usuario"] != null)
+                            {
+                                if (user._Favoritos.Contains(ViewBag.Receta4))
+                                {
+                                    <a href="@Url.Action("Favoritos", "Home", new { IdRec = ViewBag.Receta4.IDReceta, IdUsu= user.IDUsuario, modo = "Eliminar", view = "Index"})"><img src="~/Content/Fotos/Otros/Heart_Icon_Filled.png" alt="Heart_Icon_Filled" /></a>
+
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("Favoritos", "Home", new { IdRec = ViewBag.Receta4.IDReceta, IdUsu= user.IDUsuario, modo = "Insertar", view = "Index"})"><img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Heart_Icon" /></a>
+                                }
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("Login", "Usuarios")"><img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Agregar a Favoritos" /></a>
+                            }
+                        </div>
+                        </div>
                     </div>
-                </div>
             </div>
         </div>
     </div>
