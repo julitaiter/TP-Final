@@ -1,1 +1,110 @@
-﻿
+﻿@using TPFinal_TOAST.Models
+@model Usuario
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/animate.css">
+    <link rel="stylesheet" href="~/Content/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/Content/magnific-popup.css">
+    <link rel="stylesheet" href="~/Content/aos.css">
+    <link rel="stylesheet" href="~/Content/ionicons.css">
+    <link rel="stylesheet" href="~/Content/flaticon.css">
+    <link rel="stylesheet" href="~/Content/icomoon.css">
+    <link rel="stylesheet" href="~/Content/style.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/main3.css">
+    <!--===============================================================================================-->
+
+    <title>Registro o Modificación</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="~/Content/SignUp.css">
+</head>
+<body>
+    <div class="main">
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <form method="POST" id="signup-form" class="signup-form" action="@Url.Action("Registrado", "Usuarios")" enctype="multipart/form-data">
+                        <h2 class="form-title">Modificar usuario</h2>
+
+                        <div class="uploadWrapper">
+                            <span>Subir una Foto</span>
+                            <div class="UploadButton">
+                                <input type='file' id="Foto" name="Foto" accept="image/*" required="required" pattern="{1,}" title="Ingrese una foto" />
+                            </div>
+                        </div> <br />
+
+                        <div class="wrap-input100 validate-input" data-validate="Ingrese Nombre">
+                            <input class="input100" type="text" name="nombre" placeholder = " @ViewBag.Usuario.Nombre " required="required" pattern="[A-Za-z].{1,}" title="Ingrese un nombre válido">
+                            <span class="focus-input100"></span>
+                        </div><br />
+
+                        <div class="wrap-input100 validate-input" data-validate="Ingrese Apellido">
+                            <input class="input100" type="text" name="apellido" placeholder="@ViewBag.Usuario.Apellido" required="required" pattern="[A-Za-z].{1,}" title="Ingrese un apellido válido">
+                            <span class="focus-input100"></span>
+                        </div><br />
+
+                        <div class="wrap-input100 validate-input" data-validate="Ingrese Nombre de Usuario">
+                            <input class="input100" type="text" name="username" placeholder="@ViewBag.Usuario.Nombre_Usuario" required="required" pattern="{1,}" title="Ingrese un nombre de usuario">
+                            <span class="focus-input100"></span>
+                        </div><br />
+
+                        <div class="wrap-input100 validate-input" data-validate="Correo electrónico">
+                            <input class="input100" type="text" name="email" placeholder="@ViewBag.Usuario.Mail" required="required" pattern="{1,}" title="Ingrese un email">
+                            <span class="focus-input100"></span>
+                        </div><br />
+
+                        <div class="wrap-input100 validate-input" data-validate="Ingrese contraseña">
+                            <input class="input100" type="password" name="contraseña" placeholder="@ViewBag.Usuario.Contraseña" required="required" pattern="{1,}" title="Ingrese una contraseña válido">
+                            <span class="focus-input100"></span>
+                        </div><br />
+
+                        <div class="container-login100-form-btn m-t-17">
+                            <button class="login100-form-btn">
+                                Guardar cambios
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- JS -->
+    <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/SignUp.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
+} 
