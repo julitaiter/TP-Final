@@ -62,12 +62,12 @@
                         <div class="uploadWrapper">
                             <span>Subir una Foto</span>
                             <div class="UploadButton">
-                                <input type='file' id="Foto" name="Foto" accept="image/*" required="required" pattern="{1,}" title="Ingrese una foto" />
+                                <input type='file' id="Foto" name="Foto" accept="image/*" required="required" pattern="{1,}" title="Ingrese una foto"/>
                             </div>
                         </div> <br />
 
                         <div class="wrap-input100 validate-input" data-validate="Ingrese Nombre">
-                            <input class="input100" type="text" name="nombre" placeholder = " @ViewBag.Usuario.Nombre " required="required" pattern="[A-Za-z].{1,}" title="Ingrese un nombre válido">
+                            <input class="input100" type="text" name="nombre" placeholder = "@ViewBag.Usuario.Nombre" required="required" pattern="[A-Za-z].{1,}" title="Ingrese un nombre válido">
                             <span class="focus-input100"></span>
                         </div><br />
 
@@ -87,7 +87,7 @@
                         </div><br />
 
                         <div class="wrap-input100 validate-input" data-validate="Ingrese contraseña">
-                            <input class="input100" type="password" name="contraseña" placeholder="@ViewBag.Usuario.Contraseña" required="required" pattern="{1,}" title="Ingrese una contraseña válido">
+                            <input class="input100" type="password" name="contraseña" required="required" pattern="{1,}" title="Ingrese una contraseña válido">
                             <span class="focus-input100"></span>
                         </div><br />
 
@@ -107,4 +107,3 @@
     <script src="~/Content/SignUp.js"></script>
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
-} 

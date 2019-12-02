@@ -61,7 +61,7 @@ else
                 <img class="FotosIndex" src="~/Content/Fotos/Recetas/@r.NombreFoto" alt="@r.NombreFoto" />
 
                 <a class="NombreReceta" href='@Url.Action("ViewReceta", "Home", new { id = r.IDReceta })'> <h4>@r.NombreReceta</h4></a> <br />
-                @Html.ActionLink("Editar receta", "Modificar", "Home", new { id = r.IDReceta }, null)<br />
+                @Html.ActionLink("Editar receta", "Modificar", "Home", new { user = ViewBag.Usuario }, null)<br />
                 <div class="first-service icon">
                     @if (Session["Usuario"] != null)
                     {
@@ -84,5 +84,5 @@ else
 {
     <h3>No hay recetas subidas</h3>
 }
-@Html.ActionLink("Modificar usuario", "Modificar", "Usuarios", new { id = ViewBag.Usuario.IDUsuario }, null)<br />
+@Html.ActionLink("Modificar usuario", "Modificar", "Usuarios", new {user = ViewBag.Usuario})<br />
 @Html.ActionLink("Cerrar sesión", "Logout", "Usuarios")

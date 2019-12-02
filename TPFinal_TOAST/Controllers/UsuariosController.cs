@@ -78,9 +78,9 @@ namespace TPFinal_TOAST.Controllers
             }
         }
 
-        public ActionResult Modificar(Usuario user)
+        public ActionResult Modificar()
         {
-            ViewBag.Usuario = user;
+            ViewBag.Usuario = Session["Usuario"];
             return View();
         }
         public ActionResult Modificado(HttpPostedFileBase Foto, string nombre, string apellido, string username, string email, string contraseña, string re_contraseña)
