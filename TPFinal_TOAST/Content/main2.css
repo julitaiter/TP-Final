@@ -147,7 +147,7 @@ dfn {
  * Add the correct background and color in IE 9-.
  */
 mark {
-    background-color: #ff0;
+    background-color: #FFFFFF;
     color: #000;
 }
 
@@ -894,8 +894,9 @@ button {
                     display: flex;
                     -ms-flex-align: center;
                     align-items: center;
-                    background: #ff0;
+                    background: #FFFFFF;
                 }
+
 
                     .s130 form .inner-form .input-field.first-wrap input {
                         -ms-flex-positive: 1;

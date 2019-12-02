@@ -35,9 +35,8 @@ namespace TPFinal_TOAST.Controllers
             ViewBag.nom = c.Nom_Categoria;
             return View();
         }
-        public ActionResult SubirReceta(string modo, int id)
+        public ActionResult SubirReceta()
         {
-            Receta rec = BD.TraerReceta(id);
             List<Categoria> LasCategorias = BD.ListarCategorias();
             List<Dificultad> LasDificultades = BD.ListarDificultades();
             List<string> NomCategorias = new List<string>();
@@ -51,11 +50,9 @@ namespace TPFinal_TOAST.Controllers
             {
                 NomDificultades.Add(UnaDificultad.NombreDificultad);
             }
-
             ViewBag.Categorias = NomCategorias;
             ViewBag.Dificultades = NomDificultades;
-            ViewBag.Modo = modo;
-            return View(rec);
+            return View();
         } 
         [HttpPost]
         public ActionResult RecetaSubida(Receta rec)

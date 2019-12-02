@@ -232,6 +232,7 @@
     <Content Include="Views\Home\EnviarIdea.cshtml" />
     <Content Include="Views\Home\BuscarXIng.cshtml" />
     <Content Include="Views\Usuarios\Modificar.cshtml" />
+    <Content Include="Views\Home\ModificarReceta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

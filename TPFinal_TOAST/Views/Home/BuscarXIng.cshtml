@@ -60,7 +60,7 @@
                 <h2 class="IngredientesTit"><b> Ingredientes ingresados: </b></h2>
                 <br />
                 @Html.ActionLink("Vaciar lista", "VaciarLista", "Home", new { lista = ViewBag.IngredientesBuscados });
-                <br />
+                <br /><br />
 
                 foreach (string s in ViewBag.IngredientesBuscados)
                 {

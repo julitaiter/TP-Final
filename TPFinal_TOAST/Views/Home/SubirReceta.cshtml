@@ -1,8 +1,12 @@
 ﻿@using TPFinal_TOAST.Models
 @model Receta
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/Content/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="~/Content/animate.css">
@@ -16,27 +20,99 @@
     <link rel="stylesheet" href="~/Content/style.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
-    <link rel="stylesheet" href="~/Content/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="~/Content/fontAwesome1.css">
-    <link rel="stylesheet" href="~/Content/hero-slider1.css">
-    <link rel="stylesheet" href="~/Content/tooplate-style1.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
-    <script src="~/Content/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
-    <link href="~/Content/main2.css" rel="stylesheet" />
-</head>
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/main3.css">
+    <!--===============================================================================================-->
 
-<div id="TitNuevaReceta"><h1>Nueva receta</h1></div>
-@using (Html.BeginForm("RecetaSubida", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    <div class="UploadFoto"> <img src="~/Content/Fotos/Otros/Upload_Icon2.png" alt="Subir foto" width="270" height="220" /> @Html.TextBoxFor(model => model.Foto, new { type = "file" }) @Html.ValidationMessageFor(model => model.Foto)<br /></div>
-    <div class="Subir_Receta2"><p>Nombre:</p>@Html.TextBoxFor(model => model.NombreReceta) @Html.ValidationMessageFor(model => model.NombreReceta)<br /></div>
-    <div class="Subir_Receta"><p>Elegir categoría:</p> <div class="Textbox1"> @Html.DropDownListFor(model => model.Categoria, new SelectList(ViewBag.Categorias)), @Html.ValidationMessageFor(model => model.Categoria)<br /> </div></div>
-    <div class="Subir_Receta"><p>Ingredientes:</p> @Html.TextBoxFor(model => model.Ingredientes) @Html.ValidationMessageFor(model => model.Ingredientes)<br /></div>
-    <div class="Subir_Receta"><p>Instrucciones:</p> @Html.TextAreaFor(model => model.Preparacion) @Html.ValidationMessageFor(model => model.Preparacion)<br /></div>
-    <div class="Subir_Receta"><p>Dificultad:</p> @Html.DropDownListFor(model => model.Dificultad, new SelectList(ViewBag.Dificultades, "Dificultad")) @Html.ValidationMessageFor(model => model.Dificultad)<br /></div>
-    <div class="Subir_Receta"><p>Tiempo de Preparacion:</p> @Html.TextBoxFor(model => model.TiempoPreparacion) @Html.ValidationMessageFor(model => model.TiempoPreparacion)<br /></div>
-    <div class="Subir_Receta"><p>Cantidad de Platos:</p> @Html.TextBoxFor(model => model.CantidadPlatos) @Html.ValidationMessageFor(model => model.CantidadPlatos)<br /></div>
-    <button type="submit" id="form-submit" class="btn-search">Publicar</button>
-}
+    <title>Registro o Modificación</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="~/Content/SignUp.css">
+</head>
+<body>
+    <div class="main">
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <form method="POST" id="signup-form" class="signup-form" action="@Url.Action("Registrado", "Usuarios")" enctype="multipart/form-data">
+                        <h2 class="form-title">Registrar usuario</h2>
+
+                        <div class="uploadWrapper">
+                            <span>Subir una Foto</span>
+                            <div class="UploadButton">
+                                <input type='file' id="Foto" name="Foto" accept="image/*" required="required" pattern="{1,}" title="Ingrese una foto" />
+                            </div>
+                        </div> <br />
+
+                        <div class="wrap-input100 validate-input" data-validate="Ingrese Nombre">
+                            <input class="input100" type="text" name="nombre" placeholder="Nombre" required="required" pattern="[A-Za-z].{1,}" title="Ingrese un nombre válido">
+                            <span class="focus-input100"></span>
+                        </div><br />
+
+                        <div class="wrap-input100 validate-input" data-validate="Ingrese Apellido">
+                            <input class="input100" type="text" name="apellido" placeholder="Apellido" required="required" pattern="[A-Za-z].{1,}" title="Ingrese un apellido válido">
+                            <span class="focus-input100"></span>
+                        </div><br />
+
+                        <div class="wrap-input100 validate-input" data-validate="Ingrese Nombre de Usuario">
+                            <input class="input100" type="text" name="username" placeholder="Nombre de usuario" required="required" pattern="{1,}" title="Ingrese un nombre de usuario">
+                            <span class="focus-input100"></span>
+                        </div><br />
+
+                        <div class="wrap-input100 validate-input" data-validate="Correo electrónico">
+                            <input class="input100" type="text" name="email" placeholder="Email" required="required" pattern="{1,}" title="Ingrese un email">
+                            <span class="focus-input100"></span>
+                        </div><br />
+
+                        <div class="wrap-input100 validate-input" data-validate="Ingrese contraseña">
+                            <input class="input100" type="password" name="contraseña" placeholder="Contraseña" required="required" pattern="{1,}" title="Ingrese una contraseña válido">
+                            <span class="focus-input100"></span>
+                        </div><br />
+
+                        <div class="wrap-input100 validate-input" data-validate="Repita contraseña">
+                            <input class="input100" type="password" name="re_contraseña" placeholder="Repita su contraseña" required="required" pattern="{1,}" title="Repita su contraseña">
+                            <span class="focus-input100"></span>
+                        </div> <br />
+
+                        <div class="container-login100-form-btn m-t-17">
+                            <button class="login100-form-btn">
+                                Registrarse
+                            </button>
+                        </div>
+
+                    </form>
+                    <p class="loginhere">
+                        Ya tenés una cuenta? @Html.ActionLink("Iniciar sesión", "Login", "Usuarios")
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- JS -->
+    <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/SignUp.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
