@@ -15,74 +15,56 @@
     <link rel="stylesheet" href="~/Content/icomoon.css">
     <link rel="stylesheet" href="~/Content/style.css">
 </head>
-<h1>Mi perfil</h1>
-<img height="100" width="100" src="~/Content/Fotos/Perfiles/@Model.NombreFoto" />
-<h2>@Model.Nombre_Usuario</h2>
+<body>
+    <div id="Nombre_Receta">
+        <h1>Mi perfil</h1
+    </div>
+        <img height="100" width="100" src="~/Content/Fotos/Perfiles/@Model.NombreFoto" />
+        <h2>@Model.Nombre_Usuario</h2>
 
-<h2>Mis favoritos</h2>
-@if (Model._Favoritos != null)
-{
-    foreach (Receta r in Model._Favoritos)
-    {
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="service-item first-service">
-                <img class="FotosIndex" src="~/Content/Fotos/Recetas/@r.NombreFoto" alt="@r.NombreFoto" />
+        <h2>Mis favoritos</h2>
+        @if (Model._Favoritos != null)
+        {
 
-                <a class="NombreReceta" href='@Url.Action("ViewReceta", "Home", new { id = r.IDReceta })'> <h4>@r.NombreReceta</h4></a> <br />
-                <div class="first-service icon">
-                    @if (Session["Usuario"] != null)
-                    {
-                        if (Model._Favoritos.Contains(r))
-                        {
-                            <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu= Model.IDUsuario, modo = "Eliminar", view = "Index"})"><img src="~/Content/Fotos/Otros/Heart_Icon_Filled.png" alt="Heart_Icon_Filled" /></a>
+        }
+        else
+        {
+            <h3>No hay recetas favoritas</h3>
+        }
+        <h2>Mis recetas</h2>
+        @if (ViewBag.RecXAut != null)
+        {
 
-                        }
-                        else
-                        {
-                            <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu= Model.IDUsuario, modo = "Insertar", view = "Index"})"><img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Heart_Icon" /></a>
-                        }
-                    }
+            foreach (Receta r in ViewBag.RecXAut)
+            {
+                <img class="FotosUsu" src="~/Content/Fotos/Recetas/@r.NombreFoto" alt="@r.NombreFoto" />
+                <br />
+                <div id="minutos">
+                    @Html.ActionLink(r.NombreReceta , "ViewReceta", "Home", new { id = r.IDReceta }, null)<br />
                 </div>
-            </div>
-        </div>
-    }
-}
-else
-{
-    <h3>No hay recetas favoritas</h3>
-}
-<h2>Mis recetas</h2>
-@if (ViewBag.RecXAut != null)
-{
-    foreach (Receta r in ViewBag.RecXAut)
-    {
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="service-item first-service">
-                <img class="FotosIndex" src="~/Content/Fotos/Recetas/@r.NombreFoto" alt="@r.NombreFoto" />
-
-                <a class="NombreReceta" href='@Url.Action("ViewReceta", "Home", new { id = r.IDReceta })'> <h4>@r.NombreReceta</h4></a> <br />
                 @Html.ActionLink("Editar receta", "RM", "Home", new { modo = "Editar", id = r.IDReceta }, null)<br />
-                <div class="first-service icon">
-                    @if (Session["Usuario"] != null)
-                    {
-                        if (Model._Favoritos.Contains(r))
-                        {
-                            <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu = Model.IDUsuario, modo = "Eliminar", view = "Index" })"><img src="~/Content/Fotos/Otros/Heart_Icon_Filled.png" alt="Heart_Icon_Filled" /></a>
 
-                        }
-                        else
-                        {
-                            <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu = Model.IDUsuario, modo = "Insertar", view = "Index" })"><img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Heart_Icon" /></a>
-                        }
+                if (Session["Usuario"] != null)
+                {
+                    if (Model._Favoritos.Contains(r))
+                    {
+                        <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu = Model.IDUsuario, modo = "Eliminar", view = "Index" })"><img src="~/Content/Fotos/Otros/Heart_Icon_Filled.png" alt="Heart_Icon_Filled" /></a>
+
                     }
-                </div>
-            </div>
-        </div>
-    }
-}
-else
-{
-    <h3>No hay recetas subidas</h3>
-}
-@Html.ActionLink("Modificar usuario", "RM", "Usuarios", new { modo = "Editar", id = Model.IDUsuario }, null)<br />
-@Html.ActionLink("Cerrar sesión", "Logout", "Usuarios")
+                    else
+                    {
+                        <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu = Model.IDUsuario, modo = "Insertar", view = "Index" })"><img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Heart_Icon" /></a>
+                    }
+                }
+            }
+        }
+        else
+        {
+            <h3>No hay recetas subidas</h3>
+        }
+    <br /><br />
+        @Html.ActionLink("Modificar usuario", "RM", "Usuarios", new { modo = "Editar", id = Model.IDUsuario }, null)<br />
+        @Html.ActionLink("Cerrar sesión", "Logout", "Usuarios")
+
+
+</body>
