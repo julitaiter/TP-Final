@@ -225,7 +225,7 @@
     <Content Include="Views\Home\ViewReceta.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Usuarios\Registrar.cshtml" />
-    <Content Include="Views\Usuarios\Index.cshtml" />
+    <Content Include="Views\Usuarios\MiPerfil.cshtml" />
     <Content Include="Views\Usuarios\Login.cshtml" />
     <Content Include="Views\Home\RecetaCategoria.cshtml" />
     <Content Include="Views\Home\SubirReceta.cshtml" />

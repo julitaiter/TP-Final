@@ -60,7 +60,7 @@
                             else
                             {
                                 Usuario User = (Usuario)Session["Usuario"];
-                                <a class="nav-link" href='@Url.Action("Index", "Usuarios", new { id = User.IDUsuario})'><img src="~/Content/Fotos/Perfiles/@User.NombreFoto" alt="@User.Nombre_Usuario" width="25" height="25" /></a>
+                                <a class="nav-link" href='@Url.Action("MiPerfil", "Usuarios", new { id = User.IDUsuario})'><img src="~/Content/Fotos/Perfiles/@User.NombreFoto" alt="@User.Nombre_Usuario" width="25" height="25" /></a>
                             }
                         }
 

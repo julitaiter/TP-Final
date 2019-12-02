@@ -11,7 +11,7 @@ namespace TPFinal_TOAST.Controllers
     public class UsuariosController : Controller
     {
         // GET: Usuarios
-        public ActionResult Index(int id)
+        public ActionResult MiPerfil(int id)
         {
             Usuario user = BD.TraerUsuario(id);
             List<Receta> RecXAut = BD.TraerRecetasxAutor(id);
@@ -38,7 +38,7 @@ namespace TPFinal_TOAST.Controllers
                 int IDUsuario = BD.TraerIDUsuario(User.Mail, User.Contraseña);
                 User = BD.TraerUsuario(IDUsuario);
                 Session["Usuario"] = User;
-                return RedirectToAction("Index", new { id = User.IDUsuario });
+                return RedirectToAction("MiPerfil", new { id = User.IDUsuario });
 
             }
             else
@@ -74,7 +74,7 @@ namespace TPFinal_TOAST.Controllers
 
                 BD.InsertarUsuario(User);
                 User.IDUsuario = BD.TraerIDUsuario(User.Mail, User.Contraseña);
-                return RedirectToAction("Index", new { id = User.IDUsuario });
+                return RedirectToAction("MiPerfil", new { id = User.IDUsuario });
             }
         }
 
@@ -100,7 +100,7 @@ namespace TPFinal_TOAST.Controllers
 
             BD.ModificarUsuario(User);
             User.IDUsuario = BD.TraerIDUsuario(User.Mail, User.Contraseña);
-            return RedirectToAction("Index", new { id = User.IDUsuario });
+            return RedirectToAction("MiPerfil", new { id = User.IDUsuario });
         }
 
         public ActionResult Logout()
