@@ -56,8 +56,8 @@ namespace TPFinal_TOAST.Controllers
             ViewBag.Categorias = NomCategorias;
             ViewBag.Dificultades = NomDificultades;
             return View();
-
         } 
+
         [HttpPost]
         public ActionResult RecetaSubida(Receta rec)
         {
