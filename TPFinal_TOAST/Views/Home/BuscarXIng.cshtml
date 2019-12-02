@@ -99,7 +99,7 @@
                                 {
                                     @Html.ActionLink("Editar receta", "RM", "Home", new { modo = "Editar", id = r.IDReceta }, null)<br />
                                 }
-                                user._Favoritos = user.TraerFavoritos();
+                                user._Favoritos = user.TraerFavoritos(user.IDUsuario);
                                 if (user._Favoritos.Contains(r))
                                 {
                                     <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu= user.IDUsuario, modo = "Eliminar", view = "BuscarXIng"})"><img src="~/Content/Fotos/Otros/Heart_Icon_Filled.png" alt="Heart_Icon_Filled" /></a>

@@ -106,7 +106,7 @@
                                 {
                                     if (user.IDUsuario == LaReceta.Autor)
                                     {
-                                        @Html.ActionLink("Editar receta", "RM", "Home", new { modo = "Editar", id = LaReceta.IDReceta }, null)<br />
+                                        @Html.ActionLink("Editar receta", "ModificarReceta", "Home", new { id = LaReceta.IDReceta }, null)<br />
                                     }
 
                                     user._Favoritos = user.TraerFavoritos(user.IDUsuario);
