@@ -93,23 +93,27 @@
                         <img class="FotosIndex" src="~/Content/Fotos/Recetas/@r.NombreFoto" alt="@r.NombreFoto" />
                         <a class="NombreReceta" href='@Url.Action("ViewReceta", "Home", new { id = r.IDReceta })'> <h4>@r.NombreReceta</h4></a> <br />
                         <div class="first-service icon">
-                        @if (Session["Usuario"] != null)
-                        {
-                            user._Favoritos = user.TraerFavoritos();
-                            if (user._Favoritos.Contains(r))
+                            @if (Session["Usuario"] != null)
                             {
-                                <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu= user.IDUsuario, modo = "Eliminar", view = "BuscarXIng"})"><img src="~/Content/Fotos/Otros/Heart_Icon_Filled.png" alt="Heart_Icon_Filled" /></a>
+                                if (user.IDUsuario == r.Autor)
+                                {
+                                    @Html.ActionLink("Editar receta", "RM", "Home", new { modo = "Editar", id = r.IDReceta }, null)<br />
+                                }
+                                user._Favoritos = user.TraerFavoritos();
+                                if (user._Favoritos.Contains(r))
+                                {
+                                    <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu= user.IDUsuario, modo = "Eliminar", view = "BuscarXIng"})"><img src="~/Content/Fotos/Otros/Heart_Icon_Filled.png" alt="Heart_Icon_Filled" /></a>
 
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu= user.IDUsuario, modo = "Insertar", view = "BuscarXIng"})"><img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Heart_Icon" /></a>
+                                }
                             }
                             else
                             {
-                                <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu= user.IDUsuario, modo = "Insertar", view = "BuscarXIng"})"><img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Heart_Icon" /></a>
+                                <a href="@Url.Action("Login", "Usuarios")"><img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Agregar a Favoritos" /></a>
                             }
-                        }
-                        else
-                        {
-                            <a href="@Url.Action("Login", "Usuarios")"><img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Agregar a Favoritos" /></a>
-                        }
                         </div>
                     </div>
                 </div>

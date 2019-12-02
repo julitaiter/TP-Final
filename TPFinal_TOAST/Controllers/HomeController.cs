@@ -35,8 +35,9 @@ namespace TPFinal_TOAST.Controllers
             ViewBag.nom = c.Nom_Categoria;
             return View();
         }
-        public ActionResult SubirReceta()
+        public ActionResult SubirReceta(string modo, int id)
         {
+            Receta rec = BD.TraerReceta(id);
             List<Categoria> LasCategorias = BD.ListarCategorias();
             List<Dificultad> LasDificultades = BD.ListarDificultades();
             List<string> NomCategorias = new List<string>();
@@ -53,7 +54,8 @@ namespace TPFinal_TOAST.Controllers
 
             ViewBag.Categorias = NomCategorias;
             ViewBag.Dificultades = NomDificultades;
-            return View();
+            ViewBag.Modo = modo;
+            return View(rec);
         } 
         [HttpPost]
         public ActionResult RecetaSubida(Receta rec)
