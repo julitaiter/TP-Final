@@ -19,70 +19,79 @@
 <img height="100" width="100" src="~/Content/Fotos/Perfiles/@ViewBag.Usuario.NombreFoto" />
 <h2>@ViewBag.Usuario.Nombre_Usuario</h2>
 
-<h2>Mis favoritos</h2>
-@if (ViewBag.Usuario._Favoritos != null)
-{
-    foreach (Receta r in ViewBag.Usuario._Favoritos)
-    {
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="service-item first-service">
-                <img class="FotosIndex" src="~/Content/Fotos/Recetas/@r.NombreFoto" alt="@r.NombreFoto" />
-
-                <a class="NombreReceta" href='@Url.Action("ViewReceta", "Home", new { id = r.IDReceta })'> <h4>@r.NombreReceta</h4></a> <br />
-                <div class="first-service icon">
-                    @if (Session["Usuario"] != null)
-                    {
-                        if (@ViewBag.Usuario._Favoritos.Contains(r))
+<div>
+    <h2>Mis favoritos</h2>
+    @{ if (ViewBag.Usuario._Favoritos.Count != 0)
+        {
+            foreach (Receta r in ViewBag.Usuario._Favoritos)
+            {
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="service-item first-service">
+                    <img class="FotosIndex" src="~/Content/Fotos/Recetas/@r.NombreFoto" alt="@r.NombreFoto" />
+                    <a class="NombreReceta" href='@Url.Action("ViewReceta", "Home", new { id = r.IDReceta })'> <h4>@r.NombreReceta</h4></a> <br />
+                    <div class="first-service icon">
+                        @if (Session["Usuario"] != null)
                         {
-                            <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu= @ViewBag.Usuario.IDUsuario, view = "Index"})"><img src="~/Content/Fotos/Otros/Heart_Icon_Filled.png" alt="Heart_Icon_Filled" /></a>
+                            if (ViewBag.Usuario._Favoritos.Contains(r))
+                            {
+                                <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu = ViewBag.Usuario.IDUsuario, modo="Eliminar", view = "Index" })"><img src="~/Content/Fotos/Otros/Heart_Icon_Filled.png" alt="Heart_Icon_Filled" /></a>
 
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu = @ViewBag.Usuario.IDUsuario,modo="Insertar", view = "Index" })"><img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Heart_Icon" /></a>
+                            }
                         }
-                        else
-                        {
-                            <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu= @ViewBag.Usuario.IDUsuario, view = "Index"})"><img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Heart_Icon" /></a>
-                        }
-                    }
+                    </div>
                 </div>
             </div>
-        </div>
-    }
-}
-else
-{
-    <h3>No hay recetas favoritas</h3>
-}
-<h2>Mis recetas</h2>
-@if (ViewBag.RecXAut != null)
-{
-    foreach (Receta r in ViewBag.RecXAut)
-    {
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="service-item first-service">
-                <img class="FotosIndex" src="~/Content/Fotos/Recetas/@r.NombreFoto" alt="@r.NombreFoto" />
+            }
+        }
+        else
+        {
+            <h3>No hay recetas favoritas</h3>
+        }
+        }
+</div>
+<div>
+    <h2>Mis recetas</h2>
+    @{ if (ViewBag.RecXAut.Count != 0)
+        {
+            foreach (Receta r in ViewBag.RecXAut)
+            {
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="service-item first-service">
+                    <img class="FotosIndex" src="~/Content/Fotos/Recetas/@r.NombreFoto" alt="@r.NombreFoto" />
 
-                <a class="NombreReceta" href='@Url.Action("ViewReceta", "Home", new { id = r.IDReceta })'> <h4>@r.NombreReceta</h4></a> <br />
-                @Html.ActionLink("Editar receta", "Modificar", "Home", new { user = ViewBag.Usuario }, null)<br />
-                <div class="first-service icon">
-                    @if (Session["Usuario"] != null)
-                    {
-                        if (ViewBag.Usuario._Favoritos.Contains(r))
+                    <a class="NombreReceta" href='@Url.Action("ViewReceta", "Home", new { id = r.IDReceta })'> <h4>@r.NombreReceta</h4></a> <br />
+                    @Html.ActionLink("Editar receta", "Modificar", "Home", new { user = ViewBag.Usuario }, null)<br />
+                    <div class="first-service icon">
+                        @if (Session["Usuario"] != null)
                         {
-                            <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu = ViewBag.Usuario.IDUsuario, view = "Index" })"><img src="~/Content/Fotos/Otros/Heart_Icon_Filled.png" alt="Heart_Icon_Filled" /></a>
+                            if (ViewBag.Usuario._Favoritos.Contains(r))
+                            {
+                                <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu = ViewBag.Usuario.IDUsuario, view = "Index" })"><img src="~/Content/Fotos/Otros/Heart_Icon_Filled.png" alt="Heart_Icon_Filled" /></a>
 
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu = ViewBag.Usuario.IDUsuario, view = "Index" })"><img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Heart_Icon" /></a>
+                            }
                         }
-                        else
-                        {
-                            <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu = ViewBag.Usuario.IDUsuario, view = "Index" })"><img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Heart_Icon" /></a>
-                        }
-                    }
+                    </div>
                 </div>
             </div>
-        </div>
+            }
+        }
+        else
+        {
+        <h3>No hay recetas subidas</h3>
+        }
     }
-}
-else
-{
-    <h3>No hay recetas subidas</h3>
-}
-@Html.ActionLink("Modificar usuario", "Modificar", "Usuarios", new {user = ViewBag.Usuario})<br />
-@Html.ActionLink("Cerrar sesión", "Logout", "Usuarios")
+</div>
+<a href="#" class="txt2 bo1">
+    @Html.ActionLink("Modificar usuario", "Modificar", "Usuarios", new { user = ViewBag.Usuario })<br />
+</a>
+<a href="#" class="txt2 bo1">
+    @Html.ActionLink("Cerrar sesión", "Logout", "Usuarios")
+</a>
