@@ -49,31 +49,40 @@ namespace TPFinal_TOAST.Controllers
             return View(user);
         }
         [HttpPost]
-        public ActionResult RM2(Usuario user, string modo)
+        public ActionResult RM2(HttpPostedFileBase Foto, string name, string username, string email, string password, string re_password, string modo)
         {
-            if (!ModelState.IsValid)
+            Usuario User = new Usuario();
+
+            if (password != re_password)
             {
-                return View("RM", user);
+                return RedirectToAction("RM", User);
             }
             else
             {
-                if (user.Foto != null)
+                User.Foto = Foto;
+                User.Nombre = name;
+                User.Nombre_Usuario = username;
+                User.Mail = email;
+                User.Contraseña = password;
+
+                string NuevaUbicacion = Server.MapPath("~/Content/Fotos/Perfiles/") + User.Foto.FileName;
+                User.Foto.SaveAs(NuevaUbicacion);
+                User.NombreFoto = User.Foto.FileName;
+                User.Admin = false;
+
+                if (modo == "Insertar")
                 {
-                    string NuevaUbicacion = Server.MapPath("~/Content/Fotos/Perfiles/") + user.Foto.FileName;
-                    user.Foto.SaveAs(NuevaUbicacion);
-                    user.NombreFoto = user.Foto.FileName;
-                    user.Admin = false;
+                    BD.InsertarUsuario(User);
+                    return RedirectToAction("Index", new { id = User.IDUsuario });
+                }
+
+                else
+                {
+                    BD.ModificarUsuario(User);
+                    return RedirectToAction("Index", new { id = User.IDUsuario });
                 }
             }
-            if (modo=="Insertar")
-            {
-                BD.InsertarUsuario(user);
-            }
-            else
-            {
-                BD.ModificarUsuario(user);
-            }
-            return View("Index",user);
+
         }
         public ActionResult Logout()
         {

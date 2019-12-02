@@ -20,6 +20,28 @@
     <link rel="stylesheet" href="~/Content/style.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/main3.css">
+    <!--===============================================================================================-->
 
     <title>Registro o Modificación</title>
 
@@ -44,37 +66,56 @@
                         {
                             <h2 class="form-title">Editar usuario</h2>
                         }
-                        <div class="form-group">
-                            <input type="text" class="form-input" name="name" id="name" placeholder="Nombre" />
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-input" name="name" id="name" placeholder="Nombre de usuario" />
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-input" name="email" id="email" placeholder="Email" />
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-input" name="password" id="password" placeholder="Contraseña" />
-                            <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-input" name="re_password" id="re_password" placeholder="Repita su contraseña" />
-                        </div>
+
+                        <div class="uploadWrapper">
+                            <span>Subir una Foto</span>
+                            <div class="UploadButton"> <input type='file' id="file" name="Foto" accept="image/*" /> </div>
+                        </div> <br />
+
+                        <div class="wrap-input100 validate-input" data-validate="Ingrese Usuario">
+                            <input class="input100" type="text" name="name" placeholder="Nombre" required="required" pattern="[A-Za-z].{1,}" title="Ingrese un nombre válido">
+                            <span class="focus-input100"></span>
+                        </div><br />
+
+                        <div class="wrap-input100 validate-input" data-validate="Ingrese Nombre de Usuario">
+                            <input class="input100" type="text" name="username" placeholder="Nombre de usuario">
+                            <span class="focus-input100"></span>
+                        </div><br />
+
+                        <div class="wrap-input100 validate-input" data-validate="Correo electrónico">
+                            <input class="input100" type="text" name="email" placeholder="Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Ingrese un mail válido">
+                            <span class="focus-input100"></span>
+                        </div><br />
+
+                        <div class="wrap-input100 validate-input" data-validate="Ingrese contraseña">
+                            <input class="input100" type="password" name="password" placeholder="Contraseña">
+                            <span class="focus-input100"></span>
+                        </div><br />
+
+                        <div class="wrap-input100 validate-input" data-validate="Repita contraseña">
+                            <input class="input100" type="password" name="re_password" placeholder="Repita su contraseña">
+                            <span class="focus-input100"></span>
+                        </div> <br />
+
                         @if (ViewBag.modo == "Insertar")
                         {
-                            <div class="form-group">
-                                <input type="submit" name="submit" id="submit" class="form-submit" value="Registrarse" />
+                            <div class="container-login100-form-btn m-t-17">
+                                <button class="login100-form-btn" >
+                                    Registrarse
+                                </button>
                             </div>
                         }
                         else
                         {
-                            <div class="form-group">
-                                <input type="submit" name="submit" id="submit" class="form-submit" value="Guardar cambios" />
+                            <div class="container-login100-form-btn m-t-17">
+                                <button class="login100-form-btn" >
+                                    Guardar cambios
+                                </button>
                             </div>
                         }
                     </form>
                     <p class="loginhere">
-                        Ya tenés una cuenta? <a href="#" class="loginhere-link">Iniciar Sesión</a>
+                        Ya tenés una cuenta? @Html.ActionLink("Iniciar sesión", "Login", "Usuarios")
                     </p>
                 </div>
             </div>
