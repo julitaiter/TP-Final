@@ -102,7 +102,6 @@
                             <img class="FotosIndex" src="~/Content/Fotos/Recetas/@LaReceta.NombreFoto" alt="@LaReceta.NombreFoto" />
                             <a class="NombreReceta" href='@Url.Action("ViewReceta", "Home", new { id = LaReceta.IDReceta })'> <h4> @LaReceta.NombreReceta</h4> </a> <br />
                             <div class="first-service icon">
-
                                 @if (Session["Usuario"] != null)
                                 {
                                     if (user.IDUsuario == LaReceta.Autor)

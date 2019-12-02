@@ -40,7 +40,14 @@
                 </div>
                 <div class="Elementos">
                     <li class="nav-item">
-                        <a class="nav-link active" href='@Url.Action("SubirReceta", "Home")'>Subir una Receta</a>
+                        @if (Session["Usuario"] != null)
+                        {
+                            <a class="nav-link active" href='@Url.Action("SubirReceta", "Home")'>Subir una Receta</a>
+                        }
+                        else
+                        {
+                            <a class="nav-link active" href='@Url.Action("Login", "Usuarios")'>Subir una Receta</a>
+                        }
                     </li>
                 </div>
                 <div class="Elementos">
