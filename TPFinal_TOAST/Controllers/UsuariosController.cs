@@ -54,7 +54,6 @@ namespace TPFinal_TOAST.Controllers
         public ActionResult Registrado(HttpPostedFileBase Foto, string nombre, string apellido, string username, string email, string contraseña, string re_contraseña)
         {
             Usuario User = new Usuario();
-            User.IDUsuario = 0;
             User.Foto = Foto;
             User.Nombre = nombre;
             User.Apellido = apellido;
@@ -77,8 +76,33 @@ namespace TPFinal_TOAST.Controllers
                 User.IDUsuario = BD.TraerIDUsuario(User.Mail, User.Contraseña);
                 return RedirectToAction("Index", new { id = User.IDUsuario });
             }
-
         }
+
+        public ActionResult Modificar(Usuario user)
+        {
+            ViewBag.Usuario = user;
+            return View();
+        }
+        public ActionResult Modificado(HttpPostedFileBase Foto, string nombre, string apellido, string username, string email, string contraseña, string re_contraseña)
+        {
+            Usuario User = new Usuario();
+            User.Foto = Foto;
+            User.Nombre = nombre;
+            User.Apellido = apellido;
+            User.Nombre_Usuario = username;
+            User.Mail = email;
+            User.Contraseña = contraseña;
+
+            string NuevaUbicacion = Server.MapPath("~/Content/Fotos/Perfiles/") + User.Foto.FileName;
+            User.Foto.SaveAs(NuevaUbicacion);
+            User.NombreFoto = User.Foto.FileName;
+            User.Admin = false;
+
+            BD.ModificarUsuario(User);
+            User.IDUsuario = BD.TraerIDUsuario(User.Mail, User.Contraseña);
+            return RedirectToAction("Index", new { id = User.IDUsuario });
+        }
+
         public ActionResult Logout()
         {
             Session["Usuario"] = null;
