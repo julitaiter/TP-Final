@@ -384,7 +384,7 @@ namespace TPFinal_TOAST.Models
                 bool Admin = Convert.ToBoolean(Lector["Admin"]);
                 string NombreFoto = Lector["Nombre_Foto"].ToString();
                 HttpPostedFileBase Foto = null;
-                Favoritos = UnUsuario.TraerFavoritos();
+                Favoritos = UnUsuario.TraerFavoritos(IDUsuario);
                 UnUsuario = new Usuario(IDUsuario, Nombre_Usuario, Nombre, Apellido, Mail, Contraseña, Admin, Foto, NombreFoto, Favoritos);
             }
             Desconectar(Conn);
@@ -431,7 +431,7 @@ namespace TPFinal_TOAST.Models
                 bool Admin = Convert.ToBoolean(Lector["Admin"]);
                 string NombreFoto = Lector["Foto"].ToString();
                 HttpPostedFileBase Foto = null;
-                Favoritos = UnUsuario.TraerFavoritos();
+                Favoritos = UnUsuario.TraerFavoritos(IDUsuario);
                 UnUsuario = new Usuario(IDUsuario, Nombre_Usuario, Nombre, Apellido, Mail, Contraseña, Admin, Foto, NombreFoto, Favoritos);
                 ListaUsuarios.Add(UnUsuario);
             }

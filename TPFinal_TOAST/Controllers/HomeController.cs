@@ -205,7 +205,7 @@ namespace TPFinal_TOAST.Controllers
             {
                 BD.EliminarFavorito(IdUsu, IdRec);
             }
-            return View(view);
+            return RedirectToAction(view);
         }
         public ActionResult VaciarLista(List<string> lista)
         {

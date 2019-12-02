@@ -47,7 +47,7 @@ namespace TPFinal_TOAST.Models
             Foto = foto;
             _Favoritos = favs;
         }
-        public List<Receta> TraerFavoritos()
+        public List<Receta> TraerFavoritos(int id)
         {
             List<Receta> Recetas = new List<Receta>();
             SqlConnection Conn = BD.Conectar();
@@ -57,7 +57,7 @@ namespace TPFinal_TOAST.Models
             SqlCommand Consulta = Conn.CreateCommand();
             Consulta.CommandType = System.Data.CommandType.StoredProcedure;
             Consulta.CommandText = "TraerFavoritosxUsuario";
-            Consulta.Parameters.Add(new SqlParameter("@IDUsuario", IDUsuario));
+            Consulta.Parameters.Add(new SqlParameter("@IDUsuario", id));
             SqlDataReader Lector = Consulta.ExecuteReader();
 
             while (Lector.Read())
@@ -77,8 +77,8 @@ namespace TPFinal_TOAST.Models
                 LaDificultad = BD.TraerDificultad(iddifi);
                 Categoria LaCategoria = new Categoria();
                 LaCategoria = BD.TraerCategoria(idcate);
-                UnaReceta = new Receta(IDReceta, NombreReceta, LaCategoria, Preparacion, TiempoPreparacion, CantidadPlatos, LaDificultad, Foto, NombreFoto, Ingredientes, Cant_Likes, Autor);
                 UnaReceta.Ingredientes = UnaReceta.ListarIngredientes();
+                UnaReceta = new Receta(IDReceta, NombreReceta, LaCategoria, Preparacion, TiempoPreparacion, CantidadPlatos, LaDificultad, Foto, NombreFoto, Ingredientes, Cant_Likes, Autor);
                 Recetas.Add(UnaReceta);
             }
 

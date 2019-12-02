@@ -77,7 +77,6 @@ namespace TPFinal_TOAST.Controllers
                 return RedirectToAction("MiPerfil", new { id = User.IDUsuario });
             }
         }
-
         public ActionResult Modificar()
         {
             ViewBag.Usuario = Session["Usuario"];
@@ -102,7 +101,6 @@ namespace TPFinal_TOAST.Controllers
             User.IDUsuario = BD.TraerIDUsuario(User.Mail, User.Contraseña);
             return RedirectToAction("MiPerfil", new { id = User.IDUsuario });
         }
-
         public ActionResult Logout()
         {
             Session["Usuario"] = null;
