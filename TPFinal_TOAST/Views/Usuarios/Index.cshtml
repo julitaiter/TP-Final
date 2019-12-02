@@ -65,7 +65,7 @@ else
                 <div class="first-service icon">
                     @if (Session["Usuario"] != null)
                     {
-                        if (ViewBag.Usuario_Favoritos.Contains(r))
+                        if (ViewBag.Usuario._Favoritos.Contains(r))
                         {
                             <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu = ViewBag.Usuario.IDUsuario, view = "Index" })"><img src="~/Content/Fotos/Otros/Heart_Icon_Filled.png" alt="Heart_Icon_Filled" /></a>
 
