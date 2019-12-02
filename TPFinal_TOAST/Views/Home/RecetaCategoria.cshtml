@@ -40,6 +40,11 @@
                     <div class="first-service icon">
                         @if (Session["Usuario"] != null)
                         {
+                            if (user.IDUsuario == r.Autor)
+                            {
+                                @Html.ActionLink("Editar receta", "RM", "Home", new { modo = "Editar", id = r.IDReceta }, null)<br />
+                            }
+
                             user._Favoritos = user.TraerFavoritos();
                             if (user._Favoritos.Contains(r))
                             {

@@ -282,6 +282,42 @@ namespace TPFinal_TOAST.Models
             Desconectar(Conn);
             return LasRecetas;
         }
+        public static List<Receta> TraerRecetasxAutor(int IDAutor)
+        {
+            List<Receta> LasRecetas = new List<Receta>();
+            List<Ingrediente> Ingredientes = new List<Ingrediente>();
+            Receta UnaReceta = new Receta();
+            SqlConnection Conn = Conectar();
+
+            SqlCommand Consulta = Conn.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.Text;
+            Consulta.CommandText = "SELECT *  FROM Recetas WHERE Autor =" + IDAutor;
+            SqlDataReader Lector = Consulta.ExecuteReader();
+            while (Lector.Read())
+            {
+                int IDReceta = Convert.ToInt32(Lector["IDReceta"]);
+                string NombreReceta = Lector["NombreReceta"].ToString();
+                int idcate = Convert.ToInt32(Lector["Categoria"]);
+                string Preparacion = Lector["Preparacion"].ToString();
+                int TiempoPreparacion = Convert.ToInt32(Lector["TiempoPreparacion"]);
+                float CantidadPlatos = Convert.ToInt32(Lector["CantidadPlatos"]);
+                int iddifi = Convert.ToInt32(Lector["Dificultad"]);
+                string NombreFoto = Lector["Foto"].ToString();
+                int Cant_Likes = Convert.ToInt32(Lector["Cant_Likes"]);
+                int Autor = Convert.ToInt32(Lector["Autor"]);
+                HttpPostedFileBase Foto = null;
+                Dificultad LaDificultad = new Dificultad();
+                LaDificultad = BD.TraerDificultad(iddifi);
+                Categoria LaCategoria = new Categoria();
+                LaCategoria = BD.TraerCategoria(idcate);
+                UnaReceta = new Receta(IDReceta, NombreReceta, LaCategoria, Preparacion, TiempoPreparacion, CantidadPlatos, LaDificultad, Foto, NombreFoto, Ingredientes, Cant_Likes, Autor);
+                UnaReceta.Ingredientes = UnaReceta.ListarIngredientes();
+                LasRecetas.Add(UnaReceta);
+            }
+
+            Desconectar(Conn);
+            return LasRecetas;
+        }
 
         //Metodos Usuarios
         public static void InsertarUsuario(Usuario user)

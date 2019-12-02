@@ -14,6 +14,8 @@ namespace TPFinal_TOAST.Controllers
         public ActionResult Index(int id)
         {
             Usuario user = BD.TraerUsuario(id);
+            List<Receta> RecXAut = BD.TraerRecetasxAutor(id);
+            ViewBag.RecXAut = RecXAut;
             return View(user);
         }
         public ActionResult ListarUsuarios()
