@@ -100,8 +100,10 @@
                         <a class="NombreReceta" href='@Url.Action("ViewReceta", "Home", new { id = ViewBag.Receta1.IDReceta })'> <h4>@ViewBag.Receta1.NombreReceta</h4> </a> <br />
                         <div class="first-service icon">
                             @{Usuario user = (Usuario)Session["Usuario"]; }
+}
                             @if (Session["Usuario"] != null)
                             {
+                                user._Favoritos = user.TraerFavoritos();
                                 if (user._Favoritos.Contains(ViewBag.Receta1))
                                 {
                                     <a href="@Url.Action("Favoritos", "Home", new { IdRec = ViewBag.Receta1.IDReceta, IdUsu= user.IDUsuario, modo = "Eliminar", view = "Index"})"><img src="~/Content/Fotos/Otros/Heart_Icon_Filled.png" alt="Heart_Icon_Filled" /></a>

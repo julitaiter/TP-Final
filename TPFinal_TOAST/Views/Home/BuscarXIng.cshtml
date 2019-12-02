@@ -85,6 +85,7 @@
     {
         <h2 class="Resultados">Resultados:</h2> <p> @ViewBag.CantRecetasEncontradas resultados</p>
         <div class="row">
+        @{Usuario user = (Usuario)Session["Usuario"];}
             @foreach (Receta r in ViewBag.MisRecetasEncontradas)
             {
                 <div class="col-md-3 col-sm-6 col-xs-12">
@@ -92,18 +93,18 @@
                         <img class="FotosIndex" src="~/Content/Fotos/Recetas/@r.NombreFoto" alt="@r.NombreFoto" />
                         <a class="NombreReceta" href='@Url.Action("ViewReceta", "Home", new { id = r.IDReceta })'> <h4>@r.NombreReceta</h4></a> <br />
                         <div class="first-service icon">
-                        @{Usuario user = (Usuario)Session["Usuario"]; }
                         @if (Session["Usuario"] != null)
                         {
-                        if (user._Favoritos.Contains(r))
-                        {
-                            <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu= user.IDUsuario, modo = "Eliminar", view = "BuscarXIng"})"><img src="~/Content/Fotos/Otros/Heart_Icon_Filled.png" alt="Heart_Icon_Filled" /></a>
+                            user._Favoritos = user.TraerFavoritos();
+                            if (user._Favoritos.Contains(r))
+                            {
+                                <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu= user.IDUsuario, modo = "Eliminar", view = "BuscarXIng"})"><img src="~/Content/Fotos/Otros/Heart_Icon_Filled.png" alt="Heart_Icon_Filled" /></a>
 
-                        }
-                        else
-                        {
-                            <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu= user.IDUsuario, modo = "Insertar", view = "BuscarXIng"})"><img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Heart_Icon" /></a>
-                        }
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu= user.IDUsuario, modo = "Insertar", view = "BuscarXIng"})"><img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Heart_Icon" /></a>
+                            }
                         }
                         else
                         {

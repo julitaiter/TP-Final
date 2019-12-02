@@ -66,11 +66,15 @@ namespace TPFinal_TOAST.Controllers
             }
             else
             {
-                string NuevaUbicacion = Server.MapPath("~/Content/Fotos/Perfiles/") + rec.Foto.FileName;
-                rec.Foto.SaveAs(NuevaUbicacion);
-                rec.NombreFoto = rec.Foto.FileName;
-                BD.IngresarReceta(rec);
-                return View("RecetaPublicada", rec);
+                if (rec.Foto != null)
+                {
+                    string NuevaUbicacion = Server.MapPath("~/Content/Fotos/Perfiles/") + rec.Foto.FileName;
+                    rec.Foto.SaveAs(NuevaUbicacion);
+                    rec.NombreFoto = rec.Foto.FileName;
+                    BD.IngresarReceta(rec);
+                    return View("RecetaPublicada", rec);
+                }
+                return View("SubirReceta", rec);
             }
         }
         public ActionResult EliminarReceta(int id)
