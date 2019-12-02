@@ -1,35 +1,90 @@
 ﻿@using TPFinal_TOAST.Models
 @model Usuario
-@if (ViewBag.modo == "Insertar")
-{
-    <h1>Registrar usuario</h1>
-}
-else
-{
-    <h1>Editar usuario</h1>
-}
-@using (Html.BeginForm("RM2", "Usuarios", new { modo = ViewBag.modo }, FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    <p>Nombre:</p> @Html.TextBoxFor(model => model.Nombre) @Html.ValidationMessageFor(model => model.Nombre)<br />
-    <p>Apellido:</p> @Html.TextBoxFor(model => model.Apellido) @Html.ValidationMessageFor(model => model.Apellido)<br />
-    <p>Nombre de Usuario:</p> @Html.TextBoxFor(model => model.Nombre_Usuario) @Html.ValidationMessageFor(model => model.Nombre_Usuario)<br />
-    <p>Email:</p> @Html.TextBoxFor(model => model.Mail, new { type = "email" }) @Html.ValidationMessageFor(model => model.Mail)<br />
-    <p>Contraseña:</p> @Html.PasswordFor(model => model.Contraseña) @Html.ValidationMessageFor(model => model.Contraseña)<br />
-    if (ViewBag.modo == "Insertar")
-    {
-        <p>Repetir Contraseña:</p> @Html.PasswordFor(model => model.RepetirContraseña) @Html.ValidationMessageFor(model => model.RepetirContraseña)<br />
-    }
-    <p>Foto:</p> @Html.TextBoxFor(model => model.Foto, new { type = "file" }) @Html.ValidationMessageFor(model => model.Foto)<br />
-    if (ViewBag.modo == "Insertar")
-    {
-        <p>¿Ya tenés cuenta? @Html.ActionLink("Inicia sesión", "Login", "Usuarios")</p>
-    }
-    if (ViewBag.modo == "Insertar")
-    {
-        <input type="submit" value="Crear usuario" />
-    }
-    else
-    {
-        <input type="submit" value="Guardar cambios" />
-    }
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/animate.css">
+    <link rel="stylesheet" href="~/Content/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/Content/magnific-popup.css">
+    <link rel="stylesheet" href="~/Content/aos.css">
+    <link rel="stylesheet" href="~/Content/ionicons.css">
+    <link rel="stylesheet" href="~/Content/flaticon.css">
+    <link rel="stylesheet" href="~/Content/icomoon.css">
+    <link rel="stylesheet" href="~/Content/style.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <title>Registro o Modificación</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="~/Content/SignUp.css">
+</head>
+<body>
+
+    <div class="main">
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <form method="POST" id="signup-form" class="signup-form" action="@Url.Action("RM2", "Usuarios", new { modo = ViewBag.modo })">
+                        @if (ViewBag.modo == "Insertar")
+                        {
+                            <h2 class="form-title">Registrar usuario</h2>
+                        }
+                        else
+                        {
+                            <h2 class="form-title">Editar usuario</h2>
+                        }
+                        <div class="form-group">
+                            <input type="text" class="form-input" name="name" id="name" placeholder="Nombre" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-input" name="name" id="name" placeholder="Nombre de usuario" />
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-input" name="email" id="email" placeholder="Email" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-input" name="password" id="password" placeholder="Contraseña" />
+                            <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-input" name="re_password" id="re_password" placeholder="Repita su contraseña" />
+                        </div>
+                        @if (ViewBag.modo == "Insertar")
+                        {
+                            <div class="form-group">
+                                <input type="submit" name="submit" id="submit" class="form-submit" value="Registrarse" />
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="form-group">
+                                <input type="submit" name="submit" id="submit" class="form-submit" value="Guardar cambios" />
+                            </div>
+                        }
+                    </form>
+                    <p class="loginhere">
+                        Ya tenés una cuenta? <a href="#" class="loginhere-link">Iniciar Sesión</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- JS -->
+    <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/SignUp.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
 } 

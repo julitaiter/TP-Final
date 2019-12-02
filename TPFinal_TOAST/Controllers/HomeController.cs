@@ -71,7 +71,7 @@ namespace TPFinal_TOAST.Controllers
                 rec.Foto.SaveAs(NuevaUbicacion);
                 rec.NombreFoto = rec.Foto.FileName;
                 BD.IngresarReceta(rec);
-                return View("RecetaPublicada", rec);
+                return View("RecetaPublicada", rec.IDReceta);
             }
         }
         public ActionResult EliminarReceta(int id)
@@ -203,5 +203,11 @@ namespace TPFinal_TOAST.Controllers
             ViewBag.IngredientesBuscados = lista;
             return View("BuscarXIng");
         }
+        public ActionResult RecetaPublicada(int IDReceta)
+        {
+            ViewBag.IDReceta = IDReceta;
+            return View();
+        }
     }
+
 }

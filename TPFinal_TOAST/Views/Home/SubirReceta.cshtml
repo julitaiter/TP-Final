@@ -30,12 +30,12 @@
 @using (Html.BeginForm("RecetaSubida", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="UploadFoto"> <img src="~/Content/Fotos/Otros/Upload_Icon2.png" alt="Subir foto" width="270" height="220" /> @Html.TextBoxFor(model => model.Foto, new { type = "file" }) @Html.ValidationMessageFor(model => model.Foto)<br /></div>
-    <div class="Subir_Receta"><p>Nombre:</p>@Html.TextBoxFor(model => model.NombreReceta) @Html.ValidationMessageFor(model => model.NombreReceta)<br /></div>
-    <div class="Subir_Receta2"><p>Elegir categoría:</p> <div class="Textbox1"> @Html.DropDownListFor(model => model.Categoria, new SelectList(ViewBag.Categorias)), @Html.ValidationMessageFor(model => model.Categoria)<br /> </div></div>
+    <div class="Subir_Receta2"><p>Nombre:</p>@Html.TextBoxFor(model => model.NombreReceta) @Html.ValidationMessageFor(model => model.NombreReceta)<br /></div>
+    <div class="Subir_Receta"><p>Elegir categoría:</p> <div class="Textbox1"> @Html.DropDownListFor(model => model.Categoria, new SelectList(ViewBag.Categorias)), @Html.ValidationMessageFor(model => model.Categoria)<br /> </div></div>
     <div class="Subir_Receta"><p>Ingredientes:</p> @Html.TextBoxFor(model => model.Ingredientes) @Html.ValidationMessageFor(model => model.Ingredientes)<br /></div>
     <div class="Subir_Receta"><p>Instrucciones:</p> @Html.TextAreaFor(model => model.Preparacion) @Html.ValidationMessageFor(model => model.Preparacion)<br /></div>
     <div class="Subir_Receta"><p>Dificultad:</p> @Html.DropDownListFor(model => model.Dificultad, new SelectList(ViewBag.Dificultades, "Dificultad")) @Html.ValidationMessageFor(model => model.Dificultad)<br /></div>
     <div class="Subir_Receta"><p>Tiempo de Preparacion:</p> @Html.TextBoxFor(model => model.TiempoPreparacion) @Html.ValidationMessageFor(model => model.TiempoPreparacion)<br /></div>
     <div class="Subir_Receta"><p>Cantidad de Platos:</p> @Html.TextBoxFor(model => model.CantidadPlatos) @Html.ValidationMessageFor(model => model.CantidadPlatos)<br /></div>
-    <button type="submit" id="form-submit" class="btn-search">Subir receta</button>
+    <button type="submit" id="form-submit" class="btn-search">Publicar</button>
 }
