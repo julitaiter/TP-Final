@@ -32,14 +32,14 @@
                 <div class="first-service icon">
                     @if (Session["Usuario"] != null)
                     {
-                        if (@ViewBag.Usuario._Favoritos.Contains(r))
+                        if (ViewBag.Usuario._Favoritos.Contains(r))
                         {
-                            <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu= @ViewBag.Usuario.IDUsuario, view = "Index"})"><img src="~/Content/Fotos/Otros/Heart_Icon_Filled.png" alt="Heart_Icon_Filled" /></a>
+                            <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu= ViewBag.Usuario.IDUsuario, view = "Index"})"><img src="~/Content/Fotos/Otros/Heart_Icon_Filled.png" alt="Heart_Icon_Filled" /></a>
 
                         }
                         else
                         {
-                            <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu= @ViewBag.Usuario.IDUsuario, view = "Index"})"><img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Heart_Icon" /></a>
+                            <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu= ViewBag.Usuario.IDUsuario, view = "Index"})"><img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Heart_Icon" /></a>
                         }
                     }
                 </div>
@@ -65,14 +65,14 @@ else
                 <div class="first-service icon">
                     @if (Session["Usuario"] != null)
                     {
-                        if (Model._Favoritos.Contains(r))
+                        if (ViewBag.Usuario._Favoritos.Contains(r))
                         {
-                            <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu = Model.IDUsuario, modo = "Eliminar", view = "Index" })"><img src="~/Content/Fotos/Otros/Heart_Icon_Filled.png" alt="Heart_Icon_Filled" /></a>
+                            <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu = ViewBag.Usuario.IDUsuario, modo = "Eliminar", view = "Index" })"><img src="~/Content/Fotos/Otros/Heart_Icon_Filled.png" alt="Heart_Icon_Filled" /></a>
 
                         }
                         else
                         {
-                            <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu = Model.IDUsuario, modo = "Insertar", view = "Index" })"><img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Heart_Icon" /></a>
+                            <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu = ViewBag.Usuario.IDUsuario, modo = "Insertar", view = "Index" })"><img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Heart_Icon" /></a>
                         }
                     }
                 </div>
