@@ -28,12 +28,12 @@ namespace TPFinal_TOAST.Models
         public HttpPostedFileBase Foto { get; set; }
         public string NombreFoto { get; set; }
         public int Cant_Likes { get; set; }
-
+        public int Autor { get; set; }
         public Receta()
         {
         }
 
-        public Receta(int idReceta, string nombreReceta, Categoria categoria, string preparacion, int tiempoPreparacion, float cantidadPlatos, Dificultad dificultad, HttpPostedFileBase foto, string nom_foto, List<Ingrediente> ingredientes, int likes)
+        public Receta(int idReceta, string nombreReceta, Categoria categoria, string preparacion, int tiempoPreparacion, float cantidadPlatos, Dificultad dificultad, HttpPostedFileBase foto, string nom_foto, List<Ingrediente> ingredientes, int likes, int autor)
         {
             IDReceta = idReceta;
             NombreReceta = nombreReceta;
@@ -46,6 +46,7 @@ namespace TPFinal_TOAST.Models
             Foto = foto;
             Ingredientes = ingredientes;
             Cant_Likes = likes;
+            Autor = autor;
         }
 
         public List<Ingrediente> ListarIngredientes()

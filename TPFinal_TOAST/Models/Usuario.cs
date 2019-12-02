@@ -71,12 +71,13 @@ namespace TPFinal_TOAST.Models
                 int iddifi = Convert.ToInt32(Lector["Dificultad"]);
                 string NombreFoto = Lector["Foto"].ToString();
                 int Cant_Likes = Convert.ToInt32(Lector["Cant_Likes"]);
+                int Autor = Convert.ToInt32(Lector["Autor"]);
                 HttpPostedFileBase Foto = null;
                 Dificultad LaDificultad = new Dificultad();
                 LaDificultad = BD.TraerDificultad(iddifi);
                 Categoria LaCategoria = new Categoria();
                 LaCategoria = BD.TraerCategoria(idcate);
-                UnaReceta = new Receta(IDReceta, NombreReceta, LaCategoria, Preparacion, TiempoPreparacion, CantidadPlatos, LaDificultad, Foto, NombreFoto, Ingredientes, Cant_Likes);
+                UnaReceta = new Receta(IDReceta, NombreReceta, LaCategoria, Preparacion, TiempoPreparacion, CantidadPlatos, LaDificultad, Foto, NombreFoto, Ingredientes, Cant_Likes, Autor);
                 UnaReceta.Ingredientes = UnaReceta.ListarIngredientes();
                 Recetas.Add(UnaReceta);
             }

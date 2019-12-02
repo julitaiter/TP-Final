@@ -27,6 +27,7 @@ namespace TPFinal_TOAST.Controllers
         public ActionResult ViewReceta(int id)
         {
             Receta rec = BD.TraerReceta(id);
+            ViewBag.Usuario = BD.TraerUsuario(rec.Autor);
             return View(rec);
         }
         public ActionResult RecetaCategoria(int IdCat, string Nom)

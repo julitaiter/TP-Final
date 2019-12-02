@@ -42,6 +42,7 @@ namespace TPFinal_TOAST.Models
             Consulta.Parameters.Add(new SqlParameter("@Dificultad", rec.Dificultad));
             Consulta.Parameters.Add(new SqlParameter("@Foto", rec.NombreFoto));
             Consulta.Parameters.Add(new SqlParameter("@Cant_Likes", rec.Cant_Likes));
+            Consulta.Parameters.Add(new SqlParameter("@Autor", rec.Autor));
             Consulta.ExecuteNonQuery();
             Desconectar(Conn);
         }
@@ -59,6 +60,7 @@ namespace TPFinal_TOAST.Models
             Consulta.Parameters.Add(new SqlParameter("@Dificultad", rec.Dificultad));
             Consulta.Parameters.Add(new SqlParameter("@Foto", rec.NombreFoto));
             Consulta.Parameters.Add(new SqlParameter("@Cant_Likes", rec.Cant_Likes));
+            Consulta.Parameters.Add(new SqlParameter("@Autor", rec.Autor));
             Consulta.ExecuteNonQuery();
             Desconectar(Conn);
         }
@@ -95,12 +97,13 @@ namespace TPFinal_TOAST.Models
                 int iddifi = Convert.ToInt32(Lector["Dificultad"]);
                 string NombreFoto = Lector["Foto"].ToString();
                 int Cant_Likes = Convert.ToInt32(Lector["Cant_Likes"]);
+                int Autor = Convert.ToInt32(Lector["Autor"]);
                 HttpPostedFileBase Foto = null;
                 Dificultad LaDificultad = new Dificultad();
                 LaDificultad = BD.TraerDificultad(iddifi);
                 Categoria LaCategoria = new Categoria();
                 LaCategoria = BD.TraerCategoria(idcate);
-                UnaReceta = new Receta(IDReceta, NombreReceta, LaCategoria, Preparacion, TiempoPreparacion, CantidadPlatos, LaDificultad, Foto, NombreFoto, Ingredientes, Cant_Likes);
+                UnaReceta = new Receta(IDReceta, NombreReceta, LaCategoria, Preparacion, TiempoPreparacion, CantidadPlatos, LaDificultad, Foto, NombreFoto, Ingredientes, Cant_Likes, Autor);
                 UnaReceta.Ingredientes = UnaReceta.ListarIngredientes();
             }
 
@@ -146,12 +149,13 @@ namespace TPFinal_TOAST.Models
                 int iddifi = Convert.ToInt32(Lector["Dificultad"]);
                 string NombreFoto = Lector["Foto"].ToString();
                 int Cant_Likes = Convert.ToInt32(Lector["Cant_Likes"]);
+                int Autor = Convert.ToInt32(Lector["Autor"]);
                 HttpPostedFileBase Foto = null;
                 Dificultad LaDificultad = new Dificultad();
                 LaDificultad = BD.TraerDificultad(iddifi);
                 Categoria LaCategoria = new Categoria();
                 LaCategoria = BD.TraerCategoria(idcate);
-                UnaReceta = new Receta(IDReceta, NombreReceta, LaCategoria, Preparacion, TiempoPreparacion, CantidadPlatos, LaDificultad, Foto, NombreFoto, Ingredientes, Cant_Likes);
+                UnaReceta = new Receta(IDReceta, NombreReceta, LaCategoria, Preparacion, TiempoPreparacion, CantidadPlatos, LaDificultad, Foto, NombreFoto, Ingredientes, Cant_Likes, Autor);
                 UnaReceta.Ingredientes = UnaReceta.ListarIngredientes();
                 LasRecetas.Add(UnaReceta);
             }
@@ -182,12 +186,13 @@ namespace TPFinal_TOAST.Models
                 int iddifi = Convert.ToInt32(Lector["Dificultad"]);
                 string NombreFoto = Lector["Foto"].ToString();
                 int Cant_Likes = Convert.ToInt32(Lector["Cant_Likes"]);
+                int Autor = Convert.ToInt32(Lector["Autor"]);
                 HttpPostedFileBase Foto = null;
                 Dificultad LaDificultad = new Dificultad();
                 LaDificultad = BD.TraerDificultad(iddifi);
                 Categoria LaCategoria = new Categoria();
                 LaCategoria = BD.TraerCategoria(idcate);
-                UnaReceta = new Receta(IDReceta, NombreReceta, LaCategoria, Preparacion, TiempoPreparacion, CantidadPlatos, LaDificultad, Foto, NombreFoto, Ingredientes, Cant_Likes);
+                UnaReceta = new Receta(IDReceta, NombreReceta, LaCategoria, Preparacion, TiempoPreparacion, CantidadPlatos, LaDificultad, Foto, NombreFoto, Ingredientes, Cant_Likes, Autor);
                 UnaReceta.Ingredientes = UnaReceta.ListarIngredientes();
                 ListaDeRecetas.Add(UnaReceta);
             }
@@ -195,7 +200,7 @@ namespace TPFinal_TOAST.Models
             Desconectar(Conn);
             return ListaDeRecetas;
         }
-        public static List<Receta> FiltrarRecetas(string NombreReceta, int Categoria, int TiempoPreparacion, float Cantidad, float Dificultad, int Cant_Likes)
+        public static List<Receta> FiltrarRecetas(string NombreReceta, int Categoria, int TiempoPreparacion, float Cantidad, float Dificultad, int Cant_Likes, int Autor)
         {
 
             SqlConnection Conn = Conectar();
@@ -210,6 +215,8 @@ namespace TPFinal_TOAST.Models
             Consulta.Parameters.Add(new SqlParameter("@Cantidad", Cantidad));
             Consulta.Parameters.Add(new SqlParameter("@Dificultad", Dificultad));
             Consulta.Parameters.Add(new SqlParameter("@Cant_Likes", Cant_Likes));
+            Consulta.Parameters.Add(new SqlParameter("@Autor", Autor));
+
             Consulta.CommandText = "FiltrarRecetas";
 
             SqlDataReader Lector = Consulta.ExecuteReader();
@@ -225,12 +232,13 @@ namespace TPFinal_TOAST.Models
                 int iddifi = Convert.ToInt32(Lector["Dificultad"]);
                 string NombreFoto1 = Lector["Foto"].ToString();
                 int Cant_Likes1 = Convert.ToInt32(Lector["Cant_Likes"]);
+                int Autor1 = Convert.ToInt32(Lector["Autor"]);
                 HttpPostedFileBase Foto1 = null;
                 Dificultad LaDificultad = new Dificultad();
                 LaDificultad = BD.TraerDificultad(iddifi);
                 Categoria LaCategoria = new Categoria();
                 LaCategoria = BD.TraerCategoria(idcate);
-                UnaReceta = new Receta(IDReceta1, NombreReceta1, LaCategoria, Preparacion1, TiempoPreparacion1, CantidadPlatos1, LaDificultad, Foto1, NombreFoto1, Ingredientes, Cant_Likes1);
+                UnaReceta = new Receta(IDReceta1, NombreReceta1, LaCategoria, Preparacion1, TiempoPreparacion1, CantidadPlatos1, LaDificultad, Foto1, NombreFoto1, Ingredientes, Cant_Likes1, Autor1);
                 UnaReceta.Ingredientes = UnaReceta.ListarIngredientes();
                 ListaDeRecetas.Add(UnaReceta);
             }
@@ -260,12 +268,13 @@ namespace TPFinal_TOAST.Models
                 int iddifi = Convert.ToInt32(Lector["Dificultad"]);
                 string NombreFoto = Lector["Foto"].ToString();
                 int Cant_Likes = Convert.ToInt32(Lector["Cant_Likes"]);
+                int Autor = Convert.ToInt32(Lector["Autor"]);
                 HttpPostedFileBase Foto = null;
                 Dificultad LaDificultad = new Dificultad();
                 LaDificultad = BD.TraerDificultad(iddifi);
                 Categoria LaCategoria = new Categoria();
                 LaCategoria = BD.TraerCategoria(idcate);
-                UnaReceta = new Receta(IDReceta, NombreReceta, LaCategoria, Preparacion, TiempoPreparacion, CantidadPlatos, LaDificultad, Foto, NombreFoto, Ingredientes, Cant_Likes);
+                UnaReceta = new Receta(IDReceta, NombreReceta, LaCategoria, Preparacion, TiempoPreparacion, CantidadPlatos, LaDificultad, Foto, NombreFoto, Ingredientes, Cant_Likes, Autor);
                 UnaReceta.Ingredientes = UnaReceta.ListarIngredientes();
                 LasRecetas.Add(UnaReceta);
             }
@@ -576,12 +585,13 @@ namespace TPFinal_TOAST.Models
                 int iddifi = Convert.ToInt32(Lector["Dificultad"]);
                 string NombreFoto = Lector["Foto"].ToString();
                 int Cant_Likes = Convert.ToInt32(Lector["Cant_Likes"]);
+                int Autor = Convert.ToInt32(Lector["Autor"]);
                 HttpPostedFileBase Foto = null;
                 Dificultad LaDificultad = new Dificultad();
                 LaDificultad = BD.TraerDificultad(iddifi);
                 Categoria LaCategoria = new Categoria();
                 LaCategoria = BD.TraerCategoria(idcate);
-                UnaReceta = new Receta(IDReceta, NombreReceta, LaCategoria, Preparacion, TiempoPreparacion, CantidadPlatos, LaDificultad, Foto, NombreFoto, Ingredientes, Cant_Likes);
+                UnaReceta = new Receta(IDReceta, NombreReceta, LaCategoria, Preparacion, TiempoPreparacion, CantidadPlatos, LaDificultad, Foto, NombreFoto, Ingredientes, Cant_Likes, Autor);
                 UnaReceta.Ingredientes = UnaReceta.ListarIngredientes();
                 Listarecetas.Add(UnaReceta);
             }
