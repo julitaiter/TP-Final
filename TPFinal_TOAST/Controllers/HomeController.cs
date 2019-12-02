@@ -57,7 +57,6 @@ namespace TPFinal_TOAST.Controllers
             ViewBag.Dificultades = NomDificultades;
             return View();
         } 
-
         [HttpPost]
         public ActionResult RecetaSubida(Receta rec)
         {
@@ -192,10 +191,17 @@ namespace TPFinal_TOAST.Controllers
 
             return View("BuscarXIng");
         }
-        public ActionResult Favoritos(int IdRec, int IdUsu)
+        public ActionResult Favoritos(int IdRec, int IdUsu, string modo, string view)
         {
-            BD.InsertarFavorito(IdUsu, IdRec);
-            return View("BuscarXIng");
+            if(modo=="Insertar")
+            {
+                BD.InsertarFavorito(IdUsu, IdRec);
+            }
+            else
+            {
+                BD.EliminarFavorito(IdUsu, IdRec);
+            }
+            return View(view);
         }
         public ActionResult VaciarLista(List<string> lista)
         {

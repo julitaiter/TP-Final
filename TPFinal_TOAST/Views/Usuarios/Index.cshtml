@@ -28,8 +28,18 @@
 
             <a class="NombreReceta" href='@Url.Action("ViewReceta", "Home", new { id = r.IDReceta })'> <h4>@r.NombreReceta</h4></a> <br />
             <div class="first-service icon">
-                <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu= Model.IDUsuario})"><img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Agregar a Favoritos" /></a>
-                <a href="@Url.Action("Login", "Usuarios")"><img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Agregar a Favoritos" /></a>
+            @if (Session["Usuario"] != null)
+            {
+                if (Model._Favoritos.Contains(r))
+                {
+                    <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu= Model.IDUsuario, modo = "Eliminar", view = "Index"})"><img src="~/Content/Fotos/Otros/Heart_Icon_Filled.png" alt="Heart_Icon_Filled" /></a>
+
+                }
+                else
+                {
+                    <a href="@Url.Action("Favoritos", "Home", new { IdRec = r.IDReceta, IdUsu= Model.IDUsuario, modo = "Insertar", view = "Index"})"><img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Heart_Icon" /></a>
+                }
+            }            
             </div>
         </div>
     </div>
