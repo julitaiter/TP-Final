@@ -55,24 +55,28 @@ namespace TPFinal_TOAST.Controllers
             return View();
         } 
         [HttpPost]
-        public ActionResult RecetaSubida(Receta rec)
+        public ActionResult RecetaSubida(HttpPostedFileBase foto, string titulo, string categoria, string ingredientes, string instrucciones, string dificultad, string tiempo_prep, string cant_platos)
         {
-            if (!ModelState.IsValid)
+            Receta LaReceta = new Receta();
+            LaReceta.Foto = foto;
+            LaReceta.NombreReceta = titulo;
+            LaReceta.Categoria = ; //BuscarCategoria
+            LaReceta.Ingredientes = ; //Validar por comas
+            LaReceta.Preparacion = instrucciones;
+            LaReceta.Dificultad = ; //BuscarDificultad
+            LaReceta.TiempoPreparacion = tiempo_prep; //Convertir a int
+            LaReceta.CantidadPlatos = cant_platos; //Convertir a int
+
+            if (LaReceta.Foto != null)
             {
-                return View("SubirReceta", rec);
+                string NuevaUbicacion = Server.MapPath("~/Content/Fotos/Perfiles/") + LaReceta.Foto.FileName;
+                LaReceta.Foto.SaveAs(NuevaUbicacion);
+                LaReceta.NombreFoto = LaReceta.Foto.FileName;
+                BD.IngresarReceta(LaReceta);
+                return View("RecetaPublicada", LaReceta);
             }
-            else
-            {
-                if (rec.Foto != null)
-                {
-                    string NuevaUbicacion = Server.MapPath("~/Content/Fotos/Perfiles/") + rec.Foto.FileName;
-                    rec.Foto.SaveAs(NuevaUbicacion);
-                    rec.NombreFoto = rec.Foto.FileName;
-                    BD.IngresarReceta(rec);
-                    return View("RecetaPublicada", rec);
-                }
-                return View("SubirReceta", rec);
-            }
+
+            return View("SubirReceta", LaReceta);
         }
         public ActionResult EliminarReceta(int id)
         {

@@ -43,73 +43,72 @@
     <link rel="stylesheet" type="text/css" href="~/Content/main3.css">
     <!--===============================================================================================-->
 
-    <title>Registro o Modificación</title>
+    <title>Subir Receta</title>
 
-    <!-- Font Icon -->
-    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
-
-    <!-- Main css -->
-    <link rel="stylesheet" href="~/Content/SignUp.css">
 </head>
 <body>
-    <div class="main">
-        <section class="signup">
-            <div class="container">
-                <div class="signup-content">
-                    <form method="POST" id="signup-form" class="signup-form" action="@Url.Action("Registrado", "Usuarios")" enctype="multipart/form-data">
-                        <h2 class="form-title">Subir receta</h2>
 
-                        <div class="uploadWrapper">
-                            <span>Subir una Foto</span>
-                            <div class="UploadButton">
-                                <input type='file' id="Foto" name="Foto" accept="image/*" required="required" pattern="{1,}" title="Ingrese una foto" />
-                            </div>
-                        </div> <br />
+    <form method="POST" id="signup-form" class="signup-form" action="@Url.Action("RecetaSubida", "Home")" enctype="multipart/form-data">
+        <h1 class="form-title">Subir receta</h1> <br /> <br />
 
-                        <div class="wrap-input100 validate-input" data-validate="Ingrese Nombre">
-                            <input class="input100" type="text" name="nombre" placeholder="Nombre" required="required" pattern="[A-Za-z].{1,}" title="Ingrese un nombre válido">
-                            <span class="focus-input100"></span>
-                        </div><br />
+        <div class="UploadFoto">
+            <input type='file' id="Foto" name="foto" accept="image/*" required="required" pattern="{1,}" title="Ingrese una foto" />
+        </div> <br /> <br />
 
-                        <div class="wrap-input100 validate-input" data-validate="Ingrese Apellido">
-                            <input class="input100" type="text" name="apellido" placeholder="Apellido" required="required" pattern="[A-Za-z].{1,}" title="Ingrese un apellido válido">
-                            <span class="focus-input100"></span>
-                        </div><br />
+        <h4> Título </h4>
+        <div class="wrap-input100 validate-input" data-validate="Ingrese Titulo">
+            <input class="input100" type="text" name="titulo" placeholder="por ej. Milanesa a la napolitana" required="required" pattern="[A-Za-z].{1,}" title="Ingrese un título válido">
+            <span class="focus-input100"></span>
+        </div><br />  <br />
 
-                        <div class="wrap-input100 validate-input" data-validate="Ingrese Nombre de Usuario">
-                            <input class="input100" type="text" name="username" placeholder="Nombre de usuario" required="required" pattern="{1,}" title="Ingrese un nombre de usuario">
-                            <span class="focus-input100"></span>
-                        </div><br />
+        <h4> Elegir Categoria </h4>
+        <div data-validate="Ingrese Categoria">
+            <select name="categoria">
+                @foreach (string Categoria in ViewBag.Categorias)
+                {
+                    <option value="@Categoria"> @Categoria </option>
+                }
+            </select>
+        </div><br />
 
-                        <div class="wrap-input100 validate-input" data-validate="Correo electrónico">
-                            <input class="input100" type="text" name="email" placeholder="Email" required="required" pattern="{1,}" title="Ingrese un email">
-                            <span class="focus-input100"></span>
-                        </div><br />
+        <h4> Ingredientes </h4> <p> Separe los ingredientes con comas </p>
+        <div class="wrap-input100 validate-input" data-validate="Ingrese Ingredientes">
+            <input class="input100" type="text" name="ingredientes" placeholder="por ej. 1kg. de papas, 6 huevos, 1 pizca de sal" required="required" pattern="{1,}" title="Ingrese ingredientes">
+            <span class="focus-input100"></span>
+        </div><br /> <br />
 
-                        <div class="wrap-input100 validate-input" data-validate="Ingrese contraseña">
-                            <input class="input100" type="password" name="contraseña" placeholder="Contraseña" required="required" pattern="{1,}" title="Ingrese una contraseña válido">
-                            <span class="focus-input100"></span>
-                        </div><br />
+        <h4> Instrucciones </h4> <p> Separe los pasos con saltos de línea </p>
+        <div class="wrap-input100 validate-input" data-validate="Ingrese Instrucciones">
+            <textarea class="input100" type="text" name="preparacion" placeholder="por ej.: Adobar la carne con sal, pimienta y orégano al gusto. Pasarla por el pan rallado para rebozar los escalopes de ternera." required="required" pattern="{1,}" title="Ingrese Preparacion"> </textarea>
+            <span class="focus-input100"></span>
+        </div><br />
 
-                        <div class="wrap-input100 validate-input" data-validate="Repita contraseña">
-                            <input class="input100" type="password" name="re_contraseña" placeholder="Repita su contraseña" required="required" pattern="{1,}" title="Repita su contraseña">
-                            <span class="focus-input100"></span>
-                        </div> <br />
+        <h4> Dificultad </h4>
+        <div class="Subir_Receta2" data-validate="Ingrese Dificultad">
+            <select name="dificultad">
+                @foreach (string Dificultad in ViewBag.Dificultades)
+                {
+                    <option value="@Dificultad"> @Dificultad </option>
+                }
+            </select>
+        </div>
 
-                        <div class="container-login100-form-btn m-t-17">
-                            <button class="login100-form-btn">
-                                Registrarse
-                            </button>
-                        </div>
+        <div class="Subir_Receta2">
+            <input type="text" name="tiempo_prep" placeholder="por ej. 65 min. " required="required" pattern="{1,}" title="Ingrese tiempo de preparación">
+        </div>
 
-                    </form>
-                    <p class="loginhere">
-                        Ya tenés una cuenta? @Html.ActionLink("Iniciar sesión", "Login", "Usuarios")
-                    </p>
-                </div>
+        <div class="Subir_Receta2">
+            <input type="number" name="cant_platos" required="required" pattern="{1,}" title="Ingrese cantidad de platos">
+        </div>
+
+            <div class="container-login100-form-btn m-t-17">
+                <button class="login100-form-btn">
+                    Publicar
+                </button>
             </div>
-        </section>
-    </div>
+
+    </form>
+
 
     <!-- JS -->
     <script src="~/Content/vendor/jquery/jquery.min.js"></script>
