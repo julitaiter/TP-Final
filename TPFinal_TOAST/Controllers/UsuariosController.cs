@@ -15,8 +15,9 @@ namespace TPFinal_TOAST.Controllers
         {
             Usuario user = BD.TraerUsuario(id);
             List<Receta> RecXAut = BD.TraerRecetasxAutor(id);
+            ViewBag.Usuario = user;
             ViewBag.RecXAut = RecXAut;
-            return View(user);
+            return View();
         }
         public ActionResult ListarUsuarios()
         {
@@ -34,7 +35,8 @@ namespace TPFinal_TOAST.Controllers
             bool validacion = BD.ValidarUsuario(User);
             if (validacion)
             {
-                User = BD.TraerUsuario(User.IDUsuario);
+                int IDUsuario = BD.TraerIDUsuario(User.Mail, User.Contraseña);
+                User = BD.TraerUsuario(IDUsuario);
                 Session["Usuario"] = User;
                 return RedirectToAction("Index", new { id = User.IDUsuario });
 
@@ -44,45 +46,36 @@ namespace TPFinal_TOAST.Controllers
                 return RedirectToAction("Login", User);
             }
         }
-        public ActionResult RM(string modo, int id)
+        public ActionResult Registrar()
         {
-            Usuario user = BD.TraerUsuario(id);
-            ViewBag.modo = modo;
-            return View(user);
+            return View();
         }
         [HttpPost]
-        public ActionResult RM2(HttpPostedFileBase Foto, string name, string username, string email, string password, string re_password, string modo)
+        public ActionResult Registrado(HttpPostedFileBase Foto, string nombre, string apellido, string username, string email, string contraseña, string re_contraseña)
         {
             Usuario User = new Usuario();
+            User.IDUsuario = 0;
+            User.Foto = Foto;
+            User.Nombre = nombre;
+            User.Apellido = apellido;
+            User.Nombre_Usuario = username;
+            User.Mail = email;
+            User.Contraseña = contraseña;
 
-            if (password != re_password)
+            if (contraseña != re_contraseña)
             {
-                return RedirectToAction("RM", User);
+                return RedirectToAction("Registrar", User);
             }
             else
             {
-                User.Foto = Foto;
-                User.Nombre = name;
-                User.Nombre_Usuario = username;
-                User.Mail = email;
-                User.Contraseña = password;
-
                 string NuevaUbicacion = Server.MapPath("~/Content/Fotos/Perfiles/") + User.Foto.FileName;
                 User.Foto.SaveAs(NuevaUbicacion);
                 User.NombreFoto = User.Foto.FileName;
                 User.Admin = false;
 
-                if (modo == "Insertar")
-                {
-                    BD.InsertarUsuario(User);
-                    return RedirectToAction("Index", new { id = User.IDUsuario });
-                }
-
-                else
-                {
-                    BD.ModificarUsuario(User);
-                    return RedirectToAction("Index", new { id = User.IDUsuario });
-                }
+                BD.InsertarUsuario(User);
+                User.IDUsuario = BD.TraerIDUsuario(User.Mail, User.Contraseña);
+                return RedirectToAction("Index", new { id = User.IDUsuario });
             }
 
         }

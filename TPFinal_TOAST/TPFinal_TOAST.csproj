@@ -224,13 +224,14 @@
     <Content Include="Views\Home\RecetaPublicada.cshtml" />
     <Content Include="Views\Home\ViewReceta.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Usuarios\RM.cshtml" />
+    <Content Include="Views\Usuarios\Registrar.cshtml" />
     <Content Include="Views\Usuarios\Index.cshtml" />
     <Content Include="Views\Usuarios\Login.cshtml" />
     <Content Include="Views\Home\RecetaCategoria.cshtml" />
     <Content Include="Views\Home\SubirReceta.cshtml" />
     <Content Include="Views\Home\EnviarIdea.cshtml" />
     <Content Include="Views\Home\BuscarXIng.cshtml" />
+    <Content Include="Views\Usuarios\Modificar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

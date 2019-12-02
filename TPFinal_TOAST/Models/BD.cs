@@ -438,6 +438,24 @@ namespace TPFinal_TOAST.Models
             Desconectar(Conn);
             return ListaUsuarios;
         }
+        public static int TraerIDUsuario (string Mail, string Contraseña)
+        {
+            SqlConnection Conn = Conectar();
+            int IDUsuario = -1;
+            SqlCommand Consulta = Conn.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandText = "TraerIDUsuario";
+            Consulta.Parameters.Add(new SqlParameter("@Mail", Mail));
+            Consulta.Parameters.Add(new SqlParameter("@Contraseña", Contraseña));
+            SqlDataReader Lector = Consulta.ExecuteReader();
+
+            if (Lector.Read())
+            {
+                IDUsuario = Convert.ToInt32(Lector["IDUsuario"]);               
+            }
+            Desconectar(Conn);
+            return IDUsuario;
+        }
 
         //Metodos Ingredientes
         public static void IngresarIngrediente(string NombreIngrediente)
