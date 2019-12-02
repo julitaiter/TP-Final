@@ -303,8 +303,10 @@ ul.cd-hero-slider {
 
 .second-service .icon {
     background-image: url(../img/second-service-main.png);
-    height: 32px;
-    width: 22px;
+    height: 35px;
+    width: 35px;
+    margin-left: 200px;
+    margin-bottom: 5px;
     display: inline-block;
 }
 
@@ -314,8 +316,10 @@ ul.cd-hero-slider {
 
 .third-service .icon {
     background-image: url(../img/third-service-main.png);
-    height: 32px;
-    width: 32px;
+    height: 35px;
+    width: 35px;
+    margin-left: 200px;
+    margin-bottom: 5px;
     display: inline-block;
 }
 
@@ -325,8 +329,10 @@ ul.cd-hero-slider {
 
 .fourth-service .icon {
     background-image: url(../img/fourth-service-main.png);
-    height: 32px;
-    width: 32px;
+    height: 35px;
+    width: 35px;
+    margin-left: 200px;
+    margin-bottom: 5px;
     display: inline-block;
 }
 

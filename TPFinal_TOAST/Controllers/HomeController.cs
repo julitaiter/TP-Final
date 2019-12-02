@@ -18,11 +18,8 @@ namespace TPFinal_TOAST.Controllers
           NumRecetas = BD.CantidadRecetas();
           NumerosRandom = BD.GenerarRandoms(4, NumRecetas);
           ListaRecetas = BD.TraerRecetasRandom(NumerosRandom);
-          ViewBag.Receta1 = ListaRecetas[0];
-          ViewBag.Receta2 = ListaRecetas[1];
-          ViewBag.Receta3 = ListaRecetas[2];
-          ViewBag.Receta4 = ListaRecetas[3];
-            return View();
+          ViewBag.ListaRecetas = ListaRecetas;
+          return View();
         }
         public ActionResult ViewReceta(int id)
         {
@@ -57,7 +54,6 @@ namespace TPFinal_TOAST.Controllers
             ViewBag.Categorias = NomCategorias;
             ViewBag.Dificultades = NomDificultades;
             return View();
-
         } 
         [HttpPost]
         public ActionResult RecetaSubida(Receta rec)
@@ -68,11 +64,15 @@ namespace TPFinal_TOAST.Controllers
             }
             else
             {
-                string NuevaUbicacion = Server.MapPath("~/Content/Fotos/Perfiles/") + rec.Foto.FileName;
-                rec.Foto.SaveAs(NuevaUbicacion);
-                rec.NombreFoto = rec.Foto.FileName;
-                BD.IngresarReceta(rec);
-                return View("RecetaPublicada", rec);
+                if (rec.Foto != null)
+                {
+                    string NuevaUbicacion = Server.MapPath("~/Content/Fotos/Perfiles/") + rec.Foto.FileName;
+                    rec.Foto.SaveAs(NuevaUbicacion);
+                    rec.NombreFoto = rec.Foto.FileName;
+                    BD.IngresarReceta(rec);
+                    return View("RecetaPublicada", rec);
+                }
+                return View("SubirReceta", rec);
             }
         }
         public ActionResult EliminarReceta(int id)
@@ -193,10 +193,17 @@ namespace TPFinal_TOAST.Controllers
 
             return View("BuscarXIng");
         }
-        public ActionResult Favoritos(int IdRec, int IdUsu)
+        public ActionResult Favoritos(int IdRec, int IdUsu, string modo, string view)
         {
-            BD.InsertarFavorito(IdUsu, IdRec);
-            return View("BuscarXIng");
+            if(modo=="Insertar")
+            {
+                BD.InsertarFavorito(IdUsu, IdRec);
+            }
+            else
+            {
+                BD.EliminarFavorito(IdUsu, IdRec);
+            }
+            return View(view);
         }
         public ActionResult VaciarLista(List<string> lista)
         {

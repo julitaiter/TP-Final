@@ -348,8 +348,8 @@ namespace TPFinal_TOAST.Models
                 bool Admin = Convert.ToBoolean(Lector["Admin"]);
                 string NombreFoto = Lector["Nombre_Foto"].ToString();
                 HttpPostedFileBase Foto = null;
-                UnUsuario = new Usuario(IDUsuario, Nombre_Usuario, Nombre, Apellido, Mail, Contraseña, Admin, Foto, NombreFoto, Favoritos);
                 Favoritos = UnUsuario.TraerFavoritos();
+                UnUsuario = new Usuario(IDUsuario, Nombre_Usuario, Nombre, Apellido, Mail, Contraseña, Admin, Foto, NombreFoto, Favoritos);
             }
             Desconectar(Conn);
             return UnUsuario;

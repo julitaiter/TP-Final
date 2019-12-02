@@ -39,6 +39,11 @@
     margin-left:15px;
 }
 
+.LogoTOASTLogin {
+    width: 10px;
+    height: 10px;
+}
+
 .IngredientesTit {
     font-size: 30px;
     font-family: 'Segoe UI';
@@ -109,11 +114,12 @@
 }
 
 .Subir_Receta {
-    font: Regular 36px/60px Segoe UI;
+    display: inline-block;
+    font-family: Segoe UI;
 }
 .Subir_Receta2 {
     display: inline-block;
-    font: Regular 36px/60px Segoe UI;
+    font-family: Segoe UI;
 }
 .UploadFoto {
     display: inline-block;
