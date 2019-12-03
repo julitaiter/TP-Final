@@ -60,17 +60,19 @@ namespace TPFinal_TOAST.Controllers
             Receta LaReceta = new Receta();
             LaReceta.Foto = foto;
             LaReceta.NombreReceta = titulo;
-            LaReceta.Categoria = BD.TraerIDCategoria(categoria);
-            List<string> ingredientes_separados = new List<string>();
-            ingredientes_separados = cadena.Split(',');
+            int IDCategoria = BD.TraerIDCategoria(categoria);
+            LaReceta.Categoria = BD.TraerCategoria(IDCategoria);
+            string[] ingredientes_separados;
+            ingredientes_separados = ingredientes.Split(',');
             foreach (string ElIngrediente in ingredientes_separados)
             {
                 BD.IngresarIngrediente(ElIngrediente);
             }
-            LaReceta.Ingredientes = ingredientes_separados; //Validar por comas
+            //LaReceta.Ingredientes = ingredientes_separados; //Validar por comas
             LaReceta.Preparacion = instrucciones;
-            LaReceta.Dificultad = BD.TraerIDDificultad(dificultad);
-            
+            int IDDificultad = BD.TraerIDDificultad(dificultad);
+            LaReceta.Dificultad = BD.TraerDificultad(IDDificultad);
+
             LaReceta.TiempoPreparacion = tiempo_prep;
             LaReceta.CantidadPlatos = cant_platos;
 
