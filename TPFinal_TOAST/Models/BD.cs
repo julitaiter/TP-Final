@@ -572,6 +572,23 @@ namespace TPFinal_TOAST.Models
             Desconectar(Conn);
             return categ;
         }
+        public static int TraerIDCategoria (string NomCategoria)
+        {
+            SqlConnection Conn = Conectar();
+            int IDCategoria = -1;
+            SqlCommand Consulta = Conn.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandText = "TraerIDCategoria";
+            Consulta.Parameters.Add(new SqlParameter("@NomCategoria", NomCategoria));
+            SqlDataReader Lector = Consulta.ExecuteReader();
+
+            if (Lector.Read())
+            {
+                IDCategoria = Convert.ToInt32(Lector["IDCategoria"]);
+            }
+            Desconectar(Conn);
+            return IDCategoria;
+        }
 
         //Metodos Dificultad
         public static Dificultad TraerDificultad(int IDReceta)
@@ -610,6 +627,23 @@ namespace TPFinal_TOAST.Models
             Desconectar(Conn);
             return difi;
 
+        }
+        public static int TraerIDDificultad(string NombreDificultad)
+        {
+            SqlConnection Conn = Conectar();
+            int IDDificultad = -1;
+            SqlCommand Consulta = Conn.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandText = "TraerIDDificultad";
+            Consulta.Parameters.Add(new SqlParameter("@NombreDificultad", NombreDificultad));
+            SqlDataReader Lector = Consulta.ExecuteReader();
+
+            if (Lector.Read())
+            {
+                IDDificultad = Convert.ToInt32(Lector["IDDificultad"]);
+            }
+            Desconectar(Conn);
+            return IDDificultad;
         }
 
         //Metodos Random

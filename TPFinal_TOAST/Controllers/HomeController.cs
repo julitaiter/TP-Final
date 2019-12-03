@@ -55,17 +55,24 @@ namespace TPFinal_TOAST.Controllers
             return View();
         } 
         [HttpPost]
-        public ActionResult RecetaSubida(HttpPostedFileBase foto, string titulo, string categoria, string ingredientes, string instrucciones, string dificultad, string tiempo_prep, string cant_platos)
+        public ActionResult RecetaSubida(HttpPostedFileBase foto, string titulo, string categoria, string ingredientes, string instrucciones, string dificultad, int tiempo_prep, int cant_platos)
         {
             Receta LaReceta = new Receta();
             LaReceta.Foto = foto;
             LaReceta.NombreReceta = titulo;
-            LaReceta.Categoria = ; //BuscarCategoria
-            LaReceta.Ingredientes = ; //Validar por comas
+            LaReceta.Categoria = BD.TraerIDCategoria(categoria);
+            List<string> ingredientes_separados = new List<string>();
+            ingredientes_separados = cadena.Split(',');
+            foreach (string ElIngrediente in ingredientes_separados)
+            {
+                BD.IngresarIngrediente(ElIngrediente);
+            }
+            LaReceta.Ingredientes = ingredientes_separados; //Validar por comas
             LaReceta.Preparacion = instrucciones;
-            LaReceta.Dificultad = ; //BuscarDificultad
-            LaReceta.TiempoPreparacion = tiempo_prep; //Convertir a int
-            LaReceta.CantidadPlatos = cant_platos; //Convertir a int
+            LaReceta.Dificultad = BD.TraerIDDificultad(dificultad);
+            
+            LaReceta.TiempoPreparacion = tiempo_prep;
+            LaReceta.CantidadPlatos = cant_platos;
 
             if (LaReceta.Foto != null)
             {
