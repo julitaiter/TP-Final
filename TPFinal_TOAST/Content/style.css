@@ -117,24 +117,45 @@
 
 .Subir_Receta {
     display: inline-block;
-    font-family: Segoe UI;
-    height: 20px;
+    height: 40px;
     width: 10px;
+
+    font-family: Poppins-Regular;
+    color: #333333;
+    line-height: 1.2;
+    font-size: 18px;
+    display: block;
+    width: 100%;
+    background: transparent;
 }
 
 .Subir_Receta2 {
     display: inline-block;
-    font-family: Segoe UI;
-    height: 20px;
+    height: 40px;
     width: 10px;
-    margin-left: 20px;
+
+    margin-left: 100px;
+    font-family: Poppins-Regular;
+    color: #333333;
+    line-height: 1.2;
+    font-size: 18px;
+    display: block;
+    width: 100%;
+    background: transparent;
 }
 
 .Subir_Receta3 {
-    font-family: Segoe UI;
-    height: 20px;
+    display: inline-block;
+    height: 40px;
     width: 10px;
-    margin-left: 40px;
+    margin-left: 200px;
+    font-family: Poppins-Regular;
+    color: #333333;
+    line-height: 1.2;
+    font-size: 18px;
+    display: block;
+    width: 100%;
+    background: transparent;
 }
 
 .UploadFoto {
