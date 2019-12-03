@@ -24,6 +24,7 @@
     <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="~/Content/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="~/Content/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <!--===============================================================================================-->
@@ -42,6 +43,17 @@
     <link rel="stylesheet" type="text/css" href="~/Content/util.css">
     <link rel="stylesheet" type="text/css" href="~/Content/main3.css">
     <!--===============================================================================================-->
+
+    <script>
+        a = 0;
+        function addIngrediente() {
+            a++;
+            var div = document.createElement('div');
+            div.setAttribute('class', 'form-inline');
+            div.innerHTML = '<div style="clear:both" class="_Cantidad' + a + ' col-md-offset-1 col-md-6"><input class="form-control" name="_Cantidad' + a + '" type="text"/></div><div class="Nombre_' + a + ' col-md-2""><input class="form-control" name="_Nombre' + a + '" type="text"/></div>';
+            document.getElementById('ingredientes').appendChild(div); document.getElementById('ingredientes').appendChild(div);
+        }
+    </script>
 
     <title>Subir Receta</title>
 
@@ -69,17 +81,24 @@
                     <option value="@Categoria"> @Categoria </option>
                 }
             </select>
-        </div><br />
-
-        <h4> Ingredientes </h4> <p> Separe los ingredientes con comas </p>
-        <div class="wrap-input100 validate-input" data-validate="Ingrese Ingredientes">
-            <input class="input100" type="text" name="ingredientes" placeholder="por ej. 1kg. de papas, 6 huevos, 1 pizca de sal" required="required" pattern="{1,}" title="Ingrese ingredientes">
-            <span class="focus-input100"></span>
         </div><br /> <br />
+
+        <h4> Ingredientes </h4> <br />
+        <div class="row2">
+            <div class="container">
+                <div class="col-md-offset-1 col-md-6"><label>Cantidad</label></div>
+                <div class="col-md-2"><label>Nombre Ingrediente</label></div>
+                <div class="col-md-1"><input type="button" class="btn btn-success" id="add_ingrediente()" onClick="addIngrediente()" value="+" required="required" pattern="{1,}" title="Ingrese un Ingrediente válido"/></div>
+            </div>
+        </div>        
+            <!-- El id="canciones" indica que la función de JavaScript dejará aquí el resultado -->
+        <div class="row2" id="ingredientes"> <br />
+        </div> <br /><br />
+
 
         <h4> Instrucciones </h4> <p> Separe los pasos con saltos de línea </p>
         <div class="wrap-input100 validate-input" data-validate="Ingrese Instrucciones">
-            <textarea class="input100" type="text" name="preparacion" placeholder="por ej.: Adobar la carne con sal, pimienta y orégano al gusto. Pasarla por el pan rallado para rebozar los escalopes de ternera." required="required" pattern="{1,}" title="Ingrese Preparacion"> </textarea>
+            <textarea class="input100" type="text" name="instrucciones" rows="4" cols="50" placeholder="por ej.: Adobar la carne con sal, pimienta y orégano al gusto. Pasarla por el pan rallado para rebozar los escalopes de ternera."> </textarea>
             <span class="focus-input100"></span>
         </div><br />
 
@@ -98,14 +117,14 @@
         </div>
 
         <div class="Subir_Receta2">
-            <input type="number" name="cant_platos" required="required" pattern="{1,}" title="Ingrese cantidad de platos">
+            <input type="number" name="cant_platos" placeholder="en porciones" required="required" pattern="{1,}" title="Ingrese cantidad de platos">
         </div>
 
-            <div class="container-login100-form-btn m-t-17">
-                <button class="login100-form-btn">
-                    Publicar
-                </button>
-            </div>
+        <div class="container-login100-form-btn m-t-17">
+            <button class="login100-form-btn">
+                Publicar
+            </button>
+        </div>
 
     </form>
 

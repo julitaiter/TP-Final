@@ -21,9 +21,9 @@ namespace TPFinal_TOAST.Controllers
           ViewBag.ListaRecetas = ListaRecetas;
           return View();
         }
-        public ActionResult ViewReceta(int id)
+        public ActionResult ViewReceta(int IDReceta)
         {
-            Receta rec = BD.TraerReceta(id);
+            Receta rec = BD.TraerReceta(IDReceta);
             ViewBag.Usuario = BD.TraerUsuario(rec.Autor);
             return View(rec);
         }
@@ -55,37 +55,61 @@ namespace TPFinal_TOAST.Controllers
             return View();
         } 
         [HttpPost]
-        public ActionResult RecetaSubida(HttpPostedFileBase foto, string titulo, string categoria, string ingredientes, string instrucciones, string dificultad, int tiempo_prep, int cant_platos)
+        public ActionResult RecetaSubida(HttpPostedFileBase foto, string titulo, string categoria, string instrucciones, string dificultad, int tiempo_prep, int cant_platos)
         {
             Receta LaReceta = new Receta();
+            Dictionary<string, string> Ingredientes = new Dictionary<string, string>();
+            int i = 0;
+
             LaReceta.Foto = foto;
             LaReceta.NombreReceta = titulo;
             int IDCategoria = BD.TraerIDCategoria(categoria);
             LaReceta.Categoria = BD.TraerCategoria(IDCategoria);
-            string[] ingredientes_separados;
-            ingredientes_separados = ingredientes.Split(',');
-            foreach (string ElIngrediente in ingredientes_separados)
+            do
             {
-                BD.IngresarIngrediente(ElIngrediente);
+                i++;
+                string Nombre = Request["_Nombre" + i];
+                string Cant = Request["_Cantidad" + i];
+                if (Nombre != null && Cant != null)
+                {
+                    Ingredientes.Add(Cant,Nombre);
+                }
+
+            } while (Request["_Nombre" + i] != null && Request["_Cantidad" + i] != null);
+
+            foreach (string ElIngrediente in Ingredientes.Values)
+            {
+                bool Ingresado = BD.ComprobarIngrediente(ElIngrediente);
+                if(!Ingresado)
+                {
+                    BD.IngresarIngrediente(ElIngrediente);
+                }
             }
-            //LaReceta.Ingredientes = ingredientes_separados; //Validar por comas
+     
             LaReceta.Preparacion = instrucciones;
             int IDDificultad = BD.TraerIDDificultad(dificultad);
             LaReceta.Dificultad = BD.TraerDificultad(IDDificultad);
 
             LaReceta.TiempoPreparacion = tiempo_prep;
             LaReceta.CantidadPlatos = cant_platos;
+            Usuario User = (Usuario)Session["Usuario"];
+            LaReceta.Autor = User.IDUsuario;
 
-            if (LaReceta.Foto != null)
+            string NuevaUbicacion = Server.MapPath("~/Content/Fotos/Perfiles/") + LaReceta.Foto.FileName;
+            LaReceta.Foto.SaveAs(NuevaUbicacion);
+            LaReceta.NombreFoto = LaReceta.Foto.FileName;
+            BD.IngresarReceta(LaReceta);
+
+
+            foreach (string LaCantidad in Ingredientes.Keys)
             {
-                string NuevaUbicacion = Server.MapPath("~/Content/Fotos/Perfiles/") + LaReceta.Foto.FileName;
-                LaReceta.Foto.SaveAs(NuevaUbicacion);
-                LaReceta.NombreFoto = LaReceta.Foto.FileName;
-                BD.IngresarReceta(LaReceta);
-                return View("RecetaPublicada", LaReceta);
+                string NomIngrediente = Ingredientes[LaCantidad];
+                BD.IngresarRxI(LaReceta.NombreReceta, NomIngrediente, LaCantidad);
             }
 
-            return View("SubirReceta", LaReceta);
+            LaReceta.IDReceta = BD.TraerIDReceta(LaReceta.NombreReceta);
+
+            return RedirectToAction("RecetaPublicada", new { IDReceta = LaReceta.IDReceta });
         }
         public ActionResult EliminarReceta(int id)
         {
@@ -222,6 +246,11 @@ namespace TPFinal_TOAST.Controllers
             lista = null;
             ViewBag.IngredientesBuscados = lista;
             return View("BuscarXIng");
+        }
+        public ActionResult RecetaPublicada(int IDReceta)
+        {
+            ViewBag.IDReceta = IDReceta;
+            return View();
         }
     }
 }

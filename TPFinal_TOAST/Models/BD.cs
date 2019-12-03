@@ -35,11 +35,11 @@ namespace TPFinal_TOAST.Models
             Consulta.CommandType = System.Data.CommandType.StoredProcedure;
             Consulta.CommandText = "IngresarRecetas";
             Consulta.Parameters.Add(new SqlParameter("@NombreReceta", rec.NombreReceta));
-            Consulta.Parameters.Add(new SqlParameter("@Categoria", rec.Categoria));
+            Consulta.Parameters.Add(new SqlParameter("@Categoria", rec.Categoria.IdCategoria));
             Consulta.Parameters.Add(new SqlParameter("@Preparacion", rec.Preparacion));
             Consulta.Parameters.Add(new SqlParameter("@TiempoPreparacion", rec.TiempoPreparacion));
             Consulta.Parameters.Add(new SqlParameter("@CantidadPlatos", rec.CantidadPlatos));
-            Consulta.Parameters.Add(new SqlParameter("@Dificultad", rec.Dificultad));
+            Consulta.Parameters.Add(new SqlParameter("@Dificultad", rec.Dificultad.IDDificultad));
             Consulta.Parameters.Add(new SqlParameter("@Foto", rec.NombreFoto));
             Consulta.Parameters.Add(new SqlParameter("@Cant_Likes", rec.Cant_Likes));
             Consulta.Parameters.Add(new SqlParameter("@Autor", rec.Autor));
@@ -317,6 +317,24 @@ namespace TPFinal_TOAST.Models
 
             Desconectar(Conn);
             return LasRecetas;
+        }
+        public static int TraerIDReceta (string NombreReceta)
+        {
+            SqlConnection Conn = Conectar();
+            int IDReceta = -1;
+            SqlCommand Consulta = Conn.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            Consulta.CommandText = "TraerIDReceta";
+            Consulta.Parameters.Add(new SqlParameter("@NombreReceta", NombreReceta));
+            SqlDataReader Lector = Consulta.ExecuteReader();
+
+            if (Lector.Read())
+            {
+                IDReceta = Convert.ToInt32(Lector["IDReceta"]);
+            }
+            Desconectar(Conn);
+            return IDReceta;
+
         }
 
         //Metodos Usuarios

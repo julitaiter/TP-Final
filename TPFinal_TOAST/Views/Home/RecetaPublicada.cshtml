@@ -33,6 +33,6 @@
     <h2>¡Su receta ha sido publicada con éxito!</h2>
 </div>
 <div align="center">
-    @Html.ActionLink("Ver receta", "ViewReceta", "Home", new {  id = ViewBag.IDReceta })
+    <a href="@Url.Action("ViewReceta", "Home", new { IDReceta = ViewBag.IDReceta })"> Ver Receta </a>
 </div>
 
