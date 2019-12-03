@@ -107,7 +107,7 @@
                                     if (user.IDUsuario == LaReceta.Autor)
                                     {
                                         <div class="editarRec">
-                                            @Html.ActionLink("Editar receta", "ModificarReceta", "Home", new { id = LaReceta.IDReceta }, null)<br />
+                                            @Html.ActionLink("Editar receta", "ModificarReceta", "Home", new { IDReceta = LaReceta.IDReceta }, null)<br />
                                         </div>
                                     }
 

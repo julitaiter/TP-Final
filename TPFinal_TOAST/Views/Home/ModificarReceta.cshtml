@@ -1,2 +1,126 @@
-﻿
+﻿@using TPFinal_TOAST.Models
+@model Receta
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/animate.css">
+    <link rel="stylesheet" href="~/Content/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/Content/magnific-popup.css">
+    <link rel="stylesheet" href="~/Content/aos.css">
+    <link rel="stylesheet" href="~/Content/ionicons.css">
+    <link rel="stylesheet" href="~/Content/flaticon.css">
+    <link rel="stylesheet" href="~/Content/icomoon.css">
+    <link rel="stylesheet" href="~/Content/style.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/main3.css">
+    <!--===============================================================================================-->
+
+    <script>
+        a = 0;
+        function addIngrediente() {
+            a++;
+            var div = document.createElement('div');
+            div.setAttribute('class', 'form-inline');
+            div.innerHTML = '<div style="clear:both" class="_Cantidad' + a + ' col-md-offset-1 col-md-6"><input class="form-control" name="_Cantidad' + a + '" type="text"/></div><div class="Nombre_' + a + ' col-md-2""><input class="form-control" name="_Nombre' + a + '" type="text"/></div>';
+            document.getElementById('ingredientes').appendChild(div); document.getElementById('ingredientes').appendChild(div);
+        }
+    </script>
+
+    <title>Modificar Receta</title>
+
+</head>
+<body>
+
+    <form method="POST" id="signup-form" class="signup-form" action="@Url.Action("RecetaModificada", "Home", new { LaRecetaAnterior = ViewBag.LaReceta })" enctype="multipart/form-data">
+        <h1 class="form-title">Subir receta</h1> <br /> <br />
+
+        <div class="UploadFoto">
+            <input type='file' id="Foto" name="foto" accept="image/*" />
+        </div> <br /> <br />
+
+        <h4> Título </h4>
+        <div class="wrap-input100 validate-input" data-validate="Ingrese Titulo">
+            <input class="input100" type="text" name="titulo" placeholder="@ViewBag.LaReceta.NombreReceta" required="required" pattern="[A-Za-z].{1,}" title="Ingrese un título válido">
+            <span class="focus-input100"></span>
+        </div><br />  <br />
+
+        <h4> Elegir Categoria </h4>
+        <div data-validate="Ingrese Categoria">
+            <select name="categoria">
+                @foreach (string Categoria in ViewBag.Categorias)
+                {
+                    <option value="@Categoria"> @Categoria </option>
+                }
+            </select>
+        </div><br /> <br />
+
+        <h4> Instrucciones </h4> <p> Separe los pasos con saltos de línea </p>
+        <div class="wrap-input100 validate-input" data-validate="Ingrese Instrucciones">
+            <textarea class="input100" type="text" name="instrucciones" rows="4" cols="50" placeholder="@ViewBag.LaReceta.Preparacion"> </textarea>
+            <span class="focus-input100"></span>
+        </div><br />
+
+        <h4> Dificultad </h4>
+        <div class="Subir_Receta" data-validate="Ingrese Dificultad">
+            <select name="dificultad">
+                @foreach (string Dificultad in ViewBag.Dificultades)
+                {
+                    <option value="@Dificultad"> @Dificultad </option>
+                }
+            </select>
+        </div> <br /> <br />
+
+        <h4> Tiempo de Preparación </h4><br />
+        <div class="Subir_Receta2">
+            <input type="number" name="tiempo_prep" required="required" placeholder = "@ViewBag.LaReceta.TiempoPreparacion" pattern="{1,}" title="Ingrese tiempo de preparación">  <p class="P_SubirReceta"> min. </p>
+        </div><br /> <br />
+
+        <h4> Cantidad de Platos </h4><br />
+        <div class="Subir_Receta3">
+            <input type="number" name="cant_platos" required="required" placeholder = "@ViewBag.LaReceta.CantidadPlatos" pattern="{1,}" title="Ingrese cantidad de platos"> <p class="P_SubirReceta"> porciones </p>
+        </div> <br /> <br />
+
+        <div class="container-login100-form-btn m-t-17">
+            <button class="login100-form-btn">
+                Guardar cambios
+            </button>
+        </div>
+
+    </form>
+
+
+    <!-- JS -->
+    <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/SignUp.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
 

@@ -111,6 +111,65 @@ namespace TPFinal_TOAST.Controllers
 
             return RedirectToAction("RecetaPublicada", new { IDReceta = LaReceta.IDReceta });
         }
+        public ActionResult ModificarReceta(int IDReceta)
+        {
+            List<Categoria> LasCategorias = BD.ListarCategorias();
+            List<Dificultad> LasDificultades = BD.ListarDificultades();
+            List<string> NomCategorias = new List<string>();
+            List<string> NomDificultades = new List<string>();
+
+            foreach (Categoria UnaCategoria in LasCategorias)
+            {
+                NomCategorias.Add(UnaCategoria.Nom_Categoria);
+            }
+            foreach (Dificultad UnaDificultad in LasDificultades)
+            {
+                NomDificultades.Add(UnaDificultad.NombreDificultad);
+            }
+            ViewBag.Categorias = NomCategorias;
+            ViewBag.Dificultades = NomDificultades;
+
+            ViewBag.LaReceta = BD.TraerReceta(IDReceta);
+
+            return View();
+        }
+        [HttpPost]
+        public ActionResult RecetaModificada(HttpPostedFileBase foto, string titulo, string categoria, string instrucciones, string dificultad, int tiempo_prep, int cant_platos, Receta LaRecetaAnterior)
+        {
+            Receta LaReceta = new Receta();
+            LaReceta.NombreReceta = titulo;
+            LaReceta.IDReceta = LaRecetaAnterior.IDReceta;
+            int IDCategoria = BD.TraerIDCategoria(categoria);
+            LaReceta.Categoria = BD.TraerCategoria(IDCategoria);
+            LaReceta.Preparacion = instrucciones;
+            int IDDificultad = BD.TraerIDDificultad(dificultad);
+            LaReceta.Dificultad = BD.TraerDificultad(IDDificultad);
+            LaReceta.Ingredientes = LaRecetaAnterior.Ingredientes;
+            LaReceta.TiempoPreparacion = tiempo_prep;
+            LaReceta.CantidadPlatos = cant_platos;
+            
+            if(foto != null)
+            {
+                LaReceta.Foto = foto;
+                string NuevaUbicacion = Server.MapPath("~/Content/Fotos/Perfiles/") + LaReceta.Foto.FileName;
+                LaReceta.Foto.SaveAs(NuevaUbicacion);
+                LaReceta.NombreFoto = LaReceta.Foto.FileName;
+            }
+            else
+            {
+                LaReceta.Foto = LaRecetaAnterior.Foto;
+                LaReceta.NombreFoto = LaRecetaAnterior.NombreFoto;
+            }
+            
+
+            LaReceta.Cant_Likes = LaRecetaAnterior.Cant_Likes;
+            LaReceta.Autor = LaRecetaAnterior.Autor;
+
+            BD.ModificarReceta(LaReceta);
+
+            return View("ViewReceta", new { id = LaReceta.IDReceta });
+        }
+
         public ActionResult EliminarReceta(int id)
         {
             BD.EliminarReceta(id);
