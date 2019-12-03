@@ -133,7 +133,6 @@
     height: 40px;
     width: 10px;
 
-    margin-left: 100px;
     font-family: Poppins-Regular;
     color: #333333;
     line-height: 1.2;
@@ -146,7 +145,7 @@
     display: inline-block;
     height: 40px;
     width: 10px;
-    margin-left: 200px;
+
     font-family: Poppins-Regular;
     color: #333333;
     line-height: 1.2;

@@ -88,11 +88,12 @@
             <div class="container">
                 <div class="col-md-offset-1 col-md-6"><label>Cantidad</label></div>
                 <div class="col-md-2"><label>Nombre Ingrediente</label></div>
-                <div class="col-md-1"><input type="button" class="btn btn-success" id="add_ingrediente()" onClick="addIngrediente()" value="+" required="required" pattern="{1,}" title="Ingrese un Ingrediente válido"/></div>
+                <div class="col-md-1"><input type="button" class="btn btn-success" id="add_ingrediente()" onClick="addIngrediente()" value="+" required="required" pattern="{1,}" title="Ingrese un Ingrediente válido" /></div>
             </div>
-        </div>        
-            <!-- El id="canciones" indica que la función de JavaScript dejará aquí el resultado -->
-        <div class="row2" id="ingredientes"> <br />
+        </div>
+        <!-- El id="canciones" indica que la función de JavaScript dejará aquí el resultado -->
+        <div class="row2" id="ingredientes">
+            <br />
         </div> <br /><br />
 
 
@@ -112,10 +113,12 @@
             </select>
         </div>
 
+        <h4> Tiempo de Preparación </h4>
         <div class="Subir_Receta2">
             <input type="number" name="tiempo_prep" placeholder="en minutos" required="required" pattern="{1,}" title="Ingrese tiempo de preparación">
         </div>
 
+        <h4> Cantidad de Platos </h4>
         <div class="Subir_Receta3">
             <input type="number" name="cant_platos" placeholder="en porciones" required="required" pattern="{1,}" title="Ingrese cantidad de platos">
         </div>
