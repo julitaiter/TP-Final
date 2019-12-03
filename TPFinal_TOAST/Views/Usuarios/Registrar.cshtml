@@ -50,13 +50,30 @@
 
     <!-- Main css -->
     <link rel="stylesheet" href="~/Content/SignUp.css">
+
+    <script>
+        function comprobarClave() {
+            var contraseña = document.f1.contraseña.value
+            var re_contraseña = document.f1.re_contraseña.value
+
+            if (contraseña != re_contraseña) {
+                alert("Las contraseñas no coinciden");
+                document.f1
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+    </script>
+
 </head>
 <body>
     <div class="main">
         <section class="signup">
             <div class="container">
                 <div class="signup-content">
-                    <form method="POST" id="signup-form" class="signup-form" action="@Url.Action("Registrado", "Usuarios")" enctype="multipart/form-data">
+                    <form method="POST" id="signup-form" class="signup-form" name="f1" enctype="multipart/form-data" onsubmit="return comprobarClave()" action="@Url.Action("Registrado", "Usuarios")">
                         <h2 class="form-title">Registrar usuario</h2>
 
                         <div class="uploadWrapper">
