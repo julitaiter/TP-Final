@@ -527,6 +527,19 @@ iframe {
     opacity: 1;
 }
 
+#preview {
+    border: 1px solid #ddd;
+    padding: 5px;
+    border-radius: 2px;
+    background: #fff;
+    max-width: 200px;
+}
+
+    #preview img {
+        width: 100%;
+        display: block;
+    }
+
 @media (max-width: 992px) {
     .alert-validate::before {
         visibility: visible;

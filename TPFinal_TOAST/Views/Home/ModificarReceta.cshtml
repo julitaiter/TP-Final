@@ -1,6 +1,7 @@
 ﻿@using TPFinal_TOAST.Models
 @model Receta
 @Scripts.Render("jquery-3.3.1.js")
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,20 +61,22 @@
 </head>
 <body>
 
-    <form method="POST" id="signup-form" class="signup-form" action="@Url.Action("RecetaModificada", "Home", new{LaRecetaAnterior = ViewBag.LaReceta})" enctype="multipart/form-data">
+    <form method="POST" id="signup-form" class="signup-form" action='@Url.Action("RecetaModificada", "Home", new {IDRecetaAnterior = ViewBag.LaReceta.IDReceta})' enctype="multipart/form-data">
         <h1 class="form-title">Subir receta</h1> <br /> <br />
 
         <div class="UploadFoto">
             <input type='file' id="Foto" name="foto" accept="image/*" required />
+            <br />
+            <div id="preview"></div>
         </div> <br /> <br />
 
-        <h4> Título </h4>
+        <h4> Título </h4> <br />
         <div class="wrap-input100 validate-input" data-validate="Ingrese Titulo">
-            <input class="input100" type="text" name="titulo" required="required" pattern="[A-Za-z].{1,}" title="Ingrese un título válido" value="@ViewBag.LaReceta.NombreReceta">
+            <input class="input100" type="text" name="titulo" placeholder="por ej. Milanesa a la napolitana" required="required" pattern="[A-Za-z].{1,}" title="Ingrese un título válido" value="@ViewBag.LaReceta.NombreReceta">
             <span class="focus-input100"></span>
         </div><br />  <br />
 
-        <h4> Elegir Categoria </h4>
+        <h4> Elegir Categoria </h4> <br />
         <div data-validate="Ingrese Categoria">
             <select name="categoria" id="Categoria">
                 @foreach (string Categoria in ViewBag.Categorias)
@@ -83,13 +86,13 @@
             </select>
         </div><br /> <br />
 
-        <h4> Instrucciones </h4> <p> Separe los pasos con saltos de línea </p>
+        <h4> Instrucciones </h4> <p> Separe los pasos con saltos de línea </p> <br />
         <div class="wrap-input100 validate-input" data-validate="Ingrese Instrucciones">
-            <textarea class="input100" type="text" id="instrucciones" name="instrucciones" rows="4" cols="50">@ViewBag.LaReceta.Preparacion</textarea>
+            <textarea class="input100" type="text" id="instrucciones" name="instrucciones" rows="4" cols="50" placeholder="por ej.: Adobar la carne con sal, pimienta y orégano al gusto. &#10;&#10;Pasarla por el pan rallado para rebozar los escalopes de ternera.">@ViewBag.LaReceta.Preparacion</textarea>
             <span class="focus-input100"></span>
         </div><br />
 
-        <h4> Dificultad </h4>
+        <h4> Dificultad </h4> <br />
         <div class="Subir_Receta" data-validate="Ingrese Dificultad">
             <select name="dificultad" id="Dificultad">
                 @foreach (string Dificultad in ViewBag.Dificultades)
@@ -124,6 +127,22 @@
     <script>
         $("#Categoria > option[value='@ViewBag.LaReceta.Categoria.Nom_Categoria']").attr("selected", true);
         $("#Dificultad > option[value='@ViewBag.LaReceta.Dificultad.NombreDificultad']").attr("selected", true);
+
+        document.getElementById("Foto").onchange = function (e) {
+            let reader = new FileReader();
+
+            reader.onload = function () {
+                let preview = document.getElementById('preview'),
+                    image = document.createElement('img');
+
+                image.src = reader.result;
+
+                preview.innerHTML = '';
+                preview.append(image);
+            };
+
+            reader.readAsDataURL(e.target.files[0]);
+        }
     </script>
 
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->

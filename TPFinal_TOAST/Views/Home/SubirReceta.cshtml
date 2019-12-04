@@ -61,19 +61,21 @@
 <body>
 
     <form method="POST" id="signup-form" class="signup-form" action="@Url.Action("RecetaSubida", "Home")" enctype="multipart/form-data">
-        <h1 class="form-title">Subir receta</h1> <br /> <br />
+        <h1 class="form-title">Subir receta</h1> <br /> 
 
         <div class="UploadFoto">
             <input type='file' id="Foto" name="foto" accept="image/*" required="required" pattern="{1,}" title="Ingrese una foto" />
+            <br />
+            <div id="preview"></div>
         </div> <br /> <br />
 
-        <h4> Título </h4>
+        <h4> Título </h4> <br />
         <div class="wrap-input100 validate-input" data-validate="Ingrese Titulo">
             <input class="input100" type="text" name="titulo" placeholder="por ej. Milanesa a la napolitana" required="required" pattern="[A-Za-z].{1,}" title="Ingrese un título válido">
             <span class="focus-input100"></span>
         </div><br />  <br />
 
-        <h4> Elegir Categoria </h4>
+        <h4> Elegir Categoria </h4> <br />
         <div data-validate="Ingrese Categoria">
             <select name="categoria">
                 @foreach (string Categoria in ViewBag.Categorias)
@@ -95,13 +97,13 @@
         </div> <br /><br />
 
 
-        <h4> Instrucciones </h4> <p> Separe los pasos con saltos de línea </p>
+        <h4> Instrucciones </h4> <p> Separe los pasos con saltos de línea </p> <br />
         <div class="wrap-input100 validate-input" data-validate="Ingrese Instrucciones">
-            <textarea class="input100" type="text" name="instrucciones" rows="4" cols="50" placeholder="por ej.: Adobar la carne con sal, pimienta y orégano al gusto. Pasarla por el pan rallado para rebozar los escalopes de ternera."> </textarea>
+            <textarea class="input100" type="text" name="instrucciones" rows="4" cols="50" placeholder="por ej.: Adobar la carne con sal, pimienta y orégano al gusto. &#10;&#10;Pasarla por el pan rallado para rebozar los escalopes de ternera."></textarea>
             <span class="focus-input100"></span>
         </div><br />
 
-        <h4> Dificultad </h4>
+        <h4> Dificultad </h4> <br />
         <div class="Subir_Receta" data-validate="Ingrese Dificultad">
             <select name="dificultad">
                 @foreach (string Dificultad in ViewBag.Dificultades)
@@ -129,9 +131,26 @@
 
     </form>
 
-
     <!-- JS -->
     <script src="~/Content/vendor/jquery/jquery.min.js"></script>
     <script src="~/Content/SignUp.js"></script>
+
+    <script>
+        document.getElementById("Foto").onchange = function (e) {
+            let reader = new FileReader();
+
+            reader.onload = function () {
+                let preview = document.getElementById('preview'),
+                    image = document.createElement('img');
+
+                image.src = reader.result;
+
+                preview.innerHTML = '';
+                preview.append(image);
+            };
+
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    </script>
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>

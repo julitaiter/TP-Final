@@ -35,6 +35,20 @@
     --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 /*DESDE ACA VAN MIS CSS*/
+
+#preview {
+    border: 1px solid #ddd;
+    padding: 5px;
+    border-radius: 2px;
+    background: #fff;
+    max-width: 200px;
+}
+
+    #preview img {
+        width: 100%;
+        display: block;
+    }
+
 #Titulo {
     margin-left:15px;
 }
@@ -277,8 +291,6 @@
     color: #999999;
     opacity: 1;
 }
-
-
 
 *,
 *::before,

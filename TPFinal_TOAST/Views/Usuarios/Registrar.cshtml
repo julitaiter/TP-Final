@@ -81,6 +81,8 @@
                             <span>Subir una Foto</span>
                             <div class="UploadButton">
                                 <input type='file' id="Foto" name="Foto" accept="image/*" required title="Ingrese una foto" />
+                                <br />
+                                <div id="preview"></div>
                             </div>
                         </div> <br />
 
@@ -132,5 +134,22 @@
     <!-- JS -->
     <script src="~/Content/vendor/jquery/jquery.min.js"></script>
     <script src="~/Content/SignUp.js"></script>
+    <script>
+        document.getElementById("Foto").onchange = function (e) {
+            let reader = new FileReader();
+
+            reader.onload = function () {
+                let preview = document.getElementById('preview'),
+                    image = document.createElement('img');
+
+                image.src = reader.result;
+
+                preview.innerHTML = '';
+                preview.append(image);
+            };
+
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    </script>
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>

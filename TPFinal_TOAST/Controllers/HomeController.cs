@@ -134,11 +134,14 @@ namespace TPFinal_TOAST.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult RecetaModificada(HttpPostedFileBase foto, string titulo, string categoria, string instrucciones, string dificultad, int tiempo_prep, int cant_platos, Receta LaRecetaAnterior)
+        public ActionResult RecetaModificada(HttpPostedFileBase foto, string titulo, string categoria, string instrucciones, string dificultad, int tiempo_prep, int cant_platos, int IDRecetaAnterior)
         {
             Receta LaReceta = new Receta();
-            LaReceta.NombreReceta = titulo;
+            Receta LaRecetaAnterior = new Receta();
+            LaRecetaAnterior = BD.TraerReceta(IDRecetaAnterior);
+
             LaReceta.IDReceta = LaRecetaAnterior.IDReceta;
+            LaReceta.NombreReceta = titulo;
             int IDCategoria = BD.TraerIDCategoria(categoria);
             LaReceta.Categoria = BD.TraerCategoria(IDCategoria);
             LaReceta.Preparacion = instrucciones;
