@@ -1,6 +1,6 @@
 ﻿@using TPFinal_TOAST.Models
 @model Receta
-
+@Scripts.Render("jquery-3.3.1.js")
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +23,7 @@
     <!--===============================================================================================-->
     <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/Content/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="styleshee" type="text/css" href="~/Content/vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="~/Content/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -60,22 +60,22 @@
 </head>
 <body>
 
-    <form method="POST" id="signup-form" class="signup-form" action="@Url.Action("RecetaModificada", "Home", new { LaRecetaAnterior = ViewBag.LaReceta })" enctype="multipart/form-data">
+    <form method="POST" id="signup-form" class="signup-form" action="@Url.Action("RecetaModificada", "Home", new{LaRecetaAnterior = ViewBag.LaReceta})" enctype="multipart/form-data">
         <h1 class="form-title">Subir receta</h1> <br /> <br />
 
         <div class="UploadFoto">
-            <input type='file' id="Foto" name="foto" accept="image/*" />
+            <input type='file' id="Foto" name="foto" accept="image/*" required />
         </div> <br /> <br />
 
         <h4> Título </h4>
         <div class="wrap-input100 validate-input" data-validate="Ingrese Titulo">
-            <input class="input100" type="text" name="titulo" placeholder="@ViewBag.LaReceta.NombreReceta" required="required" pattern="[A-Za-z].{1,}" title="Ingrese un título válido">
+            <input class="input100" type="text" name="titulo" required="required" pattern="[A-Za-z].{1,}" title="Ingrese un título válido" value="@ViewBag.LaReceta.NombreReceta">
             <span class="focus-input100"></span>
         </div><br />  <br />
 
         <h4> Elegir Categoria </h4>
         <div data-validate="Ingrese Categoria">
-            <select name="categoria">
+            <select name="categoria" id="Categoria">
                 @foreach (string Categoria in ViewBag.Categorias)
                 {
                     <option value="@Categoria"> @Categoria </option>
@@ -85,13 +85,13 @@
 
         <h4> Instrucciones </h4> <p> Separe los pasos con saltos de línea </p>
         <div class="wrap-input100 validate-input" data-validate="Ingrese Instrucciones">
-            <textarea class="input100" type="text" name="instrucciones" rows="4" cols="50" placeholder="@ViewBag.LaReceta.Preparacion"> </textarea>
+            <textarea class="input100" type="text" id="instrucciones" name="instrucciones" rows="4" cols="50">@ViewBag.LaReceta.Preparacion</textarea>
             <span class="focus-input100"></span>
         </div><br />
 
         <h4> Dificultad </h4>
         <div class="Subir_Receta" data-validate="Ingrese Dificultad">
-            <select name="dificultad">
+            <select name="dificultad" id="Dificultad">
                 @foreach (string Dificultad in ViewBag.Dificultades)
                 {
                     <option value="@Dificultad"> @Dificultad </option>
@@ -101,12 +101,12 @@
 
         <h4> Tiempo de Preparación </h4><br />
         <div class="Subir_Receta2">
-            <input type="number" name="tiempo_prep" required="required" placeholder = "@ViewBag.LaReceta.TiempoPreparacion" pattern="{1,}" title="Ingrese tiempo de preparación">  <p class="P_SubirReceta"> min. </p>
+            <input type="number" name="tiempo_prep" required="required" value="@ViewBag.LaReceta.TiempoPreparacion" pattern="{1,}" title="Ingrese tiempo de preparación">  <p class="P_SubirReceta"> min. </p>
         </div><br /> <br />
 
         <h4> Cantidad de Platos </h4><br />
         <div class="Subir_Receta3">
-            <input type="number" name="cant_platos" required="required" placeholder = "@ViewBag.LaReceta.CantidadPlatos" pattern="{1,}" title="Ingrese cantidad de platos"> <p class="P_SubirReceta"> porciones </p>
+            <input type="number" name="cant_platos" required="required" value="@ViewBag.LaReceta.CantidadPlatos" pattern="{1,}" title="Ingrese cantidad de platos"> <p class="P_SubirReceta"> porciones </p>
         </div> <br /> <br />
 
         <div class="container-login100-form-btn m-t-17">
@@ -117,10 +117,15 @@
 
     </form>
 
-
     <!-- JS -->
     <script src="~/Content/vendor/jquery/jquery.min.js"></script>
     <script src="~/Content/SignUp.js"></script>
+
+    <script>
+        $("#Categoria > option[value='@ViewBag.LaReceta.Categoria.Nom_Categoria']").attr("selected", true);
+        $("#Dificultad > option[value='@ViewBag.LaReceta.Dificultad.NombreDificultad']").attr("selected", true);
+    </script>
+
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
 

@@ -56,33 +56,33 @@
         <section class="signup">
             <div class="container">
                 <div class="signup-content">
-                    <form method="POST" id="signup-form" class="signup-form" action="@Url.Action("Registrado", "Usuarios")" enctype="multipart/form-data">
+                    <form method="POST" id="signup-form" name="fmodificar" class="signup-form" action="@Url.Action("Registrado", "Usuarios")" enctype="multipart/form-data">
                         <h2 class="form-title">Modificar usuario</h2>
 
                         <div class="uploadWrapper">
                             <span>Subir una Foto</span>
                             <div class="UploadButton">
-                                <input type='file' id="Foto" name="Foto" accept="image/*" required="required" pattern="{1,}" title="Ingrese una foto"/>
+                                <input type='file' id="Foto" name="Foto" accept="image/*" required="required" pattern="{1,}" title="Ingrese una foto" value="@ViewBag.Usuario.Foto"/>
                             </div>
                         </div> <br />
 
                         <div class="wrap-input100 validate-input" data-validate="Ingrese Nombre">
-                            <input class="input100" type="text" name="nombre" placeholder = "@ViewBag.Usuario.Nombre" required="required" pattern="[A-Za-z].{1,}" title="Ingrese un nombre válido">
+                            <input class="input100" type="text" name="nombre" value="@ViewBag.Usuario.Nombre" required="required" pattern="[A-Za-z].{1,}" title="Ingrese un nombre válido">
                             <span class="focus-input100"></span>
                         </div><br />
 
                         <div class="wrap-input100 validate-input" data-validate="Ingrese Apellido">
-                            <input class="input100" type="text" name="apellido" placeholder="@ViewBag.Usuario.Apellido" required="required" pattern="[A-Za-z].{1,}" title="Ingrese un apellido válido">
+                            <input class="input100" type="text" name="apellido" value="@ViewBag.Usuario.Apellido" required="required" pattern="[A-Za-z].{1,}" title="Ingrese un apellido válido">
                             <span class="focus-input100"></span>
                         </div><br />
 
                         <div class="wrap-input100 validate-input" data-validate="Ingrese Nombre de Usuario">
-                            <input class="input100" type="text" name="username" placeholder="@ViewBag.Usuario.Nombre_Usuario" required="required" pattern="{1,}" title="Ingrese un nombre de usuario">
+                            <input class="input100" type="text" name="username" value="@ViewBag.Usuario.Nombre_Usuario" required="required" pattern="{1,}" title="Ingrese un nombre de usuario">
                             <span class="focus-input100"></span>
                         </div><br />
 
                         <div class="wrap-input100 validate-input" data-validate="Correo electrónico">
-                            <input class="input100" type="text" name="email" placeholder="@ViewBag.Usuario.Mail" required="required" pattern="{1,}" title="Ingrese un email">
+                            <input class="input100" type="text" name="email" value="@ViewBag.Usuario.Mail" required="required" pattern="{1,}" title="Ingrese un email">
                             <span class="focus-input100"></span>
                         </div><br />
 
