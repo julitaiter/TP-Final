@@ -45,12 +45,12 @@
     <!--===============================================================================================-->
 
     <script>
-        a = 0;
+        a = 1;
         function addIngrediente() {
             a++;
             var div = document.createElement('div');
             div.setAttribute('class', 'form-inline');
-            div.innerHTML = '<div style="clear:both" class="_Cantidad' + a + ' col-md-offset-1 col-md-6"><input class="form-control" name="_Cantidad' + a + '" type="text"/></div><div class="Nombre_' + a + ' col-md-2""><input class="form-control" name="_Nombre' + a + '" type="text"/></div><br/><br/><br/><br/>';
+            div.innerHTML = '<div style="clear:both" class="col-md-offset-1 col-md-6"><input class="form-control" name="_Cantidad' + a + '" type="text" required/></div><div class="col-md-2"><input class="form-control" name="_Nombre' + a + '" type="text" required/></div><br/><br/><br/><br/>';
             document.getElementById('ingredientes').appendChild(div); document.getElementById('ingredientes').appendChild(div);
         }
     </script>
@@ -86,12 +86,19 @@
         </div><br /> <br />
 
         <h4> Ingredientes </h4> <br />
-        <div class="row2">
-            <div class="container">
-                <div class="col-md-offset-1 col-md-6"><label>Cantidad</label></div>
-                <div class="col-md-2"><label>Nombre Ingrediente</label></div>
-                <div class="col-md-1"><input type="button" class="btn btn-success" id="add_ingrediente()" onClick="addIngrediente()" value="+" required="required" pattern="{1,}" title="Ingrese un Ingrediente válido" /></div>
-            </div>
+            <div class="row2">
+                <div class="container">
+                    <div class="col-md-offset-1 col-md-6"><label>Cantidad</label></div>
+                    <div class="col-md-2"><label>Nombre Ingrediente</label></div>
+                    <div class="col-md-1"><input type="button" class="btn btn-success" id="add_ingrediente()" onClick="addIngrediente()" value="+" title="Ingrese un Ingrediente válido" /></div>
+                </div>
+                <div class="form-inline">
+                    <div style="clear:both" class="col-md-offset-1 col-md-6"><input class="form-control" name="_Cantidad1" type="text" required /></div>
+                    <div class="col-md-2">
+                        <input class="form-control" name="_Nombre1" type="text" required />
+                    </div>
+                    <br /><br /><br /><br />
+                </div>
         </div>
         <div class="row2" id="ingredientes">
         </div> <br /><br />

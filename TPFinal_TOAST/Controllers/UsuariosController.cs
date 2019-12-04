@@ -74,6 +74,7 @@ namespace TPFinal_TOAST.Controllers
 
                 BD.InsertarUsuario(User);
                 User.IDUsuario = BD.TraerIDUsuario(User.Mail, User.Contraseña);
+                Session["Usuario"] = User;
                 return RedirectToAction("MiPerfil", new { id = User.IDUsuario });
             }
         }

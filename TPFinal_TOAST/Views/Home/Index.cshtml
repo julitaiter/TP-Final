@@ -100,26 +100,26 @@
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="service-item first-service">
                             <img class="FotosIndex" src="~/Content/Fotos/Recetas/@LaReceta.NombreFoto" alt="@LaReceta.NombreFoto" />
-                            <a class="NombreReceta" href='@Url.Action("ViewReceta", "Home", new { id = LaReceta.IDReceta })'> <h4> @LaReceta.NombreReceta</h4> </a> <br />
+                            <a class="NombreReceta" href='@Url.Action("ViewReceta", "Home", new { IDLaReceta = LaReceta.IDReceta })'> <h4> @LaReceta.NombreReceta</h4> </a> <br />
                             <div class="first-service icon">
                                 @if (Session["Usuario"] != null)
                                 {
                                     if (user.IDUsuario == LaReceta.Autor)
                                     {
                                         <div class="editarRec">
-                                            @Html.ActionLink("Editar receta", "ModificarReceta", "Home", new { IDReceta = LaReceta.IDReceta }, null)<br />
+                                            @Html.ActionLink("Editar receta", "ModificarReceta", "Home", new { IDLaReceta = LaReceta.IDReceta }, null)<br />
                                         </div>
                                     }
 
                                     user._Favoritos = user.TraerFavoritos(user.IDUsuario);
                                     if (user._Favoritos.Contains(LaReceta))
                                     {
-                                        <a href="@Url.Action("Favoritos", "Home", new { IdRec = LaReceta.IDReceta, IdUsu= user.IDUsuario, modo = "Eliminar", view = "Index"})"><img src="~/Content/Fotos/Otros/Heart_Icon_Filled.png" alt="Heart_Icon_Filled" /></a>
+                                        <a href="@Url.Action("Favoritos", "Home", new { IDRecetaFav = LaReceta.IDReceta, IdUsu= user.IDUsuario, modo = "Eliminar", view = "Index"})"><img src="~/Content/Fotos/Otros/Heart_Icon_Filled.png" alt="Heart_Icon_Filled" /></a>
 
                                     }
                                     else
                                     {
-                                        <a href="@Url.Action("Favoritos", "Home", new { IdRec = LaReceta.IDReceta, IdUsu= user.IDUsuario, modo = "Insertar", view = "Index"})"><img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Heart_Icon" /></a>
+                                        <a href="@Url.Action("Favoritos", "Home", new { IDRecetaFav = LaReceta.IDReceta, IdUsu= user.IDUsuario, modo = "Insertar", view = "Index"})"><img src="~/Content/Fotos/Otros/Heart_Icon.png" alt="Heart_Icon" /></a>
                                     }
                                 }
                                 else

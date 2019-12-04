@@ -21,11 +21,12 @@ namespace TPFinal_TOAST.Controllers
           ViewBag.ListaRecetas = ListaRecetas;
           return View();
         }
-        public ActionResult ViewReceta(int id)
+        public ActionResult ViewReceta(int IDLaReceta)
         {
-            Receta rec = BD.TraerReceta(id);
-            ViewBag.Usuario = BD.TraerUsuario(rec.Autor);
-            return View(rec);
+            Receta LaReceta = BD.TraerReceta(IDLaReceta);
+            ViewBag.Receta = LaReceta;
+            ViewBag.Usuario = BD.TraerUsuario(LaReceta.Autor);
+            return View();
         }
         public ActionResult RecetaCategoria(int IdCat, string Nom)
         {
@@ -95,7 +96,7 @@ namespace TPFinal_TOAST.Controllers
             Usuario User = (Usuario)Session["Usuario"];
             LaReceta.Autor = User.IDUsuario;
 
-            string NuevaUbicacion = Server.MapPath("~/Content/Fotos/Perfiles/") + LaReceta.Foto.FileName;
+            string NuevaUbicacion = Server.MapPath("~/Content/Fotos/Recetas/") + LaReceta.Foto.FileName;
             LaReceta.Foto.SaveAs(NuevaUbicacion);
             LaReceta.NombreFoto = LaReceta.Foto.FileName;
             BD.IngresarReceta(LaReceta);
@@ -109,7 +110,7 @@ namespace TPFinal_TOAST.Controllers
 
             LaReceta.IDReceta = BD.TraerIDReceta(LaReceta.NombreReceta);
 
-            return RedirectToAction("RecetaPublicada", new { IDReceta = LaReceta.IDReceta });
+            return RedirectToAction("RecetaPublicada", new { IDLaReceta = LaReceta.IDReceta });
         }
         public ActionResult ModificarReceta(int IDReceta)
         {
@@ -170,14 +171,15 @@ namespace TPFinal_TOAST.Controllers
 
             BD.ModificarReceta(LaReceta);
 
-            return View("ViewReceta", new { id = LaReceta.IDReceta });
+            return View("ViewReceta", new { IDLaReceta = LaReceta.IDReceta });
         }
 
-        public ActionResult EliminarReceta(int id)
+        public ActionResult EliminarReceta(int IDRecetaEliminar)
         {
-            BD.EliminarReceta(id);
-            return View("Index");
+            BD.EliminarReceta(IDRecetaEliminar);
+            return RedirectToAction("Index");
         }
+
         public ActionResult BuscarXIng()
         {
             Session["ListaIngredientes"] = null;
@@ -291,15 +293,15 @@ namespace TPFinal_TOAST.Controllers
 
             return View("BuscarXIng");
         }
-        public ActionResult Favoritos(int IdRec, int IdUsu, string modo, string view)
+        public ActionResult Favoritos(int IDRecetaFav, int IdUsu, string modo, string view)
         {
             if(modo=="Insertar")
             {
-                BD.InsertarFavorito(IdUsu, IdRec);
+                BD.InsertarFavorito(IdUsu, IDRecetaFav);
             }
             else
             {
-                BD.EliminarFavorito(IdUsu, IdRec);
+                BD.EliminarFavorito(IdUsu, IDRecetaFav);
             }
             return RedirectToAction(view);
         }
@@ -309,9 +311,9 @@ namespace TPFinal_TOAST.Controllers
             ViewBag.IngredientesBuscados = lista;
             return View("BuscarXIng");
         }
-        public ActionResult RecetaPublicada(int IDReceta)
+        public ActionResult RecetaPublicada(int IDLaReceta)
         {
-            ViewBag.IDReceta = IDReceta;
+            ViewBag.IDReceta = IDLaReceta;
             return View();
         }
     }
