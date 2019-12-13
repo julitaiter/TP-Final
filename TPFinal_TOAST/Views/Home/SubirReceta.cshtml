@@ -108,11 +108,10 @@
     <form method="POST" id="signup-form" class="signup-form" action="@Url.Action("RecetaSubida", "Home")" enctype="multipart/form-data">
         <h1 class="form-title">Subir receta</h1> <br />
 
-        <div>
-            <div class="SubirFoto_SubirReceta">
-                <input class="UploadFoto" type='file' id="Foto" name="foto" accept="image/*" required="required" pattern="{1,}" title="Ingrese una foto" />
-            </div>
-        </div>
+ 
+        <div class="SubirFoto_SubirReceta">
+            <input class="btnSubirFoto_SubirReceta" type='file' id="Foto" name="foto" accept="image/*" required="required" pattern="{1,}" title="Ingrese una foto" />
+        </div> <br /> <br />
         
 
         <h4> Título </h4> <br />

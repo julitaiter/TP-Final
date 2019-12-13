@@ -174,6 +174,7 @@
 
 .SubirFoto_SubirReceta {
     background-image: url(../Content/Fotos/Otros/UploadImage.jpg);
+    float: left;
     background-position: 0px -5px;
     background-repeat: no-repeat;
     height: 176px;
@@ -187,6 +188,7 @@
 
 .btnSubirFoto_SubirReceta {
     border: 0px;
+
     cursor: pointer;
     font-size: 10px;
     height: 180px;
@@ -198,6 +200,21 @@
     right: 0;
     top: 0;
     z-index: 2;
+}
+
+.btnImagen_SubirReceta {
+    color: #ffffff;
+
+    font-size: 1.4em;
+    font-weight: 200;
+    left: 50%;
+    letter-spacing: 0.05em;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    text-transform: uppercase;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
 }
 .Textbox1 {
     display: inline-block;
