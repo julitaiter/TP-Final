@@ -81,7 +81,7 @@
                 a++;
                 var div = document.createElement('div');
                 div.setAttribute('class', 'form-inline');
-                div.innerHTML = '<div style="clear:both" class="col-md-offset-1 col-md-6"><input class="form-control" name="_Cantidad' + a + '" type="text" required/></div><div class="col-md-2"><input class="form-control" name="_Nombre' + a + '" type="text" required/></div><br/><br/><br/><br/>';
+                div.innerHTML = '<div style="clear:both" class="col-md-offset-1 col-md-6"><input class="form-control" name="_Cantidad' + a + '" id="_Cantidad' + a + '" type="text" spellcheck="true" required/></div><div class="col-md-2"><input class="form-control" name="_Nombre' + a + '" id="_Nombre' + a + '" type="text" spellcheck="true" required/></div><br/><br/><br/><br/>';
                 document.getElementById('ingredientes').appendChild(div); document.getElementById('ingredientes').appendChild(div);
             }
             else
@@ -89,6 +89,15 @@
                 alert("Ingrese el ingrediente correctamente");
             }
         }
+
+        function RemoveIngrediente() {
+            var IDNombre = "_Nombre" + a;
+            var IDCantidad = "_Cantidad" + a;
+            document.getElementById('ingredientes').removeChild(document.getElementById(IDNombre));
+            document.getElementById('ingredientes').removeChild(document.getElementById(IDCantidad));
+            a--;
+        }
+        
     </script>
 
     <title>Subir Receta</title>
@@ -99,11 +108,12 @@
     <form method="POST" id="signup-form" class="signup-form" action="@Url.Action("RecetaSubida", "Home")" enctype="multipart/form-data">
         <h1 class="form-title">Subir receta</h1> <br />
 
-        <div class="UploadFoto">
-            <input type='file' id="Foto" name="foto" accept="image/*" required="required" pattern="{1,}" title="Ingrese una foto" />
-            <br />
-            <div id="preview"></div>
-        </div> <br /> <br />
+        <div>
+            <div class="SubirFoto_SubirReceta">
+                <input class="UploadFoto" type='file' id="Foto" name="foto" accept="image/*" required="required" pattern="{1,}" title="Ingrese una foto" />
+            </div>
+        </div>
+        
 
         <h4> Título </h4> <br />
         <div class="wrap-input100 validate-input" data-validate="Ingrese Titulo">
@@ -126,14 +136,15 @@
             <div class="container">
                 <div class="col-md-offset-1 col-md-6"><label>Cantidad</label></div>
                 <div class="col-md-2"><label>Nombre Ingrediente</label></div>
-                <div class="col-md-1"><input type="button" class="btn btn-success" id="add_ingrediente()" onClick="addIngrediente()" value="+" title="Ingrese un Ingrediente válido" /></div>
+                <div class="col-md-1"><input type="button" class="btn btn-success" id="add_ingrediente()" onClick="addIngrediente()" value="+" /></div>
+                <div class="col-md-1"><input type="button" class="btn btn-danger" id="remove_ingrediente()" onClick="RemoveIngrediente()" value="-" /></div>
             </div>
             <div class="form-inline" id="start">
                 <div style="clear:both" class="col-md-offset-1 col-md-6">
-                    <input class="form-control" name="_Cantidad1" type="text" required />
+                    <input class="form-control" name="_Cantidad1" id="_Cantidad1" type="text" spellcheck="true" required />
                 </div>
                 <div class="col-md-2">
-                    <input class="form-control" name="_Nombre1" type="text" required />
+                    <input class="form-control" name="_Nombre1" id="_Nombre1" type="text" spellcheck="true" required />
                 </div>
                 <br /><br /><br /><br />
             </div>
