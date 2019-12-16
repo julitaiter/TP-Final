@@ -357,9 +357,9 @@ iframe {
     font-size: 18px;
     display: block;
     width: 100%;
-    background: transparent;
     height: 60px;
     padding: 0 20px;
+    border: 1px solid #999999;
 }
 /*------------------------------------------------------------------
 [ Focus Input ]*/

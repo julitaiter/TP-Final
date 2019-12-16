@@ -125,33 +125,26 @@
     color: #333333;
     line-height: 1.2;
     font-size: 18px;
-    width: 100%;
     background: transparent;
 }
 
 .Subir_Receta2 {
-    display: inline-block;
     height: 40px;
     width: 10px;
-
     font-family: Poppins-Regular;
     color: #333333;
     line-height: 1.2;
     font-size: 18px;
-    width: 100%;
     background: transparent;
 }
 
 .Subir_Receta3 {
-    display: inline-block;
     height: 40px;
     width: 10px;
-
     font-family: Poppins-Regular;
     color: #333333;
     line-height: 1.2;
     font-size: 18px;
-    width: 100%;
     background: transparent;
 }
 
@@ -204,6 +197,16 @@
     background: #FFFFFF 0% 0% no-repeat padding-box;
     border-radius: 10px;
     opacity: 1;
+}
+
+.TitleSubirReceta {
+    font-family: Segoe Ui;
+    padding-left: 390px;
+}
+
+.Alineacion_SubirReceta{
+    display: inline-block;
+    width: 100%;
 }
 
 /*  ViewReceta: */

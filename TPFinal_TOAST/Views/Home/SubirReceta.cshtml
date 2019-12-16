@@ -99,12 +99,15 @@
 
     </script>
 
-    <title>Subir Receta</title>
-
 </head>
 <body>
     <form method="POST" id="signup-form" class="signup-form" action="@Url.Action("RecetaSubida", "Home")" enctype="multipart/form-data">
-        <h1 class="form-title">Subir receta</h1> <br />
+        <h1 class="TitleSubirReceta">Compartí tus recetas</h1> <br /> <br />
+
+        <div class="wrap-input100 validate-input" data-validate="Ingrese Titulo">
+            <input class="input100" type="text" name="titulo" placeholder="Escribe el título de tu receta" required="required" pattern="[A-Za-z].{1,}" title="Ingrese un título válido">
+            <span class="focus-input100"></span>
+        </div> <br /> <br />
 
         <div class="file-upload">
             <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Subí la foto de tu receta</button>
@@ -121,17 +124,12 @@
                     <button type="button" onclick="removeUpload()" class="remove-image"> Borrar </button>
                 </div>
             </div>
-        </div>
-
-        <h4> Título </h4> <br />
-        <div class="wrap-input100 validate-input" data-validate="Ingrese Titulo">
-            <input class="input100" type="text" name="titulo" placeholder="por ej. Milanesa a la napolitana" required="required" pattern="[A-Za-z].{1,}" title="Ingrese un título válido">
-            <span class="focus-input100"></span>
-        </div><br />  <br />
+        </div> <br />
 
         <h4> Elegir Categoria </h4> <br />
-        <div data-validate="Ingrese Categoria">
+        <div class="Subir_Receta" data-validate="Ingrese Categoria">
             <select name="categoria">
+                <option disabled selected>Selecciona una categoría</option>
                 @foreach (string Categoria in ViewBag.Categorias)
                 {
                     <option value="@Categoria"> @Categoria </option>
@@ -161,31 +159,31 @@
         </div> <br /><br />
 
 
-        <h4> Instrucciones </h4> <p> Separe los pasos con saltos de línea </p> <br />
+        <h4> Instrucciones </h4> <p> Numera los pasos correctamente </p> <br />
         <div class="wrap-input100 validate-input" data-validate="Ingrese Instrucciones">
-            <textarea class="input100" type="text" name="instrucciones" rows="4" cols="50" placeholder="por ej.: Adobar la carne con sal, pimienta y orégano al gusto. &#10;&#10;Pasarla por el pan rallado para rebozar los escalopes de ternera."></textarea>
+            <textarea class="input100" type="text" name="instrucciones" rows="4" cols="50" placeholder="1. Adobar la carne con sal, pimienta y orégano al gusto. &#10;&#10;2. Pasarla por el pan rallado para rebozar los escalopes de ternera."></textarea>
             <span class="focus-input100"></span>
-        </div><br />
-
-        <h4> Dificultad </h4> <br />
-        <div class="Subir_Receta" data-validate="Ingrese Dificultad">
-            <select name="dificultad">
-                @foreach (string Dificultad in ViewBag.Dificultades)
-                {
-                    <option value="@Dificultad"> @Dificultad </option>
-                }
-            </select>
         </div> <br /> <br />
 
-        <h4> Tiempo de Preparación </h4><br />
-        <div class="Subir_Receta2">
-            <input type="number" name="tiempo_prep" required="required" pattern="{1,}" title="Ingrese tiempo de preparación">  <p class="P_SubirReceta"> min. </p>
-        </div><br /> <br />
+        <div class="Alineacion_SubirReceta">
+            <div class="Subir_Receta" data-validate="Ingrese Dificultad">
+                <select name="dificultad">
+                    <option disabled selected>Selecciona una dificultad</option>
+                    @foreach (string Dificultad in ViewBag.Dificultades)
+                    {
+                        <option value="@Dificultad"> @Dificultad </option>
+                    }
+                </select>
+            </div>
 
-        <h4> Cantidad de Platos </h4><br />
-        <div class="Subir_Receta3">
-            <input type="number" name="cant_platos" required="required" pattern="{1,}" title="Ingrese cantidad de platos"> <p class="P_SubirReceta"> porciones </p>
-        </div> <br /> <br />
+            <div class="Subir_Receta2">
+                <input type="number" name="tiempo_prep" placeholder="Tiempo de preparación" required="required" pattern="{1,}" title="Ingrese tiempo de preparación" />  <p class="P_SubirReceta"> min. </p>
+            </div>
+
+            <div class="Subir_Receta3">
+                <input type="number" name="cant_platos" placeholder="N° de porciones" required="required" pattern="{1,}" title="Ingrese cantidad de platos" />
+            </div>
+        </div>
 
         <div class="container-login100-form-btn m-t-17">
             <button class="login100-form-btn">
