@@ -188,7 +188,6 @@
 
 .btnSubirFoto_SubirReceta {
     border: 0px;
-
     cursor: pointer;
     font-size: 10px;
     height: 180px;
@@ -196,7 +195,6 @@
     opacity: 0;
     outline: medium none;
     padding: 0;
-    position: absolute;
     right: 0;
     top: 0;
     z-index: 2;
