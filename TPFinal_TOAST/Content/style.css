@@ -174,7 +174,6 @@
 
 .SubirFoto_SubirReceta {
     background-image: url(../Content/Fotos/Otros/UploadImage.jpg);
-    float: left;
     background-position: 0px -5px;
     background-repeat: no-repeat;
     height: 176px;
@@ -202,7 +201,6 @@
 
 .btnImagen_SubirReceta {
     color: #ffffff;
-
     font-size: 1.4em;
     font-weight: 200;
     left: 50%;

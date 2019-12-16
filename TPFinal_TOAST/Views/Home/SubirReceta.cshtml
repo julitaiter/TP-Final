@@ -111,7 +111,8 @@
  
         <div class="SubirFoto_SubirReceta">
             <input class="btnSubirFoto_SubirReceta" type='file' id="Foto" name="foto" accept="image/*" required="required" pattern="{1,}" title="Ingrese una foto"/>
-            <img id="preview" alt="Imagen" />
+            <br />
+            <div id="preview"></div>
         </div> <br /> <br />
         
 
@@ -196,12 +197,11 @@
             let reader = new FileReader();
 
             reader.onload = function () {
-                let preview = document.getElementById('preview');
+                let preview = document.getElementById('preview'),
                 image = document.createElement('img');
 
-                document.getElementById('preview').style.backgroundImage = "url(../Content/Fotos/Otros/Heart_Icon.png)";
-                $('#preview').attr('src', reader.result);
-                
+                image.src = reader.result;
+
                 preview.innerHTML = '';
                 preview.append(image);
             };
