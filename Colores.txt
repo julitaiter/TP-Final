@@ -1,0 +1,6 @@
+Project's Colors
+
+background: #99999
+
+button: #F4B161
+hover: #F78B0B
