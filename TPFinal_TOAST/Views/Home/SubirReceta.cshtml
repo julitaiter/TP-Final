@@ -43,6 +43,7 @@
     <link rel="stylesheet" type="text/css" href="~/Content/util.css">
     <link rel="stylesheet" type="text/css" href="~/Content/main3.css">
     <!--===============================================================================================-->
+    <link rel="stylesheet" href="~/Content/Photo.css" TYPE="text/css">
 
     <script>
         a = 1;
@@ -75,8 +76,7 @@
             }
 
 
-            if (Vacios == false)
-            {
+            if (Vacios == false) {
                 //Agrega los campos
                 a++;
                 var div = document.createElement('div');
@@ -84,8 +84,7 @@
                 div.innerHTML = '<div style="clear:both" class="col-md-offset-1 col-md-6"><input class="form-control" name="_Cantidad' + a + '" id="_Cantidad' + a + '" type="text" spellcheck="true" required/></div><div class="col-md-2"><input class="form-control" name="_Nombre' + a + '" id="_Nombre' + a + '" type="text" spellcheck="true" required/></div><br/><br/><br/><br/>';
                 document.getElementById('ingredientes').appendChild(div); document.getElementById('ingredientes').appendChild(div);
             }
-            else
-            {
+            else {
                 alert("Ingrese el ingrediente correctamente");
             }
         }
@@ -97,24 +96,32 @@
             document.getElementById('ingredientes').removeChild(document.getElementById(IDCantidad));
             a--;
         }
-        
+
     </script>
 
     <title>Subir Receta</title>
 
 </head>
 <body>
-
     <form method="POST" id="signup-form" class="signup-form" action="@Url.Action("RecetaSubida", "Home")" enctype="multipart/form-data">
         <h1 class="form-title">Subir receta</h1> <br />
 
- 
-        <div class="SubirFoto_SubirReceta">
-            <input class="btnSubirFoto_SubirReceta" type='file' id="Foto" name="foto" accept="image/*" required="required" pattern="{1,}" title="Ingrese una foto"/>
-            <br />
-            <div id="preview"></div>
-        </div> <br /> <br />
-        
+        <div class="file-upload">
+            <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Subí la foto de tu receta</button>
+
+            <div class="image-upload-wrap">
+                <input class="file-upload-input" id="Foto" name="foto" type='file' onchange="readURL(this);" accept="image/*" />
+                <div class="drag-text">
+                    <h3>Arrastra o selecciona una imagen</h3>
+                </div>
+            </div>
+            <div class="file-upload-content">
+                <img class="file-upload-image" src="#" alt="your image" />
+                <div class="image-title-wrap">
+                    <button type="button" onclick="removeUpload()" class="remove-image"> Borrar </button>
+                </div>
+            </div>
+        </div>
 
         <h4> Título </h4> <br />
         <div class="wrap-input100 validate-input" data-validate="Ingrese Titulo">
@@ -191,23 +198,44 @@
     <!-- JS -->
     <script src="~/Content/vendor/jquery/jquery.min.js"></script>
     <script src="~/Content/SignUp.js"></script>
+    <script type="text/javascript" src="../Content/Photo.js"></script>
+    <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
     <script>
-        document.getElementById("Foto").onchange = function (e) {
-            let reader = new FileReader();
 
-            reader.onload = function () {
-                let preview = document.getElementById('preview'),
-                image = document.createElement('img');
+        function readURL(input) {
+            console.log("Hola");
+            if (input.files && input.files[0]) {
 
-                image.src = reader.result;
+                var reader = new FileReader();
 
-                preview.innerHTML = '';
-                preview.append(image);
-            };
+                reader.onload = function (e) {
+                    $('.image-upload-wrap').hide();
 
-            reader.readAsDataURL(e.target.files[0]);
+                    $('.file-upload-image').attr('src', e.target.result);
+                    $('.file-upload-content').show();
+
+                    $('.image-title').html(input.files[0].name);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            } else {
+                removeUpload();
+            }
         }
+
+        function removeUpload() {
+            $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+            $('.file-upload-content').hide();
+            $('.image-upload-wrap').show();
+        }
+        $('.image-upload-wrap').bind('dragover', function () {
+            $('.image-upload-wrap').addClass('image-dropping');
+        });
+        $('.image-upload-wrap').bind('dragleave', function () {
+            $('.image-upload-wrap').removeClass('image-dropping');
+        });
     </script>
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
