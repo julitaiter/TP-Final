@@ -51,7 +51,7 @@
 
             //Valida campos (Ignora el primero)
             if (a == 1) {
-                var inputs = document.getElementById("start").querySelectorAll("input");
+                var inputs = document.getElementById("_Div1").querySelectorAll("input");
                 var Vacios = false;
                 for (var ElInput in inputs) {
                     Valor = inputs[ElInput];
@@ -81,6 +81,7 @@
                 a++;
                 var div = document.createElement('div');
                 div.setAttribute('class', 'form-inline');
+                div.setAttribute('id', '_Div' + a);
                 div.innerHTML = '<div style="clear:both"><input class="CantidadIngrediente_SubirReceta" name="_Cantidad' + a + '" id="_Cantidad' + a + '" type="text" placeholder="Cantidad" spellcheck="true" required/></div><div class="col-md-2"><input class="NombreIngrediente_SubirReceta" name="_Nombre' + a + '" id="_Nombre' + a + '" type="text" placeholder="Nombre del ingrediente" spellcheck="true" required/></div><br/><br/><br/><br/>';
                 document.getElementById('ingredientes').appendChild(div); document.getElementById('ingredientes').appendChild(div);
             }
@@ -90,11 +91,14 @@
         }
 
         function RemoveIngrediente() {
-            var IDNombre = "_Nombre" + a;
-            var IDCantidad = "_Cantidad" + a;
-            document.getElementById('ingredientes').removeChild(document.getElementById(IDNombre));
-            document.getElementById('ingredientes').removeChild(document.getElementById(IDCantidad));
-            a--;
+
+            if (a > 1)
+            {
+                $('#_Cantidad' + a).remove();
+                $('#_Nombre' + a).remove();
+                $('#_Div' + a).remove();
+                a--;
+            }            
         }
 
     </script>
@@ -135,11 +139,11 @@
                     <option value="@Categoria"> @Categoria </option>
                 }
             </select>
-        </div><br /> <br />
+        </div><br /> <br /> <br />
 
         <h4> Ingredientes </h4>
         <div class="row2">
-            <div class="form-inline" id="start">
+            <div class="form-inline" id="_Div1">
                 <div style="clear:both">
                     <input class="CantidadIngrediente_SubirReceta" name="_Cantidad1" id="_Cantidad1" type="text" placeholder="Cantidad" spellcheck="true" required />
                 </div>
@@ -158,7 +162,7 @@
 
         <h4> Instrucciones </h4> <p> Numera los pasos correctamente </p> <br />
         <div class="wrap-input100 validate-input" data-validate="Ingrese Instrucciones">
-            <textarea class="TextArea_SubirReceta" type="text" name="instrucciones" rows="4" cols="50" placeholder="1. Adobar la carne con sal, pimienta y orégano al gusto. &#10;&#10;2. Pasarla por el pan rallado para rebozar los escalopes de ternera.&#10;&#10;3. Ingresar al horno a 180° por 40 minutos"></textarea>
+            <textarea class="TextArea_SubirReceta" type="text" name="instrucciones" id="Instrucciones" onkeyup="textAreaAdjust(this)" style="overflow:hidden" rows="4" cols="50" placeholder="1. Adobar la carne con sal, pimienta y orégano al gusto. &#10;&#10;2. Pasarla por el pan rallado para rebozar los escalopes de ternera.&#10;&#10;3. Ingresar al horno a 180° por 40 minutos"></textarea>
             <span class="focus-input100"></span>
         </div> <br /> <br />
 
@@ -225,6 +229,11 @@
         $('.image-upload-wrap').bind('dragleave', function () {
             $('.image-upload-wrap').removeClass('image-dropping');
         });
+
+        function textAreaAdjust(o) {
+            o.style.height = "97px";
+            o.style.height = (25 + o.scrollHeight) + "px";         
+        }
     </script>
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>

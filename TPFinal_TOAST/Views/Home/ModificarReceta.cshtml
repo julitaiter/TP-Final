@@ -1,6 +1,5 @@
 ﻿@using TPFinal_TOAST.Models
 @model Receta
-@Scripts.Render("jquery-3.3.1.js")
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +23,7 @@
     <!--===============================================================================================-->
     <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
     <!--===============================================================================================-->
-    <link rel="styleshee" type="text/css" href="~/Content/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="~/Content/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -44,77 +43,158 @@
     <link rel="stylesheet" type="text/css" href="~/Content/util.css">
     <link rel="stylesheet" type="text/css" href="~/Content/main3.css">
     <!--===============================================================================================-->
+    <link rel="stylesheet" href="~/Content/Photo.css" TYPE="text/css">
 
     <script>
-        a = 0;
+        a = 1;
         function addIngrediente() {
-            a++;
-            var div = document.createElement('div');
-            div.setAttribute('class', 'form-inline');
-            div.innerHTML = '<div style="clear:both" class="_Cantidad' + a + ' col-md-offset-1 col-md-6"><input class="form-control" name="_Cantidad' + a + '" type="text"/></div><div class="Nombre_' + a + ' col-md-2""><input class="form-control" name="_Nombre' + a + '" type="text"/></div>';
-            document.getElementById('ingredientes').appendChild(div); document.getElementById('ingredientes').appendChild(div);
-        }
-    </script>
 
-    <title>Modificar Receta</title>
+            //Valida campos (Ignora el primero)
+            if (a == 1) {
+                var inputs = document.getElementById("_Div1").querySelectorAll("input");
+                var Vacios = false;
+                for (var ElInput in inputs) {
+                    Valor = inputs[ElInput];
+                    if (typeof Valor == "object") {
+                        if (Valor.value == "") {
+                            Vacios = true;
+                        }
+                    }
+                }
+            }
+            else {
+                var inputs = document.getElementById("ingredientes").querySelectorAll("input");
+                var Vacios = false;
+                for (var ElInput in inputs) {
+                    Valor = inputs[ElInput];
+                    if (typeof Valor == "object") {
+                        if (Valor.value == "") {
+                            Vacios = true;
+                        }
+                    }
+                }
+            }
+
+
+            if (Vacios == false) {
+                //Agrega los campos
+                a++;
+                var div = document.createElement('div');
+                div.setAttribute('class', 'form-inline');
+                div.setAttribute('id', '_Div' + a);
+                div.innerHTML = '<div style="clear:both"><input class="CantidadIngrediente_SubirReceta" name="_Cantidad' + a + '" id="_Cantidad' + a + '" type="text" placeholder="Cantidad" spellcheck="true" required/></div><div class="col-md-2"><input class="NombreIngrediente_SubirReceta" name="_Nombre' + a + '" id="_Nombre' + a + '" type="text" placeholder="Nombre del ingrediente" spellcheck="true" required/></div><br/><br/><br/><br/>';
+                document.getElementById('ingredientes').appendChild(div); document.getElementById('ingredientes').appendChild(div);
+            }
+            else {
+                alert("Ingrese el ingrediente correctamente");
+            }
+        }
+
+        function RemoveIngrediente() {
+
+            if (a > 1) {
+                $('#_Cantidad' + a).remove();
+                $('#_Nombre' + a).remove();
+                $('#_Div' + a).remove();
+                a--;
+            }
+        }
+
+    </script>
 
 </head>
 <body>
+    <form method="POST" id="signup-form" class="signup-form" action="@Url.Action("RecetaSubida", "Home")" enctype="multipart/form-data">
+        <h1 class="TitleSubirReceta">Compartí tus recetas</h1> <br /> <br />
 
-    <form method="POST" id="signup-form" class="signup-form" action='@Url.Action("RecetaModificada", "Home", new {IDRecetaAnterior = ViewBag.LaReceta.IDReceta})' enctype="multipart/form-data">
-        <h1 class="form-title">Subir receta</h1> <br /> <br />
-
-        <div class="UploadFoto">
-            <input type='file' id="Foto" name="foto" accept="image/*" required />
-            <br />
-            <div id="preview"></div>
+        <div class="wrap-input100 validate-input" data-validate="Ingrese Titulo">
+            <input class="input100" type="text" name="titulo" value="@ViewBag.LaReceta.NombreReceta" placeholder="Escribe el título de tu receta" required="required" pattern="[A-Za-z].{1,}" title="Ingrese un título válido">
+            <span class="focus-input100"></span>
         </div> <br /> <br />
 
-        <h4> Título </h4> <br />
-        <div class="wrap-input100 validate-input" data-validate="Ingrese Titulo">
-            <input class="input100" type="text" name="titulo" placeholder="por ej. Milanesa a la napolitana" required="required" pattern="[A-Za-z].{1,}" title="Ingrese un título válido" value="@ViewBag.LaReceta.NombreReceta">
-            <span class="focus-input100"></span>
-        </div><br />  <br />
+        <div class="file-upload">
+            <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Subí la foto de tu receta</button>
+
+            <div class="image-upload-wrap">
+                <input class="file-upload-input" id="Foto" name="foto" type='file' onchange="readURL(this);" accept="image/*" required />
+                <div class="drag-text">
+                    <h3>Arrastra o selecciona una imagen</h3>
+                </div>
+            </div>
+            <div class="file-upload-content">
+                <img class="file-upload-image" src="#" alt="your image" />
+                <div class="image-title-wrap">
+                    <button type="button" onclick="removeUpload()" class="remove-image"> Borrar </button>
+                </div>
+            </div>
+        </div> <br />
 
         <h4> Elegir Categoria </h4> <br />
-        <div data-validate="Ingrese Categoria">
-            <select name="categoria" id="Categoria">
+        <div class="Subir_Receta" data-validate="Ingrese Categoria">
+            <select name="categoria">
                 @foreach (string Categoria in ViewBag.Categorias)
                 {
-                    <option value="@Categoria"> @Categoria </option>
+                    if (Categoria == ViewBag.LaReceta.Categoria.Nom_Categoria)
+                    {
+                        <option selected value="@Categoria"> @Categoria </option>
+                    }
+                    else
+                    {
+                        <option value="@Categoria"> @Categoria </option>
+                    }
                 }
             </select>
-        </div><br /> <br />
+        </div><br /> <br /> <br />
 
-        <h4> Instrucciones </h4> <p> Separe los pasos con saltos de línea </p> <br />
+        <h4> Ingredientes </h4>
+        <div class="row2">
+            <div class="form-inline" id="_Div1">
+                <div style="clear:both">
+                    <input class="CantidadIngrediente_SubirReceta" name="_Cantidad1" id="_Cantidad1" type="text" placeholder="Cantidad" spellcheck="true" required />
+                </div>
+                <div class="col-md-2">
+                    <input class="NombreIngrediente_SubirReceta" name="_Nombre1" id="_Nombre1" type="text" placeholder="Nombre del ingrediente" spellcheck="true" required />
+                </div>
+                <br /><br /><br /><br />
+            </div>
+        </div>
+        <div class="row2" id="ingredientes">
+        </div>
+        <div class="btnAgregar_SubirReceta">
+            <div><input type="button" class="btn btn-success" id="add_ingrediente()" onClick="addIngrediente()" value="+" /> <input type="button" class="btn btn-danger" id="remove_ingrediente()" onClick="RemoveIngrediente()" value="-" /></div>
+        </div> <br /><br /> <br />
+
+
+        <h4> Instrucciones </h4> <p> Numera los pasos correctamente </p> <br />
         <div class="wrap-input100 validate-input" data-validate="Ingrese Instrucciones">
-            <textarea class="input100" type="text" id="instrucciones" name="instrucciones" rows="4" cols="50" placeholder="por ej.: Adobar la carne con sal, pimienta y orégano al gusto. &#10;&#10;Pasarla por el pan rallado para rebozar los escalopes de ternera.">@ViewBag.LaReceta.Preparacion</textarea>
+            <textarea class="TextArea_SubirReceta" type="text" name="instrucciones" id="Instrucciones" onkeyup="textAreaAdjust(this)" style="overflow:hidden" rows="4" cols="50" placeholder="1. Adobar la carne con sal, pimienta y orégano al gusto. &#10;&#10;2. Pasarla por el pan rallado para rebozar los escalopes de ternera.&#10;&#10;3. Ingresar al horno a 180° por 40 minutos">@ViewBag.LaReceta.Preparacion</textarea>
             <span class="focus-input100"></span>
-        </div><br />
+        </div> <br /> <br />
 
-        <h4> Dificultad </h4> <br />
-        <div class="Subir_Receta" data-validate="Ingrese Dificultad">
-            <select name="dificultad" id="Dificultad">
+
+        <div class="Alineacion_SubirReceta">
+            <select name="dificultad" class="Subir_Receta">
                 @foreach (string Dificultad in ViewBag.Dificultades)
                 {
-                    <option value="@Dificultad"> @Dificultad </option>
+                    if (Dificultad == ViewBag.LaReceta.Dificultad.NombreDificultad)
+                    {
+                        <option selected value="@Dificultad"> @Dificultad </option>
+                    }
+                    else
+                    {
+                        <option value="@Dificultad"> @Dificultad </option>
+                    }
+
                 }
             </select>
-        </div> <br /> <br />
 
-        <h4> Tiempo de Preparación </h4><br />
-        <div class="Subir_Receta2">
-            <input type="number" name="tiempo_prep" required="required" value="@ViewBag.LaReceta.TiempoPreparacion" pattern="{1,}" title="Ingrese tiempo de preparación">  <p class="P_SubirReceta"> min. </p>
-        </div><br /> <br />
-
-        <h4> Cantidad de Platos </h4><br />
-        <div class="Subir_Receta3">
-            <input type="number" name="cant_platos" required="required" value="@ViewBag.LaReceta.CantidadPlatos" pattern="{1,}" title="Ingrese cantidad de platos"> <p class="P_SubirReceta"> porciones </p>
-        </div> <br /> <br />
+            <input class="Subir_Receta2" type="number" name="tiempo_prep" value="@ViewBag.LaReceta.TiempoPreparacion" placeholder="Tiempo de preparación" required="required" min="1" pattern="^[1-9]+" title="Ingrese tiempo de preparación" />  <p class="P_SubirReceta"> min. </p>
+            <input class="Subir_Receta3" type="number" name="cant_platos" value="@ViewBag.LaReceta.CantidadPlatos" placeholder="N° de porciones" required="required" min="1" pattern="^[1-9]+" title="Ingrese cantidad de platos" />
+        </div>
 
         <div class="container-login100-form-btn m-t-17">
             <button class="login100-form-btn">
-                Guardar cambios
+                Publicar
             </button>
         </div>
 
@@ -123,28 +203,49 @@
     <!-- JS -->
     <script src="~/Content/vendor/jquery/jquery.min.js"></script>
     <script src="~/Content/SignUp.js"></script>
+    <script type="text/javascript" src="../Content/Photo.js"></script>
+    <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
     <script>
-        $("#Categoria > option[value='@ViewBag.LaReceta.Categoria.Nom_Categoria']").attr("selected", true);
-        $("#Dificultad > option[value='@ViewBag.LaReceta.Dificultad.NombreDificultad']").attr("selected", true);
 
-        document.getElementById("Foto").onchange = function (e) {
-            let reader = new FileReader();
+        function readURL(input) {
+            console.log("Hola");
+            if (input.files && input.files[0]) {
 
-            reader.onload = function () {
-                let preview = document.getElementById('preview'),
-                    image = document.createElement('img');
+                var reader = new FileReader();
 
-                image.src = reader.result;
+                reader.onload = function (e) {
+                    $('.image-upload-wrap').hide();
 
-                preview.innerHTML = '';
-                preview.append(image);
-            };
+                    $('.file-upload-image').attr('src', e.target.result);
+                    $('.file-upload-content').show();
 
-            reader.readAsDataURL(e.target.files[0]);
+                    $('.image-title').html(input.files[0].name);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            } else {
+                removeUpload();
+            }
+        }
+
+        function removeUpload() {
+            $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+            $('.file-upload-content').hide();
+            $('.image-upload-wrap').show();
+        }
+        $('.image-upload-wrap').bind('dragover', function () {
+            $('.image-upload-wrap').addClass('image-dropping');
+        });
+        $('.image-upload-wrap').bind('dragleave', function () {
+            $('.image-upload-wrap').removeClass('image-dropping');
+        });
+
+        function textAreaAdjust(o) {
+            o.style.height = "97px";
+            o.style.height = (25 + o.scrollHeight) + "px";
         }
     </script>
-
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
-

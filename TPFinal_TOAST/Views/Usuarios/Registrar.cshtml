@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/Content/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="~/Content/animate.css"> 
+    <link rel="stylesheet" href="~/Content/animate.css">
     <link rel="stylesheet" href="~/Content/owl.carousel.min.css">
     <link rel="stylesheet" href="~/Content/owl.theme.default.min.css">
     <link rel="stylesheet" href="~/Content/magnific-popup.css">
@@ -42,8 +42,7 @@
     <link rel="stylesheet" type="text/css" href="~/Content/util.css">
     <link rel="stylesheet" type="text/css" href="~/Content/main3.css">
     <!--===============================================================================================-->
-
-    <title>Registro</title>
+    <link rel="stylesheet" href="~/Content/Photo.css" TYPE="text/css">
 
     <!-- Font Icon -->
     <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
@@ -51,10 +50,13 @@
     <!-- Main css -->
     <link rel="stylesheet" href="~/Content/SignUp.css">
 
+    <title>Registro</title>
+
+
     <script>
-        function comprobarClave() {
-            var contraseña = document.f1.contraseña.value
-            var re_contraseña = document.f1.re_contraseña.value
+        function comprobarContraseña() {
+            var contraseña = document.f1.contraseña.value;
+            var re_contraseña = document.f1.re_contraseña.value;
 
             if (contraseña != re_contraseña) {
                 alert("Las contraseñas no coinciden");
@@ -74,15 +76,23 @@
         <section class="signup">
             <div class="container">
                 <div class="signup-content">
-                    <form method="POST" id="signup-form" class="signup-form" name="f1" enctype="multipart/form-data" onsubmit="return comprobarClave()" action="@Url.Action("Registrado", "Usuarios")">
+                    <form method="POST" id="signup-form" class="signup-form" name="f1" enctype="multipart/form-data" onsubmit="return comprobarContraseña()" action="@Url.Action("Registrado", "Usuarios")">
                         <h2 class="form-title">Registrar usuario</h2>
 
-                        <div class="uploadWrapper">
-                            <span>Subir una Foto</span>
-                            <div class="UploadButton">
-                                <input type='file' id="Foto" name="Foto" accept="image/*" required title="Ingrese una foto" />
-                                <br />
-                                <div id="preview"></div>
+                        <div>
+                            <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Subir foto</button>
+
+                            <div class="image-upload-wrap">
+                                <input class="file-upload-input" id="Foto" name="Foto" type='file' onchange="readURL(this);" accept="image/*" required />
+                                <div class="drag-text">
+                                    <h3>Arrastra o selecciona una imagen</h3>
+                                </div>
+                            </div>
+                            <div class="file-upload-content">
+                                <img class="file-upload-image" src="#" alt="your image" />
+                                <div class="image-title-wrap">
+                                    <button type="button" onclick="removeUpload()" class="remove-image"> Borrar </button>
+                                </div>
                             </div>
                         </div> <br />
 
@@ -107,7 +117,7 @@
                         </div><br />
 
                         <div class="wrap-input100 validate-input" data-validate="Ingrese contraseña">
-                            <input class="input100" type="password" id="contraseña" name="contraseña" placeholder="Contraseña" required title="Ingrese una contraseña válido">
+                            <input class="input100" type="password" id="contraseña" name="contraseña" placeholder="Contraseña" required pattern=".{6,16}" title="La contraseña debe tener entre 6 y 16 caracteres">
                             <span class="focus-input100"></span>
                         </div><br />
 
@@ -134,22 +144,44 @@
     <!-- JS -->
     <script src="~/Content/vendor/jquery/jquery.min.js"></script>
     <script src="~/Content/SignUp.js"></script>
+    <script type="text/javascript" src="../Content/Photo.js"></script>
+    <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
     <script>
-        document.getElementById("Foto").onchange = function (e) {
-            let reader = new FileReader();
 
-            reader.onload = function () {
-                let preview = document.getElementById('preview'),
-                    image = document.createElement('img');
+        function readURL(input) {
+            console.log("Hola");
+            if (input.files && input.files[0]) {
 
-                image.src = reader.result;
+                var reader = new FileReader();
 
-                preview.innerHTML = '';
-                preview.append(image);
-            };
+                reader.onload = function (e) {
+                    $('.image-upload-wrap').hide();
 
-            reader.readAsDataURL(e.target.files[0]);
+                    $('.file-upload-image').attr('src', e.target.result);
+                    $('.file-upload-content').show();
+
+                    $('.image-title').html(input.files[0].name);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            } else {
+                removeUpload();
+            }
         }
+
+        function removeUpload() {
+            $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+            $('.file-upload-content').hide();
+            $('.image-upload-wrap').show();
+        }
+        $('.image-upload-wrap').bind('dragover', function () {
+            $('.image-upload-wrap').addClass('image-dropping');
+        });
+        $('.image-upload-wrap').bind('dragleave', function () {
+            $('.image-upload-wrap').removeClass('image-dropping');
+        });
     </script>
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
