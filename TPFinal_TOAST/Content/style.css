@@ -118,34 +118,29 @@
 
 .Subir_Receta {
     display: inline-block;
-    height: 40px;
-    width: 10px;
-
     font-family: Poppins-Regular;
     color: #333333;
     line-height: 1.2;
     font-size: 18px;
-    background: transparent;
 }
 
 .Subir_Receta2 {
-    height: 40px;
-    width: 10px;
+    display: inline-block;
     font-family: Poppins-Regular;
     color: #333333;
     line-height: 1.2;
     font-size: 18px;
-    background: transparent;
+    border: 1px solid #999999;
+    margin-left: 150px;
 }
 
 .Subir_Receta3 {
-    height: 40px;
-    width: 10px;
     font-family: Poppins-Regular;
     color: #333333;
     line-height: 1.2;
     font-size: 18px;
-    background: transparent;
+    border: 1px solid #999999;
+    margin-left: 200px;
 }
 
 .P_SubirReceta{
@@ -207,6 +202,18 @@
 .Alineacion_SubirReceta{
     display: inline-block;
     width: 100%;
+}
+
+.TextArea_SubirReceta{
+    font-family: Poppins-Regular;
+    color: #333333;
+    line-height: 1.2;
+    font-size: 18px;
+    display: block;
+    width: 100%;
+    height: 120px;
+    padding: 0 20px;
+    border: 1px solid #999999;
 }
 
 /*  ViewReceta: */
