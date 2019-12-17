@@ -81,7 +81,7 @@
                 a++;
                 var div = document.createElement('div');
                 div.setAttribute('class', 'form-inline');
-                div.innerHTML = '<div style="clear:both" class="col-md-offset-1 col-md-6"><input class="form-control" name="_Cantidad' + a + '" id="_Cantidad' + a + '" type="text" spellcheck="true" required/></div><div class="col-md-2"><input class="form-control" name="_Nombre' + a + '" id="_Nombre' + a + '" type="text" spellcheck="true" required/></div><br/><br/><br/><br/>';
+                div.innerHTML = '<div style="clear:both" class="col-md-offset-1 col-md-6"><input class="CantidadIngrediente_SubirReceta" name="_Cantidad' + a + '" id="_Cantidad' + a + '" type="text" placeholder="Cantidad" spellcheck="true" required/></div><div class="col-md-2"><input class="NombreIngrediente_SubirReceta" name="_Nombre' + a + '" id="_Nombre' + a + '" type="text" placeholder="Nombre del ingrediente" spellcheck="true" required/></div><br/><br/><br/><br/>';
                 document.getElementById('ingredientes').appendChild(div); document.getElementById('ingredientes').appendChild(div);
             }
             else {
@@ -140,17 +140,15 @@
         <h4> Ingredientes </h4> <br />
         <div class="row2">
             <div class="container">
-                <div class="col-md-offset-1 col-md-6"><label>Cantidad</label></div>
-                <div class="col-md-2"><label>Nombre Ingrediente</label></div>
                 <div class="col-md-1"><input type="button" class="btn btn-success" id="add_ingrediente()" onClick="addIngrediente()" value="+" /></div>
                 <div class="col-md-1"><input type="button" class="btn btn-danger" id="remove_ingrediente()" onClick="RemoveIngrediente()" value="-" /></div>
             </div>
             <div class="form-inline" id="start">
                 <div style="clear:both" class="col-md-offset-1 col-md-6">
-                    <input class="form-control" name="_Cantidad1" id="_Cantidad1" type="text" spellcheck="true" required />
+                    <input class="CantidadIngrediente_SubirReceta" name="_Cantidad1" id="_Cantidad1" type="text" placeholder="Cantidad" spellcheck="true" required />
                 </div>
                 <div class="col-md-2">
-                    <input class="form-control" name="_Nombre1" id="_Nombre1" type="text" spellcheck="true" required />
+                    <input class="NombreIngrediente_SubirReceta" name="_Nombre1" id="_Nombre1" type="text" placeholder="Nombre del ingrediente" spellcheck="true" required />
                 </div>
                 <br /><br /><br /><br />
             </div>
@@ -176,7 +174,6 @@
             </select>
 
             <input class="Subir_Receta2" type="number" name="tiempo_prep" placeholder="Tiempo de preparación" required="required"min="1" pattern="^[1-9]+" title="Ingrese tiempo de preparación" />  <p class="P_SubirReceta"> min. </p>
-
             <input class="Subir_Receta3" type="number" name="cant_platos" placeholder="N° de porciones" required="required" min="1" pattern="^[1-9]+" title="Ingrese cantidad de platos" />
         </div>
 
